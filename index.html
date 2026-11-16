@@ -1355,6 +1355,11 @@ function resist(x,X,Y,lab,vert){x.fillStyle='#050913';if(vert)x.fillRect(X-14,Y-
  function r(){const k=+$('#blK').value;$('#blKo').textContent=k+' kWh';const b=bill(k);$('#blTb').innerHTML='<thead><tr><th>항목</th><th>계산</th><th>금액</th></tr></thead><tbody>'+b.map((x,i)=>`<tr style="${i<shown?'':'opacity:.08'}"><td style="text-align:left;font-weight:900">${x[0]}</td><td style="font-size:19px">${x[1]}</td><td class="${i===7?'hl':''}" style="text-align:right">${x[2]}</td></tr>`).join('')+'</tbody>';}
  $('#blK').addEventListener('input',()=>{shown=0;r();});$('#blB').onclick=()=>{shown=Math.min(8,shown+1);r();};$('#blAll').onclick=()=>{shown=8;r();};r();})();
 
+// 계산 연습 표 (칸 누르면 공개)
+document.addEventListener('click',e=>{const td=e.target.closest&&e.target.closest('.calcT td.rc');if(td)td.classList.toggle('hid');
+ const a=e.target.closest&&e.target.closest('[data-calc-all]');if(a)$$('#'+a.dataset.calcAll+' td.rc').forEach(t=>t.classList.remove('hid'));
+ const h=e.target.closest&&e.target.closest('[data-calc-hide]');if(h)$$('#'+h.dataset.calcHide+' td.rc').forEach(t=>t.classList.add('hid'));});
+
 
 /* ================== 7차시 ================== */
 // 막대자석
