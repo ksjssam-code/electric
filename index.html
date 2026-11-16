@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>전기 탐구실 — 탐구활동</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0f1f;--panel:#121a33;--panel2:#18224a;--line:#2a3666;--text:#e9edff;--muted:#9ba6d4;--gold:#ffd166;--cyan:#6ad1ff;--pink:#ff7a90;--green:#63e6a3;--violet:#b49cff}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.6;font-size:18px}
+body{background:radial-gradient(1200px 600px at 80% -10%,#1b2a5c55,transparent),radial-gradient(900px 500px at -10% 10%,#3a1b5c33,transparent),var(--bg);min-height:100vh}
+header{position:sticky;top:0;z-index:10;background:#0a0f1fe6;backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hwrap{max-width:1100px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{font-weight:900;font-size:21px}
+.who{font-size:15px;color:var(--muted);margin-left:auto}
+.who b{color:var(--gold)}
+.who button{font-size:13px;padding:3px 8px;margin-left:6px}
+nav{display:flex;gap:6px;flex-wrap:wrap;width:100%}
+nav a{color:var(--muted);text-decoration:none;padding:8px 14px;border-radius:999px;border:1px solid var(--line);font-weight:500;font-size:16px}
+nav a.on{color:#0a0f1f;background:var(--gold);border-color:var(--gold);font-weight:700}
+main{max-width:1100px;margin:0 auto;padding:20px 16px 80px}
+.module{display:none}.module.on{display:block}
+.mhead .tag{color:var(--gold);font-weight:700;font-size:15px}
+.mhead h1{margin:2px 0 6px;font-size:32px;letter-spacing:-1px}
+.goal{display:inline-block;background:#ffd16614;border:1px solid #ffd16655;color:var(--gold);padding:5px 12px;border-radius:8px;font-size:16px}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:16px 0}
+.step h2{margin:0 0 12px;font-size:23px;display:flex;align-items:center;gap:10px;letter-spacing:-.5px;flex-wrap:wrap}
+.badge{font-size:13px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--panel2);border:1px solid var(--line);white-space:nowrap}
+.b1{color:var(--pink)}.b2{color:var(--cyan)}.b3{color:var(--green)}.b4{color:var(--gold)}
+.q{background:var(--panel2);border-left:5px solid var(--pink);padding:12px 16px;border-radius:10px;margin:14px 0 8px;font-weight:700;font-size:19px}
+.q.c{border-left-color:var(--cyan)}.q.g{border-left-color:var(--green)}
+.muted{color:var(--muted)}.small{font-size:15px}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+button{font-family:inherit;font-size:16px;cursor:pointer;border-radius:10px;border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:9px 14px;font-weight:500}
+button:hover{border-color:var(--cyan)}
+button.pri{background:var(--cyan);color:#06122a;border-color:var(--cyan);font-weight:700}
+button.au{background:var(--gold);color:#1a1300;border-color:var(--gold);font-weight:700}
+button.sel{background:#ff7a9022;border-color:var(--pink);color:#fff;font-weight:700}
+button:disabled{opacity:.4;cursor:not-allowed}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:820px){.grid2{grid-template-columns:1fr}}
+canvas{width:100%;height:auto;display:block;background:#050913;border:1px solid var(--line);border-radius:12px}
+.cap{font-size:14px;color:var(--muted);margin:5px 2px 0}
+.ctrl{display:grid;grid-template-columns:auto 1fr auto;gap:10px 12px;align-items:center;margin:12px 0}
+.ctrl label{font-weight:700}
+.ctrl output{font-weight:900;color:var(--gold);min-width:90px;text-align:right;font-variant-numeric:tabular-nums;font-size:20px}
+input[type=range]{width:100%;accent-color:var(--gold);height:24px}
+select,input[type=text],input[type=number],input[type=password]{font-family:inherit;font-size:17px;background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:17px;margin-top:8px}
+th,td{border:1px solid var(--line);padding:7px 8px;text-align:center}
+th{background:var(--panel2);color:var(--muted);font-weight:500}
+td.hl{color:var(--gold);font-weight:700}
+textarea{width:100%;min-height:70px;font-family:inherit;font-size:17px;background:#0b1229;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:10px;resize:vertical}
+textarea:focus{outline:2px solid var(--cyan);border-color:transparent}
+.intab td{padding:4px}#hbIn input{width:100%;text-align:center;font-size:18px;font-weight:700;font-family:inherit;padding:6px;background:#0b1229;color:var(--gold);border:1px solid var(--line);border-radius:6px}.intab input,.intab select{width:100%;text-align:center;font-size:18px;font-weight:700;font-family:inherit;padding:6px;background:#0b1229;color:var(--gold);border:1px solid var(--line);border-radius:6px}
+.intab input:focus{outline:2px solid var(--cyan)}
+.reveal{display:none;background:#63e6a314;border:1px solid #63e6a355;border-radius:10px;padding:12px 16px;margin-top:10px}
+.reveal.show{display:block}
+.reveal b{color:var(--green)}
+.rv:disabled{opacity:.45}
+.lockhint{font-size:13px;color:var(--muted);align-self:center}
+.concept{background:linear-gradient(135deg,#ffd16612,#6ad1ff0c);border:1px solid #ffd16644;border-radius:14px;padding:16px 18px;margin-top:10px}
+.concept h3{margin:0 0 8px;color:var(--gold);font-size:19px}
+.concept ul{margin:0;padding-left:22px}.concept li{margin:4px 0}
+.formula{font-size:22px;font-weight:900;text-align:center;padding:10px;margin:10px 0;background:#0007;border-radius:10px;color:var(--gold)}
+.quiz .item{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:10px 0}
+.quiz .item p{margin:0 0 8px;font-weight:700}
+.quiz .opts{display:flex;flex-wrap:wrap;gap:8px}
+.quiz .opts button.ok{background:#63e6a333;border-color:var(--green)}
+.quiz .opts button.no{background:#ff7a9026;border-color:var(--pink)}
+.quiz .fb{font-size:15px;margin-top:8px;display:none}.quiz .fb.show{display:block}
+.quiz .opts button.sel{background:#6ad1ff26;border-color:var(--cyan);font-weight:700}
+.quiz .item.fa.ok{border-color:var(--green)}.quiz .item.fa.no{border-color:var(--pink)}
+.quiz .item.fa .fa-in{background:#0b1229;color:var(--gold);font-weight:700}
+.ltag{font-size:12px;background:#6ad1ff22;color:var(--cyan);border-radius:6px;padding:1px 7px;font-weight:700}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.chip{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:6px 12px;font-size:15px}
+.chip b{color:var(--gold);font-size:20px;font-variant-numeric:tabular-nums}
+.cards{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0}
+.scard{width:140px;background:#050913;border:2px solid var(--line);border-radius:12px;padding:12px 8px;text-align:center;cursor:pointer;position:relative}
+.scard:hover{border-color:var(--gold)}
+.scard .dot{width:60px;height:60px;border-radius:50%;margin:6px auto 8px}
+.scard .nm{font-weight:700;font-size:16px}
+.scard .tp{font-size:13px;color:var(--muted);min-height:18px}
+.scard .ord{position:absolute;top:6px;left:8px;background:var(--gold);color:#1a1300;border-radius:50%;width:26px;height:26px;font-weight:900;font-size:15px;line-height:26px;display:none}
+.scard.picked{border-color:var(--gold)}.scard.picked .ord{display:block}
+.msg{font-size:15px;color:var(--pink);min-height:1.2em;margin:4px 0}
+.vo{font-size:17px}
+.submit{background:linear-gradient(135deg,#6ad1ff1a,#63e6a31a);border:2px solid #6ad1ff66}
+.submit .st{margin-top:8px;font-weight:700}
+/* login */
+#login{position:fixed;inset:0;background:#05081499;backdrop-filter:blur(6px);z-index:50;display:none;align-items:center;justify-content:center;padding:16px}
+#login.on{display:flex}
+#login .card{background:var(--panel);border:1px solid var(--gold);border-radius:18px;padding:26px 26px 22px;width:min(440px,100%)}
+#login h2{margin:0 0 4px;font-size:26px}
+#login .row{display:grid;grid-template-columns:90px 1fr;gap:10px;align-items:center;margin:10px 0}
+#login .row select,#login .row input{width:100%}
+.ovl2{position:fixed;inset:0;background:#05081499;backdrop-filter:blur(6px);z-index:55;display:none;align-items:center;justify-content:center;padding:16px}
+.ovl2.on{display:flex}.ovl2 .card{background:var(--panel);border:1px solid var(--gold);border-radius:18px;padding:22px;width:min(460px,100%);max-height:90vh;overflow:auto}
+.lvbar{display:inline-block;width:90px;height:8px;background:#2a3666;border-radius:4px;vertical-align:middle;overflow:hidden;margin:0 6px}.lvbar i{display:block;height:100%;background:var(--gold)}
+.tagb{font-size:12px;border-radius:6px;padding:1px 7px;font-weight:700;background:#ffffff14}
+.tag-궁금해요{color:#8fd6ff}.tag-해보고싶은탐구{color:#7be3a0}.tag-오늘의발견{color:#ffd166}
+.goodb{font-size:12px;color:#1a1300;background:var(--gold);border-radius:6px;padding:0 6px;font-weight:900}
+/* board */
+.qitem{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:12px 0}
+.qitem .meta{font-size:13px;color:var(--muted);display:flex;gap:10px}
+.qitem .qt{font-size:18px;font-weight:700;margin:6px 0 8px;white-space:pre-wrap;word-break:break-word}
+.ans{border-left:3px solid var(--green);padding:6px 10px;margin:8px 0;background:#63e6a30d;border-radius:6px;white-space:pre-wrap;word-break:break-word}
+.ans .meta{margin-bottom:2px}
+.ans.teacher{border-left-color:var(--gold);background:#ffd1660f}
+.aform{display:flex;gap:8px;margin-top:8px}
+.aform textarea{min-height:44px}
+.lchips{display:flex;gap:6px;flex-wrap:wrap}
+.lchips button.on{background:var(--gold);color:#1a1300;border-color:var(--gold);font-weight:700}
+.notice{background:#ff7a9014;border:1px solid #ff7a9055;border-radius:10px;padding:10px 14px;font-size:15px}
+#m-qa.on~*{}
+body.qa-wide main{max-width:1500px}
+.qacols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;align-items:start}
+@media(max-width:1100px){.qacols{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.qacols{grid-template-columns:1fr}}
+.qacol{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px 10px 4px;min-height:120px}
+.qacol.mine{border-color:var(--gold)}
+.qacol h3{margin:2px 4px 6px;font-size:19px;display:flex;align-items:center;gap:8px}
+.qacol h3 .cnt{font-size:13px;color:var(--muted);font-weight:500}
+.qacol .qitem{margin:8px 0;padding:10px 12px}
+.qacol .qitem .qt{font-size:16px}
+.qacol .ans{font-size:15px}
+.qacol .aform{flex-direction:column}
+.ltag{font-size:11px;background:#6ad1ff22;color:var(--cyan);border-radius:6px;padding:0 6px}
+footer{max-width:1100px;margin:0 auto;padding:0 16px 40px;color:var(--muted);font-size:13px}
+
+.tagb.tag-해보고싶은탐구{color:#7be3a0}
+.echip{font-size:14px;padding:2px 7px;border-radius:7px;border:1px solid var(--line);color:var(--muted);cursor:pointer;user-select:none}
+.echip.on{background:var(--gold);color:#1a1300;border-color:var(--gold);font-weight:900}
+.cards .scard{width:auto;min-width:140px}
+details summary{cursor:pointer}
+#blTb{font-size:15px}
+</style>
+</head>
+<body>
+<header>
+  <div class="hwrap">
+    <div class="brand">⚡ 전기 탐구실</div>
+    <div class="who" id="who"></div>
+    <nav>
+      <a href="#t1" data-m="t1">① 마찰 전기</a>
+      <a href="#t2" data-m="t2">② 정전기 유도</a>
+      <a href="#t3" data-m="t3">③ 전류·전압</a>
+      <a href="#t4" data-m="t4">④ 옴의 법칙</a>
+      <a href="#t5" data-m="t5">⑤ 직렬·병렬</a>
+      <a href="#t6" data-m="t6">⑥ 소비 전력</a>
+      <a href="#t7" data-m="t7">⑦ 코일 자기장</a>
+      <a href="#t8" data-m="t8">⑧ 전동기</a>
+      <a href="#qa" data-m="qa">💬 호기심 회로</a>
+    </nav>
+  </div>
+</header>
+
+<div id="login"><div class="card">
+  <h2>⚡ 전기 탐구실</h2>
+  <p class="muted" style="margin:0 0 10px" id="lgSub">반·번호·이름과 <b style="color:var(--gold)">별 탐구실과 같은 PIN</b>으로 입장</p>
+  <div class="row"><label>반</label><select id="lgCls"><option value="">선택</option><option>2-1</option><option>2-2</option><option>2-3</option><option>2-4</option></select></div>
+  <div class="row"><label>번호</label><input type="number" id="lgNum" min="1" max="40" placeholder="예: 15"></div>
+  <div class="row"><label>이름</label><input type="text" id="lgName" maxlength="10" placeholder="예: 홍길동"></div>
+  <div class="row"><label>PIN</label><input type="password" id="lgPin" inputmode="numeric" maxlength="4" placeholder="숫자 4자리" autocomplete="off"></div>
+  <div id="lgReg" style="display:none;border-top:1px dashed var(--line);margin-top:10px;padding-top:10px">
+    <p id="lgRegT" style="margin:0 0 8px;color:var(--gold);font-weight:700">⚡ 처음 왔어요! 닉네임 정하기</p>
+    <div class="row"><label>닉네임</label><input type="text" id="lgNick" maxlength="8" placeholder="2~8자, 띄어쓰기 없이"></div>
+    <div class="row" id="lgPin2Row"><label>PIN 확인</label><input type="password" id="lgPin2" inputmode="numeric" maxlength="4" placeholder="PIN 한 번 더" autocomplete="off"></div>
+    <p class="small muted" style="margin:4px 0 0">· 새 단원이니 <b>새 닉네임</b>을 정해도 돼요 (별 탐구실 닉네임과 달라도 됨, 실명 금지)<br>· 이 단원 동안은 닉네임을 바꿀 수 없음</p>
+  </div>
+  <div class="msg" id="lgMsg"></div>
+  <div class="btns"><button class="au" id="lgGo" style="width:100%;font-size:18px">입장하기</button></div>
+  <p class="small muted" style="margin:6px 0 0">※ 게시판에는 닉네임만 표시됨. PIN을 잊으면 선생님께 말하기.</p>
+</div></div>
+<div id="lvHelp" class="ovl2"><div class="card">
+  <h2 style="margin:0 0 6px">⚡ 등급 안내</h2>
+  <p class="small muted" style="margin:0 0 8px"><b>호기심 회로</b>에서 묻고 답할수록 등급이 올라가요!</p>
+  <table><thead><tr><th>등급</th><th>필요 점수</th></tr></thead><tbody id="lvTb"></tbody></table>
+  <table style="margin-top:10px"><thead><tr><th>활동</th><th>점수</th></tr></thead><tbody>
+    <tr><td>호기심 회로 글쓰기 (10자 이상)</td><td>+2</td></tr><tr><td>친구 글에 답 달기 (10자 이상)</td><td>+3</td></tr>
+    <tr><td>선생님이 고른 ⭐ 좋은 글</td><td>+5</td></tr></tbody></table>
+  <p class="small muted" style="margin:6px 0 0">※ 게시판 점수는 하루 10점까지 · 숨김 처리된 글은 점수에서 빠짐</p>
+  <div class="btns"><button class="au" id="lvClose" style="width:100%">닫기</button></div>
+</div></div>
+
+<main>
+<!-- ======================= 1차시 ======================= -->
+<section class="module" id="m-t1" data-lesson="1">
+  <div class="mhead"><div class="tag">01 · 교과서 236~237쪽</div><h1>두 물체를 마찰하면 어떤 힘이 생길까?</h1><span class="goal">🎯 마찰 전기를 관찰하고, 전기력과 원자 모형으로 설명할 수 있다.</span></div>
+
+  <div class="step">
+    <h2><span class="badge b1">1 생각 열기</span> 머리카락이 섰어!</h2>
+    <div class="grid2" style="align-items:center"><canvas id="hairC" data-w="560" data-h="330"></canvas>
+    <div><p>플라스틱 미끄럼틀을 타고 내려오면 머리카락이 쭈뼛! 겨울철 털옷을 벗을 때도 머리카락이 옷에 달라붙어요.</p></div></div>
+    <div class="q">머리카락이 곤두서는 까닭은? (예측)</div>
+    <div class="btns predict" data-f="예측-머리카락"><button>바람이 불어서</button><button>머리카락끼리 밀어내서</button><button>미끄럼틀이 당겨서</button></div>
+    <div class="q c">장갑으로 문지른 숟가락 가에 같은 장갑으로 문지른 숟가락 나를 가까이 하면 가는? (예측)</div>
+    <div class="btns predict" data-f="예측-숟가락 나"><button>끌려온다</button><button>밀려난다</button><button>그대로</button></div>
+    <div class="q c">문지른 장갑을 가까이 하면? (예측)</div>
+    <div class="btns predict" data-f="예측-장갑"><button>끌려온다</button><button>밀려난다</button><button>그대로</button></div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b2">2 탐구하기</span> 가상 실험: 숟가락 가는 어떻게 될까? (236쪽)</h2>
+    <p class="small muted">① 문지르기 전에 가까이 해 보기 → ② [문지르기] → ③ 숟가락 나·장갑·문지르지 않은 숟가락을 차례로 가까이 해 보기</p>
+    <canvas id="spC" data-w="1180" data-h="420"></canvas>
+    <div class="btns"><button class="au" id="spRub">🧤 장갑으로 가·나 문지르기</button><button class="pri" id="spNa">숟가락 나 가까이</button><button class="pri" id="spGl">장갑 가까이</button><button id="spPl">문지르지 않은 숟가락 가까이</button><button id="spAway">멀리 치우기</button><button id="spQ">± 전하 보기</button><button id="spReset">처음으로</button></div>
+    <div class="msg" id="spMsg"></div>
+    <table class="intab"><thead><tr><th>가까이 한 것</th><th>숟가락 가의 움직임 (관찰)</th></tr></thead><tbody id="spIn" data-f="관찰-숟가락 가"><tr><td>문지른 숟가락 나</td><td><select><option value="">선택</option><option>끌려옴</option><option>밀려남</option><option>그대로</option></select></td></tr><tr><td>문지른 장갑</td><td><select><option value="">선택</option><option>끌려옴</option><option>밀려남</option><option>그대로</option></select></td></tr><tr><td>문지르지 않은 숟가락</td><td><select><option value="">선택</option><option>끌려옴</option><option>밀려남</option><option>그대로</option></select></td></tr></tbody></table>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b2">2 탐구하기</span> 원자 모형: 문지르면 무엇이 옮겨 갈까? (237쪽)</h2>
+    <canvas id="atC" data-w="1180" data-h="390"></canvas>
+    <div class="btns" style="align-items:center"><button class="au" id="atRub">🔁 문지르기</button><button id="atReset">처음으로</button><div class="chips" style="margin:0"><div class="chip">장갑 <b id="atA">중성</b></div><div class="chip">숟가락 <b id="atB">중성</b></div></div></div>
+    <div class="q g">옮겨 간 것은 무엇이고, 어느 쪽에서 어느 쪽으로 이동했나?</div>
+    <textarea data-f="관찰-이동한 것" placeholder="관찰 결과"></textarea>
+    <div class="btns"><button class="rv" data-t="r11">정리 확인</button></div>
+    <div class="reveal" id="r11">(−)전하를 띤 <b>전자</b>가 장갑 → 숟가락으로 이동 · 원자핵((+)전하)은 움직이지 않음</div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b3">3 발견 정리</span> 숟가락이 움직인 까닭</h2>
+    <div class="q g">① 같은 장갑으로 문지른 가와 나 사이에는 어떤 힘이 작용했나? 까닭은?</div>
+    <textarea data-f="발견-가와 나" placeholder="내 생각"></textarea>
+    <div class="btns"><button class="rv" data-t="r12">정리 확인</button></div>
+    <div class="reveal" id="r12">같은 방법으로 문질러 <b>같은 종류</b>의 전기 → <b>밀어내는 힘(척력)</b></div>
+    <div class="q g">② 장갑과 가 사이에는 어떤 힘이 작용했나? 까닭은?</div>
+    <textarea data-f="발견-장갑과 가" placeholder="내 생각"></textarea>
+    <div class="btns"><button class="rv" data-t="r13">정리 확인</button></div>
+    <div class="reveal" id="r13">전자를 잃은 장갑 (+), 얻은 숟가락 (−) → <b>다른 종류</b> → <b>끌어당기는 힘(인력)</b></div>
+    <div class="q g">③ 털모자를 벗을 때 머리카락이 모자에 달라붙는 까닭을 ‘전자’, ‘전기력’을 넣어 설명해 보자.</div>
+    <textarea data-f="적용-털모자" placeholder="내 설명"></textarea>
+    <div class="btns"><button class="rv" data-t="r14">정리 확인</button></div>
+    <div class="reveal" id="r14">마찰로 <b>전자가 이동</b>해 머리카락과 모자가 다른 종류의 전기를 띰 → 끌어당기는 <b>전기력</b></div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b4">4 개념 확인 · 형성평가</span> 마찰 전기</h2>
+    <div class="concept"><ul>
+      <li>원자: 원자핵 (+)전하량 = 전자 (−)전하량 → 전기적 <b>중성</b></li>
+      <li>마찰하면 한 물체에서 다른 물체로 <b>전자</b>가 이동 → 전자를 잃으면 (+), 얻으면 (−)전하로 <b>대전</b></li>
+      <li><b>대전체</b>: 전기를 띤 물체 · <b>마찰 전기(정전기)</b>: 마찰로 생긴 전기</li>
+      <li><b>전기력</b>: 같은 종류 → 척력(밀어냄), 다른 종류 → 인력(끌어당김)</li></ul></div>
+    <div class="quiz" id="quiz1"></div>
+  </div>
+
+  <div class="step submit">
+    <h2><span class="badge b2">📤 제출</span> 선생님께 탐구 결과 보내기</h2>
+    <p class="small muted">작성한 내용은 이 기기에 자동 저장됨. 다시 제출하면 최신 내용으로 바뀜.</p>
+    <button class="au submitBtn" data-lesson="1">1차시 탐구 결과 제출</button>
+    <div class="st" id="st1"></div>
+  </div>
+</section>
+
+<!-- ======================= 2차시 ======================= -->
+<section class="module" id="m-t2" data-lesson="2">
+  <div class="mhead"><div class="tag">02 · 교과서 238~241쪽</div><h1>전기를 띤 물체 근처에 가면?</h1><span class="goal">🎯 정전기 유도 현상을 관찰하고, 검전기의 원리를 설명할 수 있다.</span></div>
+
+  <div class="step">
+    <h2><span class="badge b1">1 생각 열기</span> 마찰하지 않은 쇠숟가락</h2>
+    <p>지우개 위에 <b>아무것도 문지르지 않은</b> 쇠숟가락을 올리고, 털가죽으로 문지른 플라스틱 빨대를 손잡이 끝에 가까이 하면?</p>
+    <div class="btns predict" data-f="예측-쇠숟가락"><button>끌려온다</button><button>밀려난다</button><button>그대로</button></div>
+    <textarea data-f="예측-까닭" placeholder="그렇게 예측한 까닭"></textarea>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b2">2 탐구하기</span> 대전체를 가까이 하면 금속 속에서는?</h2>
+    <p class="small muted">빨대 거리를 천천히 줄이며 전자(⊖)의 움직임을 관찰하고, (+) 대전체로도 바꿔 보기</p>
+    <canvas id="indC" data-w="1180" data-h="380"></canvas>
+    <div class="ctrl"><label>빨대 거리</label><input type="range" id="indD" min="0" max="1" step="0.01" value="1"><output id="indDo">멀리</output></div>
+    <div class="btns"><button class="pri" id="indN">(−) 대전체</button><button id="indP">(+) 대전체</button><button id="indE">전자만 보기</button></div>
+    <div class="msg" id="indMsg"></div>
+    <table class="intab"><thead><tr><th>가까이 한 대전체</th><th>전자가 이동한 쪽</th><th>가까운 쪽의 전하</th><th>먼 쪽의 전하</th></tr></thead><tbody id="indIn" data-f="관찰-금속 막대 전하">
+      <tr><td>(−) 대전체</td><td><select><option value="">선택</option><option>가까운 쪽</option><option>먼 쪽</option></select></td><td><select><option value="">선택</option><option>(+)</option><option>(−)</option></select></td><td><select><option value="">선택</option><option>(+)</option><option>(−)</option></select></td></tr>
+      <tr><td>(+) 대전체</td><td><select><option value="">선택</option><option>가까운 쪽</option><option>먼 쪽</option></select></td><td><select><option value="">선택</option><option>(+)</option><option>(−)</option></select></td><td><select><option value="">선택</option><option>(+)</option><option>(−)</option></select></td></tr></tbody></table>
+    <div class="q g">쇠숟가락이 대전체 쪽으로 끌려오는 까닭은?</div>
+    <textarea data-f="발견-끌려오는 까닭" placeholder="내 생각"></textarea>
+    <div class="btns"><button class="rv" data-t="r21">정리 확인</button></div>
+    <div class="reveal" id="r21">가까운 쪽에 대전체와 <b>다른</b> 전하가 모여 <b>인력 &gt; 척력</b> → 끌려옴 = <b>정전기 유도</b></div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b2">2 탐구하기</span> 검전기로 정전기 유도 관찰하기 (240쪽)</h2>
+    <div class="grid2"><div style="position:relative"><canvas id="esStC" data-w="460" data-h="480"></canvas><canvas id="esStL" data-w="460" data-h="480" style="position:absolute;left:0;top:0;background:transparent;border-color:transparent"></canvas></div>
+    <div><p>금속판 · 금속 막대 · 금속박이 하나로 이어진 <b>금속</b>이에요. 금속박은 얇고 가벼워 작은 전기력에도 움직여요.</p><p class="small muted">⚠ 실제 실험에서는 빨대가 금속판에 닿지 않게!</p></div></div>
+    <canvas id="esC" data-w="1180" data-h="420" style="margin-top:12px"></canvas>
+    <div class="btns"><button class="esP" data-q="0">과정 1: 문지르지 않은 빨대</button><button class="esP pri" data-q="1">과정 2: 2~3번 문지름</button><button class="esP pri" data-q="2.4">과정 3: 10번 이상</button><button class="esP" data-q="-1.6">과정 4: 다른 물건((+)대전)</button><button id="esQ">± 전하 보기</button></div>
+    <div class="ctrl"><label>빨대 높이</label><input type="range" id="esD" min="0" max="1" step="0.01" value="0.35"><output id="esDo">가까이</output></div>
+    <table class="intab"><thead><tr><th>과정</th><th>금속박 (변화 없음 / 벌어짐 / 크게 벌어짐)</th><th>금속박의 전하</th></tr></thead><tbody id="esIn" data-f="관찰-검전기">
+      <tr><td>1</td><td><select><option value="">선택</option><option>변화 없음</option><option>벌어짐</option><option>크게 벌어짐</option></select></td><td><select><option value="">선택</option><option>없음</option><option>(+)</option><option>(−)</option></select></td></tr>
+      <tr><td>2</td><td><select><option value="">선택</option><option>변화 없음</option><option>벌어짐</option><option>크게 벌어짐</option></select></td><td><select><option value="">선택</option><option>없음</option><option>(+)</option><option>(−)</option></select></td></tr>
+      <tr><td>3</td><td><select><option value="">선택</option><option>변화 없음</option><option>벌어짐</option><option>크게 벌어짐</option></select></td><td><select><option value="">선택</option><option>없음</option><option>(+)</option><option>(−)</option></select></td></tr>
+      <tr><td>4</td><td><select><option value="">선택</option><option>변화 없음</option><option>벌어짐</option><option>크게 벌어짐</option></select></td><td><select><option value="">선택</option><option>없음</option><option>(+)</option><option>(−)</option></select></td></tr></tbody></table>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b3">3 발견 정리</span> 정리하기 (241쪽)</h2>
+    <div class="q g">① 과정 2와 3의 벌어진 정도로 알 수 있는 것은?</div>
+    <textarea data-f="발견-벌어진 정도" placeholder="내 생각"></textarea>
+    <div class="btns"><button class="rv" data-t="r22">정리 확인</button></div>
+    <div class="reveal" id="r22">대전체의 <b>전하량이 많을수록</b> 금속박이 <b>더 많이</b> 벌어짐</div>
+    <div class="q g">② ‘마찰, 대전, 정전기 유도, 전기력’을 모두 써서 금속박이 벌어지는 까닭을 설명해 보자.</div>
+    <textarea data-f="발견-검전기 설명" placeholder="네 낱말을 모두 넣어 쓰기" style="min-height:110px"></textarea>
+    <div class="btns"><button class="rv" data-t="r23">정리 확인</button></div>
+    <div class="reveal" id="r23">털가죽에 <b>마찰</b>해 (−)로 <b>대전</b>된 빨대를 가까이 하면 <b>정전기 유도</b>로 전자가 금속박으로 이동 → 두 금속박이 (−)전하 → 밀어내는 <b>전기력</b> → 벌어짐</div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b4">4 개념 확인 · 형성평가</span> 정전기 유도와 검전기</h2>
+    <div class="concept"><ul>
+      <li><b>정전기 유도</b>: 대전체를 금속에 가까이 할 때 금속 속 <b>전자</b>가 이동하여 전하가 나뉘는 현상</li>
+      <li>가까운 쪽 → 대전체와 <b>다른</b> 전하, 먼 쪽 → 대전체와 <b>같은</b> 전하</li>
+      <li><b>검전기</b>: 물체의 대전 여부, 전하량 비교 · 금속박은 같은 전하 → 척력 → 벌어짐</li></ul></div>
+    <div class="quiz" id="quiz2"></div>
+  </div>
+
+  <div class="step submit">
+    <h2><span class="badge b2">📤 제출</span> 선생님께 탐구 결과 보내기</h2>
+    <button class="au submitBtn" data-lesson="2">2차시 탐구 결과 제출</button>
+    <div class="st" id="st2"></div>
+  </div>
+</section>
+
+<!-- ======================= 3차시 ======================= -->
+<section class="module" id="m-t3" data-lesson="3">
+  <div class="mhead"><div class="tag">03 · 교과서 242~243쪽</div><h1>전하가 움직이면 어떤 일이 생길까?</h1><span class="goal">🎯 전류가 전하의 흐름임을 알고, 전류를 모형으로 설명할 수 있다.</span></div>
+
+  <div class="step">
+    <h2><span class="badge b1">1 생각 열기</span> 전지 없이 불을 켤 수 있을까?</h2>
+    <p>털가죽으로 문지른 플라스틱 접시의 전기로 <b>네온전구</b>를 켤 수 있을까?</p>
+    <div class="btns predict" data-f="예측-네온전구"><button>켤 수 없다</button><button>잠깐 켜진다</button><button>계속 켜진다</button></div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b2">2 탐구하기</span> 마찰 전기로 네온전구 켜기 (242쪽)</h2>
+    <canvas id="neC" data-w="1180" data-h="420"></canvas>
+    <div class="btns"><button class="au" id="neRub">① 털가죽으로 문지르기</button><button class="pri" id="neSet">② 알루미늄 접시 올리기</button><button class="pri" id="neCon">③ 네온전구 대기</button><button id="neReset">처음으로</button></div>
+    <div class="msg" id="neMsg"></div>
+    <div class="q g">① 불이 켜지는 순간 무엇이 이동했나? 두 번째로 댈 때는 왜 안 켜졌을까?</div>
+    <textarea data-f="발견-네온전구" placeholder="관찰과 생각"></textarea>
+    <div class="btns"><button class="rv" data-t="r31">정리 확인</button></div>
+    <div class="reveal" id="r31"><b>전자</b>가 네온전구를 지나 이동 → <b>전하의 흐름 = 전류</b> · 모인 전하가 다 이동하면 더 흐르지 않음</div>
+    <div class="q g">② 불이 계속 켜지게 하려면?</div>
+    <textarea data-f="발견-계속 켜려면" placeholder="내 생각"></textarea>
+    <div class="btns"><button class="rv" data-t="r32">정리 확인</button></div>
+    <div class="reveal" id="r32">전하를 <b>계속 밀어 주는 장치</b>가 필요 → <b>전지(전원 장치)</b></div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b2">2 탐구하기</span> 전기 회로 속을 들여다보면</h2>
+    <div class="q">전구를 지나면 전류의 세기는? (A₁: 전구 앞, A₂: 전구 뒤) — 먼저 예측!</div>
+    <div class="btns predict" data-f="예측-전구 앞뒤 전류"><button>A₁ &gt; A₂</button><button>A₁ = A₂</button><button>A₁ &lt; A₂</button></div>
+    <canvas id="ccC" data-w="760" data-h="470" style="max-width:760px"></canvas>
+    <div class="btns"><button class="au" id="ccSw">스위치 닫기</button><button id="ccBat">전지 1개</button><button class="pri" id="ccE">전자 보기</button><button id="ccI">전류 방향 보기</button><button id="ccA">전류계 보기</button></div>
+    <table class="intab"><thead><tr><th></th><th>전지 1개</th><th>전지 2개</th></tr></thead><tbody id="ccIn" data-f="관찰-전류계(A1/A2)">
+      <tr><td>A₁ (A)</td><td><input inputmode="decimal" maxlength="6"></td><td><input inputmode="decimal" maxlength="6"></td></tr>
+      <tr><td>A₂ (A)</td><td><input inputmode="decimal" maxlength="6"></td><td><input inputmode="decimal" maxlength="6"></td></tr></tbody></table>
+    <div class="q g">전자의 이동 방향과 전류의 방향은 어떻게 다른가?</div>
+    <textarea data-f="발견-전자와 전류 방향" placeholder="관찰 결과"></textarea>
+    <div class="btns"><button class="rv" data-t="r33">정리 확인</button></div>
+    <div class="reveal" id="r33">전자: (−)극 → (+)극, 전류: (+)극 → (−)극 → <b>반대</b> · 전구를 지나도 전류의 세기는 <b>같다</b></div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b2">2 탐구하기</span> 물의 흐름 모형</h2>
+    <div class="grid2"><div><canvas id="waC" data-w="700" data-h="460"></canvas><div class="btns"><button class="au" id="waV">밸브 열기</button><button id="waH">펌프 높이 1칸</button></div></div>
+    <div><p class="small muted">역할이 비슷한 것끼리 짝지어 보자</p>
+    <table class="intab"><thead><tr><th>물의 흐름</th><th>전기 회로</th></tr></thead><tbody id="waIn" data-f="모형-짝짓기">
+      <tr><td>펌프</td><td><select><option value="">선택</option><option>전지</option><option>전류</option><option>전선</option><option>전구</option><option>스위치</option><option>전압</option></select></td></tr>
+      <tr><td>물의 흐름</td><td><select><option value="">선택</option><option>전지</option><option>전류</option><option>전선</option><option>전구</option><option>스위치</option><option>전압</option></select></td></tr>
+      <tr><td>수로(관)</td><td><select><option value="">선택</option><option>전지</option><option>전류</option><option>전선</option><option>전구</option><option>스위치</option><option>전압</option></select></td></tr>
+      <tr><td>물레방아</td><td><select><option value="">선택</option><option>전지</option><option>전류</option><option>전선</option><option>전구</option><option>스위치</option><option>전압</option></select></td></tr>
+      <tr><td>밸브</td><td><select><option value="">선택</option><option>전지</option><option>전류</option><option>전선</option><option>전구</option><option>스위치</option><option>전압</option></select></td></tr>
+      <tr><td>높이 차(수압)</td><td><select><option value="">선택</option><option>전지</option><option>전류</option><option>전선</option><option>전구</option><option>스위치</option><option>전압</option></select></td></tr></tbody></table>
+    <div class="btns"><button id="waChk" class="pri">짝짓기 확인</button></div><div class="msg" id="waMsg"></div></div></div>
+    <div class="q g">전지 2개를 직렬로 연결하면 전류가 더 세게 흐르는 까닭을 물의 흐름 모형으로 설명해 보자.</div>
+    <textarea data-f="모형-전지 2개" placeholder="내 설명"></textarea>
+    <div class="btns"><button class="rv" data-t="r34">정리 확인</button></div>
+    <div class="reveal" id="r34">전압 2배 = 펌프가 물을 <b>2배 높이</b>로 올림 → 물이 더 세게 흐름 = 전류가 더 세게 흐름</div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b4">4 개념 확인 · 형성평가</span> 전류와 전압</h2>
+    <div class="concept"><ul>
+      <li><b>전류</b>: 전하의 흐름 · 단위 A(암페어), 1 A = 1000 mA</li>
+      <li>전자: (−)극 → (+)극, 전류: (+)극 → (−)극 (반대) · 한 줄 회로의 어디서나 전류의 세기는 같다</li>
+      <li><b>전압</b>: 전류를 흐르게 하는 능력 · 단위 V(볼트)</li></ul></div>
+    <div class="quiz" id="quiz3"></div>
+  </div>
+
+  <div class="step submit">
+    <h2><span class="badge b2">📤 제출</span> 선생님께 탐구 결과 보내기</h2>
+    <button class="au submitBtn" data-lesson="3">3차시 탐구 결과 제출</button>
+    <div class="st" id="st3"></div>
+  </div>
+</section>
+
+<!-- ======================= 4차시 ======================= -->
+<section class="module" id="m-t4" data-lesson="4">
+  <div class="mhead"><div class="tag">04 · 교과서 244~247쪽</div><h1>전압, 전류, 저항은 어떤 관계일까?</h1><span class="goal">🎯 전압, 전류, 저항 사이의 관계를 실험으로 이끌어 낼 수 있다.</span></div>
+
+  <div class="step">
+    <h2><span class="badge b1">1 생각 열기</span> 전압을 2배로 높이면?</h2>
+    <div class="q">전압을 2배로 높이면 전류의 세기는? (예측)</div>
+    <div class="btns predict" data-f="예측-전압 2배"><button>조금 커진다</button><button>2배</button><button>4배</button></div>
+    <div class="q c">같은 전압에서 전류가 더 센 쪽은? (예측)</div>
+    <div class="btns predict" data-f="예측-니크롬선"><button>긴 니크롬선</button><button>짧은 니크롬선</button><button>같다</button></div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b2">2 탐구하기</span> 가상 실험실: 전압과 전류 사이의 관계 (244쪽)</h2>
+    <p class="small muted">전압을 1.5 V씩 높이며 <b>전류계 값을 읽어 아래 표에 직접 입력</b>하기 → 짧은 니크롬선으로 바꿔 반복</p>
+    <canvas id="ohC" data-w="1180" data-h="400"></canvas>
+    <div class="btns"><span style="align-self:center;font-weight:700">전압</span><button class="ohV" data-v="0">0 V</button><button class="ohV" data-v="1.5">1.5 V</button><button class="ohV" data-v="3">3.0 V</button><button class="ohV" data-v="4.5">4.5 V</button><button class="ohV" data-v="6">6.0 V</button><button class="pri" id="ohL">긴 니크롬선</button><button id="ohS">짧은 니크롬선</button></div>
+    <div class="msg" id="ohMsg"></div>
+    <div class="grid2">
+      <div><table class="intab"><thead><tr><th>전압 (V)</th><th>긴 니크롬선 전류 (mA)</th><th>짧은 니크롬선 전류 (mA)</th></tr></thead><tbody id="ohIn" data-f="측정표(전압/긴/짧은)">
+        <tr><td>1.5</td><td><input inputmode="decimal" maxlength="6"></td><td><input inputmode="decimal" maxlength="6"></td></tr>
+        <tr><td>3.0</td><td><input inputmode="decimal" maxlength="6"></td><td><input inputmode="decimal" maxlength="6"></td></tr>
+        <tr><td>4.5</td><td><input inputmode="decimal" maxlength="6"></td><td><input inputmode="decimal" maxlength="6"></td></tr>
+        <tr><td>6.0</td><td><input inputmode="decimal" maxlength="6"></td><td><input inputmode="decimal" maxlength="6"></td></tr></tbody></table>
+        <p class="small muted">실제 실험 결과를 넣어도 돼요. 입력하면 그래프가 바로 그려져요.</p></div>
+      <canvas id="ohG" data-w="680" data-h="470"></canvas></div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b3">3 발견 정리</span> 그래프로 규칙 찾기 (245쪽)</h2>
+    <div class="q g">① 두 그래프의 공통점과 차이점은?</div>
+    <textarea data-f="발견-그래프 비교" placeholder="공통점 / 차이점"></textarea>
+    <div class="btns"><button class="rv" data-t="r41">정리 확인</button></div>
+    <div class="reveal" id="r41">공통점: 원점을 지나는 <b>직선</b> → 전압과 전류는 <b>비례</b> · 차이점: 기울기가 다름</div>
+    <div class="q g">② 6.0 V일 때 두 니크롬선의 저항을 구해 보자. (R = V ÷ I, mA를 A로!)</div>
+    <textarea data-f="발견-저항 계산" placeholder="긴 니크롬선: … Ω / 짧은 니크롬선: … Ω"></textarea>
+    <div class="btns"><button class="rv" data-t="r42">정리 확인</button></div>
+    <div class="reveal" id="r42">예) 긴: 6.0 ÷ 0.21 ≈ <b>29 Ω</b> · 짧은: 6.0 ÷ 0.59 ≈ <b>10 Ω</b> → 긴 니크롬선의 저항이 큼</div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b3">해 보기</span> 옴의 법칙 계산 연습</h2>
+    <div class="grid2"><canvas id="ocC" data-w="560" data-h="380"></canvas>
+    <div><div class="q" id="ocQ"></div><div class="reveal show" id="ocA" style="visibility:hidden"></div><div class="btns"><button class="au" id="ocShow">정답 보기</button><button class="pri" id="ocNew">새 문제</button></div><p class="small muted">공책에 풀고 정답을 확인해 보자. 1 A = 1000 mA</p></div></div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b4">4 개념 확인 · 형성평가</span> 옴의 법칙</h2>
+    <div class="grid2"><canvas id="rsC" data-w="470" data-h="400"></canvas>
+    <div class="concept"><ul>
+      <li><b>저항</b>: 전류의 흐름을 방해하는 정도 · 단위 Ω(옴) · 길수록, 가늘수록 큼</li>
+      <li><b>옴의 법칙</b>: 전류는 전압에 비례, 저항에 반비례</li>
+      <li>도체(구리·철) · 부도체(유리·플라스틱) · 반도체(규소)</li></ul><div class="formula">I = V ÷ R · V = I × R</div></div></div>
+    <div class="quiz" id="quiz4"></div>
+  </div>
+
+  <div class="step submit">
+    <h2><span class="badge b2">📤 제출</span> 선생님께 탐구 결과 보내기</h2>
+    <button class="au submitBtn" data-lesson="4">4차시 탐구 결과 제출</button>
+    <div class="st" id="st4"></div>
+  </div>
+</section>
+<!-- ======================= 5차시 ======================= -->
+<section class="module" id="m-t5" data-lesson="5">
+  <div class="mhead"><div class="tag">05 · 교과서 248~249쪽</div><h1>저항의 직렬연결과 병렬연결은 무엇이 다를까?</h1><span class="goal">🎯 저항의 직렬연결과 병렬연결의 특징을 비교할 수 있다.</span></div>
+
+  <div class="step">
+    <h2><span class="badge b1">1 생각 열기</span> 하나를 꺼도 나머지는 그대로?</h2>
+    <p>멀티탭에 연결된 전기 기구 하나를 꺼도 나머지는 계속 작동해요. 오래된 트리 전구는 하나가 고장 나면 한 줄이 모두 꺼지기도 해요.</p>
+    <div class="q">전구 2개를 한 줄로(직렬) 연결하면 1개일 때보다 밝기는? (예측)</div>
+    <div class="btns predict" data-f="예측-직렬 밝기"><button>더 밝다</button><button>같다</button><button>더 어둡다</button></div>
+    <div class="q c">전구 2개를 나란히(병렬) 연결하면? (예측)</div>
+    <div class="btns predict" data-f="예측-병렬 밝기"><button>더 밝다</button><button>같다</button><button>더 어둡다</button></div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b2">2 탐구하기</span> 전구 회로 카드 1~5 (248쪽)</h2>
+    <canvas id="srC" data-w="1180" data-h="430"></canvas>
+    <div class="btns"><button class="srM au" data-m="1">카드 1: 전구 1개</button><button class="srM" data-m="2">카드 2: 직렬</button><button class="srM" data-m="3">카드 3: 병렬</button><button id="srS1">스위치 ① 열기</button><button id="srMt">측정값 보기</button></div>
+    <div class="msg" id="srMsg"></div>
+    <table class="intab"><thead><tr><th>관찰</th><th>직렬연결</th><th>병렬연결</th></tr></thead><tbody id="srIn" data-f="관찰-직렬병렬">
+      <tr><td>전구 1개일 때와 밝기 비교</td><td><select><option value="">선택</option><option>밝아짐</option><option>같음</option><option>어두워짐</option></select></td><td><select><option value="">선택</option><option>밝아짐</option><option>같음</option><option>어두워짐</option></select></td></tr>
+      <tr><td>한 전구의 연결을 끊으면 나머지 전구</td><td><select><option value="">선택</option><option>꺼짐</option><option>켜져 있음</option></select></td><td><select><option value="">선택</option><option>꺼짐</option><option>켜져 있음</option></select></td></tr>
+      <tr><td>전체 전류 (A)</td><td><input inputmode="decimal" maxlength="6"></td><td><input inputmode="decimal" maxlength="6"></td></tr></tbody></table>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b3">3 발견 정리</span> 연결 방법에 따른 특징</h2>
+    <div class="q g">① 직렬연결한 전구가 어두워진 까닭을 ‘저항’, ‘전류’를 넣어 설명해 보자.</div>
+    <textarea data-f="발견-직렬 까닭" placeholder="내 설명"></textarea>
+    <div class="btns"><button class="rv" data-t="r51">정리 확인</button></div>
+    <div class="reveal" id="r51">저항이 <b>길어진</b> 것과 같아 전체 저항 ↑ → 전체 전류 ↓ → 어두워짐</div>
+    <div class="q g">② 병렬연결에서 전체 전류가 커진 까닭은?</div>
+    <textarea data-f="발견-병렬 까닭" placeholder="내 설명"></textarea>
+    <div class="btns"><button class="rv" data-t="r52">정리 확인</button></div>
+    <div class="reveal" id="r52">저항이 <b>굵어진</b> 것과 같아 전체 저항 ↓ → 전체 전류 ↑ · 각 전구에 걸리는 전압은 전체 전압과 같음</div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b3">해 보기</span> 저항의 연결 계산 (R₁ = R₂ = 6 Ω, 전체 전압 36 V)</h2>
+    <table class="intab"><thead><tr><th>회로</th><th>전체 저항 (Ω)</th><th>전체 전류 (A)</th><th>R₁ 전류 (A)</th><th>R₁ 전압 (V)</th></tr></thead><tbody id="rcIn" data-f="계산-저항의 연결">
+      <tr><td>저항 1개</td><td><input inputmode="decimal" maxlength="6"></td><td><input inputmode="decimal" maxlength="6"></td><td><input inputmode="decimal" maxlength="6"></td><td><input inputmode="decimal" maxlength="6"></td></tr>
+      <tr><td>2개 직렬</td><td><input inputmode="decimal" maxlength="6"></td><td><input inputmode="decimal" maxlength="6"></td><td><input inputmode="decimal" maxlength="6"></td><td><input inputmode="decimal" maxlength="6"></td></tr>
+      <tr><td>2개 병렬</td><td><input inputmode="decimal" maxlength="6"></td><td><input inputmode="decimal" maxlength="6"></td><td><input inputmode="decimal" maxlength="6"></td><td><input inputmode="decimal" maxlength="6"></td></tr></tbody></table>
+    <div class="btns"><button class="pri" id="rcChk">채점하기</button></div><div class="msg" id="rcMsg"></div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b3">해 보기</span> 생활 속 쓰임새: 직렬일까, 병렬일까?</h2>
+    <p class="small muted">카드를 누를 때마다 ? → 직렬 → 병렬로 바뀜</p>
+    <div class="cards" id="usCards"></div>
+    <div class="btns"><button class="pri" id="usChk">정답 확인</button><button id="usReset">다시</button></div>
+    <div class="msg" id="usMsg" data-f="쓰임새 분류 결과"></div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b4">4 개념 확인 · 형성평가</span> 저항의 연결</h2>
+    <div class="concept"><ul>
+      <li><b>직렬</b>: 전체 저항 커짐 · 전체 전류 작아짐 · 각 저항의 <b>전류</b>가 같음 · 하나가 끊어지면 모두 꺼짐 (예: 퓨즈)</li>
+      <li><b>병렬</b>: 전체 저항 작아짐 · 전체 전류 커짐 · 각 저항의 <b>전압</b>이 같음 · 따로 켜고 끌 수 있음 (예: 가정의 전기 기구)</li></ul></div>
+    <div class="quiz" id="quiz5"></div>
+  </div>
+
+  <div class="step submit">
+    <h2><span class="badge b2">📤 제출</span> 선생님께 탐구 결과 보내기</h2>
+    <button class="au submitBtn" data-lesson="5">5차시 탐구 결과 제출</button>
+    <div class="st" id="st5"></div>
+  </div>
+</section>
+
+<!-- ======================= 6차시 ======================= -->
+<section class="module" id="m-t6" data-lesson="6">
+  <div class="mhead"><div class="tag">06 · 교과서 250~253쪽</div><h1>우리는 전기 에너지를 어떻게 이용할까?</h1><span class="goal">🎯 전기 에너지의 전환을 소비 전력과 관련지어 설명할 수 있다.</span></div>
+
+  <div class="step">
+    <h2><span class="badge b1">1 생각 열기</span> 누가 더 많이 쓸까?</h2>
+    <p>💨 헤어드라이어는 뜨겁고 바람이 세지만 하루 10~15분, 🧊 냉장고는 조용하지만 하루 24시간!</p>
+    <div class="q">한 달 동안 전기 에너지를 더 많이 쓰는 것은? (예측)</div>
+    <div class="btns predict" data-f="예측-헤어드라이어 vs 냉장고"><button>헤어드라이어</button><button>냉장고</button><button>비슷하다</button></div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b2">2 탐구하기</span> 전기 에너지는 무엇으로 바뀔까? (250쪽)</h2>
+    <p class="small muted">에너지 칩을 눌러 주로 전환되는 에너지를 표시 (여러 개 가능)</p>
+    <div class="cards" id="enCards"></div>
+    <div class="btns"><button class="pri" id="enChk">정답 확인</button><button id="enReset">다시</button></div>
+    <div class="msg" id="enMsg" data-f="에너지 전환 결과"></div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b2">2 탐구하기</span> 소비 전력이 큰 것부터 순서대로!</h2>
+    <div class="cards" id="pwCards"></div>
+    <div class="btns"><button class="pri" id="pwChk">순서 확인</button><button id="pwReset">다시</button></div>
+    <div class="msg" id="pwMsg" data-f="소비 전력 순서 결과"></div>
+    <div class="q g">소비 전력이 큰 기구들의 공통점은?</div>
+    <textarea data-f="발견-소비 전력 큰 기구" placeholder="내 생각"></textarea>
+    <div class="btns"><button class="rv" data-t="r61">정리 확인</button></div>
+    <div class="reveal" id="r61">주로 <b>열</b>을 내는 기구(헤어드라이어, 전기밥솥)의 소비 전력이 큼</div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b2">2 탐구하기</span> 우리 집 한 달 전력량</h2>
+    <p class="small muted">전력량(Wh) = 소비 전력(W) × 사용 시간(h) · 한 달 = 30일 · 1 kWh = 1000 Wh · 이름·W·시간 칸을 우리 집 기구로 바꿔 보자</p>
+    <table class="intab"><thead><tr><th>전기 기구</th><th>소비 전력 (W)</th><th>하루 사용 (h)</th><th>하루 (Wh)</th><th>한 달 (kWh)</th></tr></thead><tbody id="mkTb" data-f="조사-한 달 전력량"></tbody><tfoot><tr><td colspan="4" style="text-align:right;font-weight:900">합계</td><td class="hl" id="mkSum"></td></tr></tfoot></table>
+    <div class="q g">도입 질문의 답은? 소비 전력(W)과 전력량(Wh)은 어떻게 다른가?</div>
+    <textarea data-f="발견-W와 Wh" placeholder="내 생각"></textarea>
+    <div class="btns"><button class="rv" data-t="r62">정리 확인</button></div>
+    <div class="reveal" id="r62">냉장고 40 W × 24 h = 960 Wh, 헤어드라이어 1500 W × 0.2 h = 300 Wh → 소비 전력이 작아도 <b>오래</b> 쓰면 전력량이 큼</div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b3">해 보기</span> 전기 요금 계산 (주택용 누진제, 한 달 250 kWh)</h2>
+    <p class="small muted">1구간(200 kWh 이하) 기본 910원·120.0원/kWh · 2구간(201~400) 기본 1,600원·214.6원/kWh · 3구간(400 초과) 기본 7,300원·307.3원/kWh · 기후환경 9원/kWh · 연료비 +5원/kWh · 부가세 10%(반올림) · 전력기금 3.7%(10원 미만 절사) · 최종 10원 미만 절사</p>
+    <table class="intab"><thead><tr><th>항목</th><th>금액 (원)</th></tr></thead><tbody id="blIn" data-f="계산-전기 요금 250kWh">
+      <tr><td>① 기본요금</td><td><input inputmode="numeric" maxlength="8"></td></tr><tr><td>② 전력량 요금</td><td><input inputmode="numeric" maxlength="8"></td></tr><tr><td>③ 기후환경요금</td><td><input inputmode="numeric" maxlength="8"></td></tr><tr><td>④ 연료비조정액</td><td><input inputmode="numeric" maxlength="8"></td></tr><tr><td>⑤ 세전 합계</td><td><input inputmode="numeric" maxlength="8"></td></tr><tr><td>⑥ 부가가치세</td><td><input inputmode="numeric" maxlength="8"></td></tr><tr><td>⑦ 전력산업기반기금</td><td><input inputmode="numeric" maxlength="8"></td></tr><tr><td>최종 청구금액</td><td><input inputmode="numeric" maxlength="8"></td></tr></tbody></table>
+    <div class="btns"><button class="pri" id="blChk">채점하기</button></div><div class="msg" id="blMsg"></div>
+    <details style="margin-top:10px"><summary class="muted">🧮 다른 사용량 계산기 (채점 후 열어 보기)</summary>
+      <div class="ctrl"><label>한 달 사용량</label><input type="range" id="blK" min="50" max="600" step="10" value="150"><output id="blKo">150 kWh</output></div>
+      <div class="btns"><button class="pri" id="blB">단계별 보기</button><button id="blAll">한 번에 보기</button></div>
+      <table id="blTb"></table></details>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b4">4 개념 확인 · 형성평가</span> 소비 전력과 전력량</h2>
+    <div class="concept"><ul>
+      <li><b>소비 전력</b>: 1초 동안 사용하는 전기 에너지 · 단위 W(와트), 1 W = 1 J/s</li>
+      <li><b>전력량</b> = 소비 전력 × 사용 시간 · 단위 Wh, kWh</li>
+      <li>에너지 소비 효율 <b>1등급</b>에 가까울수록 효율적 → 요금·이산화 탄소 배출 줄어듦</li></ul></div>
+    <div class="quiz" id="quiz6"></div>
+    <div class="q c">우리 집 전기 에너지를 아끼는 실천 방법 2가지를 과학적 이유와 함께 써 보자.</div>
+    <textarea data-f="실천-절약 방법" placeholder="1. … (이유: 소비 전력/사용 시간)&#10;2. …"></textarea>
+  </div>
+
+  <div class="step submit">
+    <h2><span class="badge b2">📤 제출</span> 선생님께 탐구 결과 보내기</h2>
+    <button class="au submitBtn" data-lesson="6">6차시 탐구 결과 제출</button>
+    <div class="st" id="st6"></div>
+  </div>
+</section>
+
+<!-- ======================= 7차시 ======================= -->
+<section class="module" id="m-t7" data-lesson="7">
+  <div class="mhead"><div class="tag">07 · 교과서 257~259쪽</div><h1>전류가 흐르는 코일 주변에 무엇이 생길까?</h1><span class="goal">🎯 전류가 흐르는 코일 주위의 자기장을 관찰하고 설명할 수 있다.</span></div>
+
+  <div class="step">
+    <h2><span class="badge b1">1 생각 열기</span> 코일이 클립을 끌어당긴다?</h2>
+    <p>에나멜선을 감은 코일에 전류를 흘렸더니 실에 매단 클립이 끌려왔다!</p>
+    <div class="q">전류가 흐르는 코일은 무엇처럼 행동한 걸까? (예측)</div>
+    <div class="btns predict" data-f="예측-코일"><button>대전체(정전기)</button><button>자석</button><button>전지</button></div>
+    <div class="grid2" style="margin-top:12px"><div><canvas id="bmC" data-w="600" data-h="430"></canvas><div class="btns"><button id="bmL">자기력선 보기</button></div></div>
+    <div><div class="q c">막대자석 주위 나침반들을 이으면 어떤 선이 될까? 자기장의 방향은 무엇으로 정할까?</div><textarea data-f="생각-자기장 방향" placeholder="내 생각"></textarea><div class="btns"><button class="rv" data-t="r71">정리 확인</button></div><div class="reveal" id="r71">나침반 바늘 <b>N극</b>이 가리키는 방향 = 자기장의 방향 · 자기력선은 N극에서 나와 S극으로</div></div></div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b2">2 탐구하기</span> 도선 위의 나침반 (보충)</h2>
+    <canvas id="owC" data-w="1180" data-h="410"></canvas>
+    <div class="btns"><button class="au" id="owOn">전류 흘리기</button><button id="owDir">전류 방향 바꾸기</button><button id="owRing">자기장 모양 보기</button></div>
+    <div class="ctrl"><label>전류 세기</label><input type="range" id="owI" min="0.2" max="3" step="0.1" value="1.5"><output id="owIo">1.5 A</output></div>
+    <textarea data-f="관찰-도선 위 나침반" placeholder="전류를 흘릴 때, 방향을 바꿀 때, 세게 할 때 바늘은?"></textarea>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b2">2 탐구하기</span> 코일 주위 나침반 8개 (258쪽)</h2>
+    <div class="q">스위치를 닫으면 나침반 바늘들은? (먼저 예측)</div>
+    <div class="btns predict" data-f="예측-코일 나침반"><button>모두 북쪽 그대로</button><button>막대자석 주위처럼 배열</button><button>모두 코일 가운데를 가리킴</button></div>
+    <canvas id="coC" data-w="1180" data-h="430"></canvas>
+    <div class="btns"><button class="au" id="coSw">스위치 닫기</button><button id="coDir">전류 방향 바꾸기</button><button id="coLn">자기력선</button><button id="coNS">N·S 표시</button></div>
+    <div class="ctrl"><label>전류</label><input type="range" id="coI" min="0.2" max="3" step="0.1" value="1"><output id="coIo">1.0 A</output></div>
+    <p class="small muted">노란 탐침 나침반은 끌어서 옮길 수 있음 (코일 안쪽에도!)</p>
+    <table class="intab"><thead><tr><th>바꾼 조건</th><th>나침반 바늘의 변화</th><th>클립의 움직임</th></tr></thead><tbody id="coIn" data-f="관찰-코일">
+      <tr><td>스위치 닫기</td><td><input maxlength="40"></td><td><input maxlength="40"></td></tr>
+      <tr><td>전류 방향 반대</td><td><input maxlength="40"></td><td><input maxlength="40"></td></tr>
+      <tr><td>전류를 세게</td><td><input maxlength="40"></td><td><input maxlength="40"></td></tr></tbody></table>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b3">3 발견 정리</span> 결론 도출 (259쪽)</h2>
+    <div class="q g">① 코일에 전류가 흐를 때 나침반 바늘이 움직인 까닭은?</div>
+    <textarea data-f="발견-바늘이 움직인 까닭" placeholder="내 생각"></textarea>
+    <div class="btns"><button class="rv" data-t="r72">정리 확인</button></div>
+    <div class="reveal" id="r72">코일 주위에 <b>자기장</b>이 생김 (막대자석과 비슷한 모양)</div>
+    <div class="q g">② 전류의 방향과 세기를 바꿀 때 알 수 있는 것은?</div>
+    <textarea data-f="발견-방향과 세기" placeholder="내 생각"></textarea>
+    <div class="btns"><button class="rv" data-t="r73">정리 확인</button></div>
+    <div class="reveal" id="r73">전류 방향이 바뀌면 자기장 방향이 <b>반대</b> · 전류가 셀수록 자기장이 <b>셈</b> → 클립이 더 많이 끌려옴</div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b4">4 개념 확인 · 형성평가</span> 코일 주위의 자기장</h2>
+    <div class="grid2"><canvas id="cfC" data-w="560" data-h="420"></canvas>
+    <div class="concept"><ul>
+      <li><b>자기장</b>: 자기력이 미치는 공간 · 방향 = 나침반 N극이 가리키는 방향</li>
+      <li>전류가 흐르는 코일 주위 자기장 = <b>막대자석</b>과 비슷</li>
+      <li>전류 방향 바뀜 → 자기장 방향 바뀜 · 전류가 셀수록 자기장 셈</li>
+      <li><b>전자석</b>: 전류가 흐를 때만 자석 (기중기, 자기 부상 열차)</li></ul></div></div>
+    <div class="quiz" id="quiz7"></div>
+  </div>
+
+  <div class="step submit">
+    <h2><span class="badge b2">📤 제출</span> 선생님께 탐구 결과 보내기</h2>
+    <button class="au submitBtn" data-lesson="7">7차시 탐구 결과 제출</button>
+    <div class="st" id="st7"></div>
+  </div>
+</section>
+
+<!-- ======================= 8차시 ======================= -->
+<section class="module" id="m-t8" data-lesson="8">
+  <div class="mhead"><div class="tag">08 · 교과서 260~263쪽</div><h1>전류와 자기가 만나 생긴 힘은?</h1><span class="goal">🎯 자기장 안에서 전류가 흐르는 코일이 받는 힘의 특성을 추리하고, 전동기의 활용 예를 찾을 수 있다.</span></div>
+
+  <div class="step">
+    <h2><span class="badge b1">1 생각 열기</span> 전동기가 있으면 언덕길이 수월한 까닭은?</h2>
+    <div class="q">자석 사이 그네(코일)에 전류를 흘렸다. 전류의 방향을 바꾸면 그네는? (예측)</div>
+    <div class="btns predict" data-f="예측-전류 방향 바꾸면"><button>같은 방향으로</button><button>반대 방향으로</button><button>움직이지 않음</button></div>
+    <div class="q c">자석의 극을 바꾸면? (예측)</div>
+    <div class="btns predict" data-f="예측-자석 극 바꾸면"><button>같은 방향으로</button><button>반대 방향으로</button><button>움직이지 않음</button></div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b2">2 탐구하기</span> 전기 그네 (260쪽)</h2>
+    <p class="small muted">옆에서 본 모습 · 그네의 가로 막대가 화면 안쪽으로 뻗어 있어 점으로 보임 (⊙ 나오는 전류, ⊗ 들어가는 전류)</p>
+    <div class="grid2"><canvas id="swC" data-w="720" data-h="470"></canvas>
+    <div><div class="btns"><button class="au" id="swOn">스위치 누르기</button><button id="swDir">전류 방향 바꾸기</button><button id="swMag">자석 극 바꾸기</button></div>
+      <div class="ctrl"><label>전류</label><input type="range" id="swI" min="0.5" max="3" step="0.1" value="1"><output id="swIo">1.0 A</output></div>
+      <div class="btns"><button class="pri" id="swRec">✍ 기록</button><button id="swClr">표 지우기</button></div>
+      <table><thead><tr><th>전류 방향</th><th>자석 위쪽</th><th>전류</th><th>움직인 방향</th></tr></thead><tbody id="swTb" data-f="관찰-전기 그네 기록"></tbody></table></div></div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b3">3 발견 정리</span> 힘의 특성 추리하기 (증거 → 주장)</h2>
+    <div class="q g">① 전류나 자기장의 방향이 바뀌면 코일이 받는 힘은? (어떤 결과가 증거인지 함께 쓰기)</div>
+    <textarea data-f="추리-방향" placeholder="○○ 했을 때 △△ 되었으므로 …이다"></textarea>
+    <div class="btns"><button class="rv" data-t="r81">정리 확인</button></div>
+    <div class="reveal" id="r81">힘의 방향이 <b>반대</b>로 바뀜 · 둘 다 바꾸면 처음과 같은 방향</div>
+    <div class="q g">② 전류의 세기가 세지면 코일이 받는 힘은?</div>
+    <textarea data-f="추리-세기" placeholder="증거와 주장"></textarea>
+    <div class="btns"><button class="rv" data-t="r82">정리 확인</button></div>
+    <div class="reveal" id="r82">힘이 <b>세짐</b> (자석이 셀수록도 세짐)</div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b2">2 탐구하기</span> 전동기는 어떻게 계속 돌까? (262쪽)</h2>
+    <div class="q">정류자(전류 방향을 바꿔 주는 장치)를 없애면? (예측)</div>
+    <div class="btns predict" data-f="예측-정류자 없으면"><button>계속 돈다</button><button>반 바퀴쯤 돌다 멈춘다</button><button>처음부터 안 돈다</button></div>
+    <canvas id="moC" data-w="700" data-h="440" style="max-width:760px"></canvas>
+    <div class="btns"><button class="au" id="moGo">▶ 전원 켜기</button><button id="moCm">정류자: 있음</button><button id="moRs">처음으로</button></div>
+    <textarea data-f="발견-전동기 원리" placeholder="코일 양쪽(A, B)이 받는 힘의 방향과 정류자의 역할"></textarea>
+    <div class="btns"><button class="rv" data-t="r83">정리 확인</button></div>
+    <div class="reveal" id="r83">코일 양쪽이 받는 힘의 방향이 <b>반대</b> → 회전 · 반 바퀴마다 정류자가 <b>전류 방향을 바꿔</b> 계속 회전</div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b3">해 보기</span> 전동기가 활용된 예 (263쪽)</h2>
+    <div class="cards" id="moCards"></div>
+    <textarea data-f="조사-전동기 활용" placeholder="내가 찾은 전동기 활용 예와 전동기가 하는 일"></textarea>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b4">4 개념 확인 · 형성평가</span> 코일이 받는 힘과 전동기</h2>
+    <div class="grid2"><canvas id="fhC" data-w="520" data-h="420"></canvas>
+    <div class="concept"><ul>
+      <li>자기장 안에서 전류가 흐르는 코일은 <b>힘</b>을 받음</li>
+      <li>전류 또는 자기장 방향이 바뀌면 힘의 방향이 <b>반대</b></li>
+      <li>전류가 셀수록, 자기장이 셀수록 힘이 큼</li>
+      <li><b>전동기</b>: 이 힘으로 코일을 계속 회전시키는 장치</li></ul></div></div>
+    <div class="quiz" id="quiz8"></div>
+  </div>
+
+  <div class="step submit">
+    <h2><span class="badge b2">📤 제출</span> 선생님께 탐구 결과 보내기</h2>
+    <button class="au submitBtn" data-lesson="8">8차시 탐구 결과 제출</button>
+    <div class="st" id="st8"></div>
+  </div>
+</section>
+
+<!-- ======================= 질문 게시판 ======================= -->
+<section class="module" id="m-qa">
+  <div class="mhead"><div class="tag">💬 함께 묻고, 상상하고, 탐구하기</div><h1>호기심 회로</h1><span class="goal">궁금한 점 · 해 보고 싶은 탐구 · 오늘의 발견을 자유롭게! 친구 글에 답도 달아 보기</span></div>
+  <div class="step">
+    <div class="lchips" id="qaL"><button data-l="all" class="on">전체 차시</button><button data-l="1">1 마찰 전기</button><button data-l="2">2 정전기 유도</button><button data-l="3">3 전류·전압</button><button data-l="4">4 옴의 법칙</button><button data-l="5">5 직렬·병렬</button><button data-l="6">6 소비 전력</button><button data-l="7">7 코일 자기장</button><button data-l="8">8 전동기</button></div>
+    <div class="lchips" id="qaT" style="margin-top:8px"><button data-t="all" class="on">모든 글</button><button data-t="궁금해요">❓ 궁금해요</button><button data-t="해 보고 싶은 탐구">🔬 해 보고 싶은 탐구</button><button data-t="오늘의 발견">💡 오늘의 발견</button></div>
+    <div class="q c" style="margin-top:16px">새 글 쓰기 <span class="small muted" id="qaMine"></span></div>
+    <div class="btns" style="margin:0 0 8px;align-items:center">
+      <select id="qaTag"><option value="궁금해요">❓ 궁금해요</option><option value="해 보고 싶은 탐구">🔬 해 보고 싶은 탐구</option><option value="오늘의 발견">💡 오늘의 발견</option></select>
+      <select id="qaLsel"><option value="1">1차시</option><option value="2">2차시</option><option value="3">3차시</option><option value="4">4차시</option><option value="5">5차시</option><option value="6">6차시</option><option value="7">7차시</option><option value="8">8차시</option></select>
+      <label class="small" id="qaAnonL" style="display:flex;align-items:center;gap:6px"><input type="checkbox" id="qaAnon"> 익명으로 올리기 (질문만)</label>
+    </div>
+    <textarea id="qaNew" maxlength="500" placeholder="예: 번개도 정전기인가요? / 집에 있는 전기 기구의 소비 전력을 직접 재 보고 싶어요"></textarea>
+    <div class="btns"><button class="au" id="qaPost">올리기</button><button id="qaRef">🔄 새로고침</button><span class="lockhint">닉네임으로 표시됨 · 10자 이상 쓰면 +2점 · 30초마다 자동 새로고침</span></div>
+    <div class="msg" id="qaMsg"></div>
+  </div>
+  <div class="qacols" id="qaList"></div>
+</section>
+</main>
+<div hidden><button id="ohRec"></button><button id="ohEx"></button><button id="ohClr"></button><button id="mkAdd"></button><button id="mkEx"></button><select id="rcR"><option>6</option></select><select id="rcV"><option>36</option></select><button id="rcAll"></button><button id="rcHide"></button><table id="rcTb"></table><canvas id="cSeC" data-w="460" data-h="330"></canvas><canvas id="cPaC" data-w="460" data-h="330"></canvas></div>
+<footer>⚡ 전기 탐구실 · 중학교 과학 Ⅶ. 전기와 자기 · 시뮬레이션의 값은 이해를 돕기 위해 단순화함 (전기 기구 소비 전력은 예시 값)</footer>
+
+<script>
+/* ===== 선생님 설정: 구글 Apps Script 웹 앱 주소를 따옴표 안에 붙여 넣기 ===== */
+const API_URL = '';
+/* ============================================================================ */
+function __boot(){
+const $=s=>document.querySelector(s), $$=(s,r)=>[...(r||document).querySelectorAll(s)];
+const FONT='"Noto Sans KR",sans-serif';
+function cv(id){const c=document.getElementById(id),w=+c.dataset.w,h=+c.dataset.h,d=Math.max(2,window.devicePixelRatio||1);c.width=w*d;c.height=h*d;const x=c.getContext('2d');x.setTransform(d,0,0,d,0,0);return{c,x,w,h};}
+function rng(seed){let s=seed;return()=>{s=(s*16807)%2147483647;return(s-1)/2147483646;};}
+function txt(x,s,X,Y,col,size,align,weight){x.fillStyle=col||'#eef1ff';x.font=(weight||500)+' '+Math.round((size||13)*1.45)+'px '+FONT;x.textAlign=align||'left';x.textBaseline='middle';x.fillText(s,X,Y);}
+function glow(x,X,Y,r,rgb,a){a=a==null?1:a;const g=x.createRadialGradient(X,Y,0,X,Y,r*3.2);g.addColorStop(0,`rgba(255,255,255,${a})`);g.addColorStop(.18,`rgba(${rgb},${a})`);g.addColorStop(.45,`rgba(${rgb},${.25*a})`);g.addColorStop(1,`rgba(${rgb},0)`);x.fillStyle=g;x.beginPath();x.arc(X,Y,r*3.2,0,7);x.fill();}
+
+/* ---------- user (반·번호·이름 + PIN, 닉네임 고정) ---------- */
+const SK='eleclab';
+let user=null;try{user=JSON.parse(localStorage.getItem(SK+'_user')||'null');}catch(e){}
+const PREVIEW=new URLSearchParams(location.search).has('preview');
+if(PREVIEW){user={cls:'교사',num:0,name:'미리보기'};document.documentElement.classList.add('preview');}
+const LV=[[0,'중성 원자','⚪'],[5,'정전기','✨'],[12,'건전지','🔋'],[22,'전구','💡'],[35,'전자석','🧲'],[50,'전동기','⚙️'],[70,'발전소','🏭'],[100,'번개','⚡']];
+function esc(t){return String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function saveUser(){try{localStorage.setItem(SK+'_user',JSON.stringify(user));}catch(e){}}
+function setPoints(j){if(!user||j==null||j.points==null)return;user.points=j.points;user.level=j.level;saveUser();showWho();}
+function showWho(){if(PREVIEW){$('#who').innerHTML='<b>👩‍🏫 교사 미리보기</b> <span class="small">(제출·게시 안 됨, 게시판 읽기만)</span>';return;}
+ if(!user||!user.nick){$('#who').innerHTML='';return;}
+ const lv=user.level||{icon:LV[0][2],name:LV[0][1],next:LV[1][0],nextName:LV[1][1]},p=user.points||0,cur=LV.find(x=>x[1]===lv.name)||LV[0];
+ const pr=lv.next?Math.round((p-cur[0])/(lv.next-cur[0])*100):100;
+ $('#who').innerHTML=`<span title="${user.cls}반 ${user.num}번">${lv.icon} <b>${esc(user.nick)}</b> · ${lv.name} ${p}점<span class="lvbar"><i style="width:${pr}%"></i></span>${lv.next?`<span class="small">${lv.nextName}까지 ${lv.next-p}점</span>`:'<span class="small">최고 등급!</span>'}</span><button id="lvBtn">등급 안내</button><button id="chg">로그아웃</button>`;
+ $('#chg').onclick=()=>{const u=user;user=null;try{localStorage.removeItem(SK+'_user');}catch(e){}showWho();user=u?{cls:u.cls,num:u.num,name:u.name}:null;openLogin();user=null;};$('#lvBtn').onclick=()=>$('#lvHelp').classList.add('on');}
+$('#lvTb').innerHTML=LV.map(x=>`<tr><td>${x[2]} ${x[1]}</td><td>${x[0]}점</td></tr>`).join('');$('#lvClose').onclick=()=>$('#lvHelp').classList.remove('on');
+function openLogin(){$('#lgReg').style.display='none';regStar=false;$('#lgMsg').textContent='';if(user){$('#lgCls').value=user.cls||'';$('#lgNum').value=user.num||'';$('#lgName').value=user.name||'';}$('#lgPin').value='';$('#login').classList.add('on');}
+let lgBusy=false,regStar=false;
+$('#lgGo').onclick=async()=>{if(lgBusy)return;const cls=$('#lgCls').value,num=parseInt($('#lgNum').value,10),name=$('#lgName').value.trim(),pin=$('#lgPin').value.trim();const m=$('#lgMsg');
+ if(!cls||!num||num<1||num>40||!name){m.textContent='반·번호·이름을 모두 정확히 입력하기';return;}
+ if(!/^\d{4}$/.test(pin)){m.textContent='PIN은 숫자 4자리';return;}
+ const reg=$('#lgReg').style.display!=='none';const body={action:'login',cls,num,name,pin};
+ if(reg){const nick=$('#lgNick').value.trim();if(nick.length<2){m.textContent='닉네임은 2~8자';return;}if(!regStar&&$('#lgPin2').value!==pin){m.textContent='PIN 확인이 다름';return;}body.nick=nick;}
+ if(!API_URL){user={cls,num,name,pin,nick:name};saveUser();$('#login').classList.remove('on');showWho();restore();return;}
+ lgBusy=true;m.style.color='#9ba6d4';m.textContent='확인 중…';
+ try{const r=await fetch(API_URL,{method:'POST',body:JSON.stringify(body)});const j=await r.json();m.style.color='';
+  if(j.need==='register'){regStar=!!j.star;$('#lgReg').style.display='block';$('#lgPin2Row').style.display=regStar?'none':'';$('#lgRegT').textContent=regStar?'⚡ 별 탐구실 PIN 확인 완료! 이번 단원 닉네임 정하기':'⚡ 처음 왔어요! 닉네임 정하기';m.textContent=j.error||(regStar?'새 단원에서 쓸 닉네임을 정하고 다시 [입장하기]':'처음 왔어요! 닉네임과 PIN 확인을 입력하고 다시 [입장하기]');$('#lgNick').focus();}
+  else if(!j.ok){m.textContent=j.error||'로그인 실패';}
+  else{user={cls,num,name,pin,nick:j.nick,points:j.points,level:j.level};saveUser();$('#login').classList.remove('on');showWho();restore();pullServer();if($('#m-qa').classList.contains('on'))loadQA();}
+ }catch(e){m.style.color='';m.textContent='인터넷 연결 확인 후 다시 시도하기';}
+ lgBusy=false;};
+['lgPin','lgPin2','lgNick'].forEach(id=>$('#'+id).addEventListener('keydown',e=>{if(e.key==='Enter')$('#lgGo').click();}));
+
+/* ---------- routing ---------- */
+const LESSONS=['1','2','3','4','5','6','7','8'];
+const MODS=LESSONS.map(l=>'t'+l).concat(['qa']);
+function route(){let h=location.hash.replace('#','');if(!MODS.includes(h))h='t1';document.body.classList.toggle('qa-wide',h==='qa');MODS.forEach(m=>$('#m-'+m).classList.toggle('on',m===h));$$('nav a').forEach(a=>a.classList.toggle('on',a.dataset.m===h));if(h==='qa')loadQA();window.scrollTo(0,0);}
+window.addEventListener('hashchange',route);
+
+/* ---------- 예측 / 정리 확인 / 자동 저장 ---------- */
+function key(){if(PREVIEW)return SK+'_ans_preview';return user?SK+'_ans_'+user.cls+'_'+user.num:SK+'_ans_guest';}
+function save(){const d={tbs:{}};$$('tbody[data-f]').forEach(tb=>{const f=[...tb.querySelectorAll('input,select')];if(f.length)d.tbs[tb.id]=f.map(e=>e.value);});$$('textarea[data-f]').forEach(t=>d['t:'+t.dataset.f]=t.value);$$('.predict[data-f]').forEach(p=>{const s=p.querySelector('button.sel');if(s)d['p:'+p.dataset.f]=s.textContent;});try{localStorage.setItem(key(),JSON.stringify(d));}catch(e){}}
+function restore(){LESSONS.forEach(L=>{if(document.getElementById('quiz'+L))faRender('quiz'+L,L);});let d={};try{d=JSON.parse(localStorage.getItem(key())||'{}');}catch(e){}
+ $$('tbody[data-f]').forEach(tb=>{const v=(d.tbs||{})[tb.id];const f=[...tb.querySelectorAll('input,select')];if(!v||!f.length)return;f.forEach((e,i)=>{if(v[i]!=null)e.value=v[i];});f.forEach(e=>e.dispatchEvent(new Event('input',{bubbles:true})));});
+ $$('textarea[data-f]').forEach(t=>{t.value=d['t:'+t.dataset.f]||'';});
+ $$('.predict[data-f]').forEach(p=>p.querySelectorAll('button').forEach(b=>b.classList.toggle('sel',d['p:'+p.dataset.f]===b.textContent)));lockRv();}
+$$('.predict').forEach(g=>g.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{g.querySelectorAll('button').forEach(o=>o.classList.remove('sel'));b.classList.add('sel');save();})));
+let saveT;
+document.addEventListener('input',e=>{if(e.target.matches('textarea[data-f]')){clearTimeout(saveT);saveT=setTimeout(save,400);lockRv();}if(e.target.closest&&e.target.closest('tbody[data-f]')){clearTimeout(saveT);saveT=setTimeout(save,400);}});
+document.addEventListener('change',e=>{if(e.target.closest&&e.target.closest('tbody[data-f]'))save();});
+// 정리 확인: 바로 위 칸에 내 생각을 써야 열림
+function rvField(b){let el=b.parentElement.previousElementSibling;while(el&&el.tagName!=='TEXTAREA')el=el.previousElementSibling;return el;}
+function lockRv(){$$('.rv').forEach(b=>{const t=rvField(b);if(!t)return;const ok=t.value.trim().length>=3;b.disabled=!ok;b.title=ok?'':'먼저 내 생각을 쓰기';});}
+$$('.rv').forEach(b=>b.addEventListener('click',()=>document.getElementById(b.dataset.t).classList.toggle('show')));
+
+/* ---------- 형성평가 (5문항: 객관식 2 + 두 단계 1 + 단답형 1 + 서술형 1) ---------- */
+const FA_DATA={
+'1':[
+ {t:'mc',q:'두 물체를 마찰할 때 한 물체에서 다른 물체로 이동하는 것은?',o:['원자핵','전자','원자','(+)전하'],a:1,h:'원자 모형 시뮬레이션에서 옮겨 간 것은?'},
+ {t:'mc',q:'같은 털가죽으로 문지른 두 풍선을 가까이 하면?',o:['서로 끌어당긴다','서로 밀어낸다','아무 일도 없다','한 풍선만 움직인다'],a:1,h:'같은 방법으로 문지른 숟가락 가와 나는 어떻게 되었나?'},
+ {t:'two',q:'전자를 잃은 물체는 어떤 전하로 대전될까?',o:['(+)전하','(−)전하','대전되지 않음'],a:0,rq:'그렇게 생각한 까닭은?',ro:['(−)전하를 띤 전자가 부족해지기 때문','(+)전하가 새로 생기기 때문','원자핵이 함께 빠져나가기 때문'],ra:0,h:'원자는 (+)전하량과 (−)전하량이 같은 중성'},
+ {t:'short',q:'전기를 띤 두 물체 사이에 작용하는 힘을 (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)(이)라고 한다.',acc:['전기력'],h:'○○력'},
+ {t:'essay',q:'플라스틱 빗으로 머리를 빗으면 머리카락이 빗에 달라붙는 까닭을 쓰시오.',model:'마찰로 전자가 이동해 빗과 머리카락이 서로 다른 종류의 전기를 띠고, 끌어당기는 전기력(인력)이 작용하기 때문이다.'}],
+'2':[
+ {t:'mc',q:'(−)대전체를 금속 막대에 가까이 할 때, 대전체와 가까운 쪽에 모이는 전하는?',o:['(+)전하','(−)전하','전하가 없다','(+)와 (−)가 같은 양'],a:0,h:'전자는 (−)대전체로부터 밀려남'},
+ {t:'mc',q:'정전기 유도에서 금속 속을 이동하는 것은?',o:['원자핵','전자','(+)전하','원자'],a:1,h:'금속 막대 시뮬레이션의 [전자만 보기]'},
+ {t:'two',q:'대전체를 검전기 금속판에 가까이 할 때 금속박이 벌어지는 까닭은?',o:['두 금속박이 같은 전하를 띠어서','두 금속박이 다른 전하를 띠어서','금속박이 뜨거워져서'],a:0,rq:'두 금속박 사이에 작용하는 힘은?',ro:['밀어내는 힘(척력)','끌어당기는 힘(인력)','힘이 작용하지 않음'],ra:0,h:'같은 종류의 전하 사이의 전기력'},
+ {t:'short',q:'대전체를 대전되지 않은 금속에 가까이 할 때 전하가 나뉘는 현상을 (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)(이)라고 한다.',acc:['정전기유도','정전기 유도'],h:'정전기 ○○'},
+ {t:'essay',q:'(+)대전체를 검전기의 금속판에 가까이 할 때 금속박이 띠는 전하와 금속박이 벌어지는 까닭을 쓰시오.',model:'금속박의 전자가 (+)대전체에 끌려 금속판 쪽으로 이동하므로 금속박은 (+)전하를 띤다. 두 금속박이 같은 (+)전하를 띠어 밀어내는 전기력이 작용해 벌어진다.'}],
+'3':[
+ {t:'mc',q:'전류의 방향으로 옳은 것은?',o:['전지의 (−)극 → (+)극','전지의 (+)극 → (−)극','전자의 이동 방향과 같다','정해져 있지 않다'],a:1,h:'전자의 이동 방향과 반대'},
+ {t:'mc',q:'전구 앞의 전류계 A₁이 0.3 A일 때 전구 뒤의 A₂는?',o:['0.3 A보다 작다','0.3 A','0.3 A보다 크다','0 A'],a:1,h:'전구를 지나도 전자는 사라지지 않음'},
+ {t:'two',q:'물의 흐름 모형에서 전지에 해당하는 것은?',o:['펌프','물레방아','밸브'],a:0,rq:'그렇게 생각한 까닭은?',ro:['물을 높이 올려 계속 흐르게 하기 때문','물의 흐름으로 돌아가기 때문','물의 흐름을 막거나 열기 때문'],ra:0,h:'전지는 전류를 계속 흐르게 함'},
+ {t:'short',q:'전기 회로에서 전류를 흐르게 하는 능력을 (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)(이)라고 하며 단위는 V이다.',acc:['전압'],h:'단위 V(볼트)'},
+ {t:'essay',q:'마찰 전기로 켠 네온전구는 잠깐만 켜지고, 전지에 연결한 전구는 계속 켜지는 까닭을 쓰시오.',model:'마찰로 모인 전하는 한 번 이동하면 더 이상 흐르지 않지만, 전지는 전압으로 전자를 계속 이동하게 하여 전류가 계속 흐르기 때문이다.'}],
+'4':[
+ {t:'mc',q:'니크롬선에 걸린 전압을 2배로 하면 전류는?',o:['½배','그대로','2배','4배'],a:2,h:'전압–전류 그래프는 원점을 지나는 직선'},
+ {t:'mc',q:'저항 10 Ω에 3 V의 전압을 걸면 흐르는 전류는?',o:['0.3 A','3 A','30 A','13 A'],a:0,h:'I = V ÷ R'},
+ {t:'two',q:'같은 전압에서 전류가 더 작게 흐르는 것은?',o:['긴 니크롬선','짧은 니크롬선','같다'],a:0,rq:'그렇게 생각한 까닭은?',ro:['길수록 저항이 크기 때문','길수록 저항이 작기 때문','길이는 전류와 관계없기 때문'],ra:0,h:'그래프의 기울기가 작은 쪽'},
+ {t:'short',q:'전류의 흐름을 방해하는 정도를 (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)(이)라고 하며 단위는 Ω이다.',acc:['저항','전기저항','전기 저항'],h:'단위 Ω(옴)'},
+ {t:'essay',q:'텔레비전 소리를 크게 하려면 센 전류가 흘러야 한다. 저항을 어떻게 해야 하는지 전류와 저항의 관계로 설명하시오.',model:'전류의 세기는 저항에 반비례하므로, 센 전류가 흐르게 하려면 저항을 작게 해야 한다.'}],
+'5':[
+ {t:'mc',q:'전구 2개를 직렬연결한 회로에서 전구 1개의 연결을 끊으면 나머지 전구는?',o:['더 밝아진다','그대로 켜져 있다','꺼진다','어두워진다'],a:2,h:'회로 카드 4'},
+ {t:'mc',q:'6 Ω 저항 2개를 병렬연결하고 12 V를 걸 때 전체 전류는?',o:['1 A','2 A','4 A','6 A'],a:2,h:'각 저항에 12 V → 각 2 A'},
+ {t:'two',q:'저항을 병렬로 많이 연결할수록 회로 전체의 전류는?',o:['커진다','작아진다','변하지 않는다'],a:0,rq:'그렇게 생각한 까닭은?',ro:['전체 저항이 작아지기 때문','전체 저항이 커지기 때문','각 저항의 전압이 작아지기 때문'],ra:0,h:'병렬 = 도선이 굵어지는 효과'},
+ {t:'short',q:'가정의 전기 기구는 (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)연결되어 있어 각각 켜고 끌 수 있다.',acc:['병렬'],h:'직렬? 병렬?'},
+ {t:'essay',q:'멀티탭에 여러 전기 기구를 한꺼번에 연결하면 화재 위험이 있는 까닭을 병렬연결의 특징과 관련지어 쓰시오.',model:'전기 기구를 병렬로 많이 연결할수록 전체 저항이 작아져 멀티탭 전선에 흐르는 전체 전류가 커지고, 전선에서 열이 많이 나 화재가 날 수 있다.'}],
+'6':[
+ {t:'mc',q:'소비 전력의 단위는?',o:['V','A','W','Wh'],a:2,h:'1초 동안 사용하는 전기 에너지'},
+ {t:'mc',q:'100 W 전구를 하루 5시간씩 30일 켰을 때 전력량은?',o:['500 Wh','3 kWh','15 kWh','150 kWh'],a:2,h:'100 × 5 × 30 Wh를 kWh로'},
+ {t:'two',q:'선풍기에서 전기 에너지는 주로 무엇으로 전환될까?',o:['운동 에너지','빛에너지','화학 에너지'],a:0,rq:'그렇게 생각한 까닭은?',ro:['날개를 돌리는 것이 선풍기가 하는 일이기 때문','선풍기에서 빛이 나기 때문','선풍기가 전기를 저장하기 때문'],ra:0,h:'선풍기가 하는 일'},
+ {t:'short',q:'에너지 소비 효율 등급은 (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)등급에 가까울수록 전기 에너지를 효율적으로 사용한다.',acc:['1','1등급','일'],h:'1~5등급'},
+ {t:'essay',q:'소비 전력이 큰 헤어드라이어보다 냉장고가 한 달 동안 전기 에너지를 더 많이 쓰는 까닭을 쓰시오.',model:'전력량은 소비 전력에 사용 시간을 곱한 값이다. 냉장고는 소비 전력은 작지만 하루 종일 사용하므로 전력량이 더 크다.'}],
+'7':[
+ {t:'mc',q:'자기장의 방향은 무엇으로 정할까?',o:['나침반 바늘 S극이 가리키는 방향','나침반 바늘 N극이 가리키는 방향','전류의 방향','항상 북쪽'],a:1,h:'나침반 N극'},
+ {t:'mc',q:'전류가 흐르는 코일 주위 자기장의 모양과 비슷한 것은?',o:['막대자석 주위','원형 자석 주위','전기력선','자기장이 없다'],a:0,h:'코일 시뮬레이션의 [자기력선]'},
+ {t:'two',q:'코일에 흐르는 전류의 방향을 반대로 바꾸면 코일 주위 나침반 바늘은?',o:['반대 방향을 가리킨다','그대로이다','모두 북쪽을 가리킨다'],a:0,rq:'그렇게 생각한 까닭은?',ro:['자기장의 방향이 반대로 바뀌기 때문','자기장이 사라지기 때문','지구 자기장이 바뀌기 때문'],ra:0,h:'과정 3 관찰'},
+ {t:'short',q:'자기력이 미치는 공간을 (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)(이)라고 한다.',acc:['자기장'],h:'자기○'},
+ {t:'essay',q:'전류가 흐르는 코일 옆에 놓인 나침반 바늘을 더 크게 움직이게 하는 방법 두 가지를 쓰시오.',model:'코일에 흐르는 전류의 세기를 크게 한다. 나침반을 코일에 더 가깝게 놓는다. (코일을 더 많이 감는다.)'}],
+'8':[
+ {t:'mc',q:'자기장 안에서 전류가 흐르는 코일이 받는 힘의 방향을 반대로 바꾸는 방법은?',o:['전류를 세게 한다','전류의 방향을 바꾼다','코일을 길게 한다','전압을 높인다'],a:1,h:'과정 3의 결과'},
+ {t:'mc',q:'전류의 방향과 자석의 극을 모두 바꾸면 그네가 움직이는 방향은?',o:['처음과 같다','처음과 반대이다','움직이지 않는다','위로 움직인다'],a:0,h:'두 번 반대가 되면?'},
+ {t:'two',q:'전기 그네에 흐르는 전류를 세게 하면 그네의 움직임은?',o:['더 크게 움직인다','더 작게 움직인다','변화 없다'],a:0,rq:'그렇게 생각한 까닭은?',ro:['전류가 셀수록 코일이 받는 힘이 크기 때문','전류가 셀수록 자기장이 약해지기 때문','전류의 방향이 바뀌기 때문'],ra:0,h:'과정 5 관찰'},
+ {t:'short',q:'자기장 안에서 전류가 흐르는 코일이 받는 힘을 이용해 코일을 계속 회전시키는 장치를 (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)(이)라고 한다.',acc:['전동기','모터'],h:'선풍기, 드론에 들어 있음'},
+ {t:'essay',q:'더 빠르게 회전하는 전동기를 만드는 방법을 쓰고, 그 까닭을 설명하시오.',model:'코일에 흐르는 전류를 세게 하거나 더 센 자석을 사용한다. 전류와 자기장이 셀수록 코일이 받는 힘이 커지기 때문이다.'}]};
+const FA={};
+function faKey(L){return key()+'_fa'+L;}
+function faLoad(L){let d=null;try{d=JSON.parse(localStorage.getItem(faKey(L))||'null');}catch(e){}return d||{ans:{},first:null,attempts:0,passed:false};}
+function faSave(L){try{localStorage.setItem(faKey(L),JSON.stringify(FA[L]));}catch(e){}}
+function norm(t){return String(t||'').replace(/[\s()]/g,'').toLowerCase();}
+function faRender(el,L){const items=FA_DATA[L];const st=FA[L]=faLoad(L);const root=document.getElementById(el);
+ root.innerHTML=`<h3 style="margin:18px 0 4px">📝 형성평가 (5문항)</h3><p class="small muted" style="margin:0 0 6px">모두 풀고 [채점하기]. 처음 채점한 점수가 선생님께 전달됨. 틀린 문제는 힌트를 보고 다시 풀어 <b>모두 맞히면 통과</b>!</p><div class="fa-st" id="faSt${L}"></div>`;
+ items.forEach((it,i)=>{const d=document.createElement('div');d.className='item fa';d.dataset.i=i;
+  let h=`<p>${i+1}. <span class="ltag">${{mc:'객관식',two:'두 단계',short:'단답형',essay:'서술형'}[it.t]}</span> ${it.q}</p>`;
+  if(it.t==='mc'||it.t==='two')h+=`<div class="opts" data-g="a">${it.o.map((o,j)=>`<button data-j="${j}">${o}</button>`).join('')}</div>`;
+  if(it.t==='two')h+=`<p style="margin:10px 0 6px;font-weight:500">└ ${it.rq}</p><div class="opts" data-g="r">${it.ro.map((o,j)=>`<button data-j="${j}">${o}</button>`).join('')}</div>`;
+  if(it.t==='short')h+=`<input type="text" class="fa-in" maxlength="20" placeholder="답 입력" style="width:220px">`;
+  if(it.t==='essay')h+=`<textarea class="fa-ta" maxlength="600" placeholder="까닭까지 써 보기"></textarea>`;
+  h+=`<div class="fb"></div>`;d.innerHTML=h;
+  const a=st.ans[i]||{};
+  d.querySelectorAll('.opts').forEach(g=>{const k=g.dataset.g;g.querySelectorAll('button').forEach(b=>{if(a[k]===+b.dataset.j)b.classList.add('sel');b.onclick=()=>{if(st.passed)return;g.querySelectorAll('button').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');(st.ans[i]=st.ans[i]||{})[k]=+b.dataset.j;d.classList.remove('ok','no');faSave(L);};});});
+  const inp=d.querySelector('.fa-in,.fa-ta');if(inp){inp.value=a.v||'';inp.addEventListener('input',()=>{(st.ans[i]=st.ans[i]||{}).v=inp.value;d.classList.remove('ok','no');faSave(L);});if(st.passed)inp.readOnly=true;}
+  root.appendChild(d);});
+ const bar=document.createElement('div');bar.className='btns';bar.innerHTML=`<button class="au" id="faGo${L}">✔ 채점하기</button>`;root.appendChild(bar);
+ document.getElementById('faGo'+L).onclick=()=>faGrade(L,root);
+ if(st.first)faGrade(L,root,true);}
+function faCheck(it,a){a=a||{};if(it.t==='mc')return a.a===it.a;if(it.t==='two')return a.a===it.a&&a.r===it.ra;if(it.t==='short')return it.acc.map(norm).includes(norm(a.v));if(it.t==='essay')return norm(a.v).length>=10;}
+function faAnswered(it,a){a=a||{};if(it.t==='mc')return a.a!=null;if(it.t==='two')return a.a!=null&&a.r!=null;return norm(a.v).length>0;}
+function faGrade(L,root,silent){const items=FA_DATA[L],st=FA[L];
+ const miss=items.filter((it,i)=>!faAnswered(it,st.ans[i])).length;
+ if(miss&&!silent){document.getElementById('faSt'+L).innerHTML=`<span style="color:#ff7a90">아직 풀지 않은 문제 ${miss}개</span>`;return;}
+ const res=items.map((it,i)=>faCheck(it,st.ans[i]));
+ if(!silent){st.attempts++;if(!st.first){st.first=res.slice(0,4).map(x=>x?'O':'X');st.firstScore=res.slice(0,4).filter(Boolean).length;}}
+ root.querySelectorAll('.item.fa').forEach((d,i)=>{const it=items[i],ok=res[i],fb=d.querySelector('.fb');d.classList.toggle('ok',ok);d.classList.toggle('no',!ok);fb.classList.add('show');
+  if(it.t==='essay')fb.innerHTML=ok?(st.passed||res.every(Boolean)?`✍ 작성 완료 · <b>예시 답</b>: ${it.model}`:'✍ 작성 완료 (선생님이 확인)'):'❗ 10자 이상 까닭까지 쓰기';
+  else fb.innerHTML=ok?'⭕ 정답':`❌ 다시 생각해 보기 · 💡 ${it.h}`;});
+ st.passed=res.every(Boolean);faSave(L);
+ document.getElementById('faSt'+L).innerHTML=`<div class="chips"><div class="chip">첫 채점 <b>${st.firstScore} / 4</b></div><div class="chip">시도 <b>${st.attempts}</b>회</div>${st.passed?'<div class="chip" style="border-color:#63e6a3">🎉 <b style="color:#63e6a3">통과!</b></div>':'<div class="chip">통과까지 <b>'+res.filter(x=>!x).length+'</b>문제</div>'}</div>`+(st.passed?'<p class="small" style="color:#63e6a3;margin:4px 0">아래 [제출]을 눌러 선생님께 보내기</p>':'');
+ if(st.passed)root.querySelectorAll('.item.fa').forEach((d,i)=>{const it=items[i];if(it.t==='essay'){d.querySelector('.fb').innerHTML='✍ 작성 완료 · <b>예시 답</b>: '+it.model;}});}
+function faFields(L){const st=FA[L]||faLoad(L),items=FA_DATA[L];const ess=items.findIndex(it=>it.t==='essay');
+ return [['형성평가 첫 채점(자동 4문항)',st.first?st.firstScore+' / 4':'미응시'],['형성평가 문항별 첫 결과',st.first?st.first.map((x,i)=>(i+1)+'번 '+x).join(', '):''],['형성평가 시도 횟수',String(st.attempts||0)],['형성평가 통과',st.passed?'통과':'미통과'],['형성평가 서술형',((st.ans||{})[ess]||{}).v||'']];}
+
+/* ---------- API ---------- */
+async function api(payload){if(!API_URL)throw new Error('NOAPI');if(user)payload=Object.assign({cls:user.cls,num:user.num,name:user.name,pin:user.pin},payload);const r=await fetch(API_URL,{method:'POST',body:JSON.stringify(payload)});const j=await r.json();if(!j.ok){if(j.relogin)openLogin();throw new Error(j.error||'오류');}setPoints(j);return j;}
+async function apiGet(params){if(!API_URL)throw new Error('NOAPI');const r=await fetch(API_URL+'?'+new URLSearchParams(params));return r.json();}
+
+/* ---------- 제출 ---------- */
+function collect(sec){const out=[];$$('[data-f]',sec).forEach(el=>{let v='';
+ if(el.classList.contains('predict')){const s=el.querySelector('button.sel');v=s?s.textContent:'';}
+ else if(el.tagName==='TEXTAREA')v=el.value.trim();
+ else if(el.tagName==='TBODY')v=[...el.querySelectorAll('tr')].map(tr=>[...tr.children].map(td=>{const i=td.querySelector('input,select');return i?i.value.trim():td.textContent.trim();}).join(' / ')).filter(s=>!s.includes('아직')&&s.split(' / ').slice(1).some(x=>x)).join('\n');
+ else v=el.textContent.trim();out.push([el.dataset.f,v]);});return out;}
+$$('.submitBtn').forEach(b=>b.onclick=async()=>{const L=b.dataset.lesson,sec=$('#m-t'+L),st=$('#st'+L);
+ if(PREVIEW){st.textContent='미리보기 모드: 학생 화면에서는 여기서 선생님께 제출됨';return;}if(!user||!user.pin){openLogin();return;}
+ const fields=collect(sec).concat(faFields(L));
+ const empty=fields.filter(f=>!f[1]).length;
+ if(empty&&!b.dataset.confirm){b.dataset.confirm='1';st.style.color='#ff7a90';st.textContent=`빈칸 ${empty}개가 있음. 그래도 제출하려면 한 번 더 누르기`;return;}
+ delete b.dataset.confirm;b.disabled=true;st.style.color='#9ba6d4';st.textContent='제출 중…';
+ try{await api({action:'submit',lesson:L,fields});st.style.color='#63e6a3';st.textContent='✔ 제출 완료 ('+new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})+')';}
+ catch(e){st.style.color='#ff7a90';st.textContent=e.message==='NOAPI'?'아직 제출 기능이 설정되지 않음 (선생님께 알리기). 작성 내용은 이 기기에 저장되어 있음.':'제출 실패: '+(e.message||'인터넷 연결 확인 후 다시 시도하기');}
+ b.disabled=false;});
+
+/* ---------- 다른 기기에서 로그인해도 제출한 결과 불러오기 (빈 칸만 채움) ---------- */
+async function pullServer(){if(PREVIEW||!API_URL||!user||!user.pin)return;let j;try{j=await api({action:'mine'});}catch(e){return;}
+ const D=(j&&j.data)||{};let n=0;
+ LESSONS.forEach(L=>{const o=D[L];const sec=$('#m-t'+L);if(!o||!sec)return;
+  $$('[data-f]',sec).forEach(el=>{const v=o[el.dataset.f];if(!v)return;
+   if(el.classList.contains('predict')){if(el.querySelector('button.sel'))return;const b=[...el.querySelectorAll('button')].find(b=>b.textContent===v);if(b){b.classList.add('sel');n++;}}
+   else if(el.tagName==='TEXTAREA'){if(el.value.trim())return;el.value=v;n++;}
+   else if(el.tagName==='TBODY'){const f=[...el.querySelectorAll('input,select')];if(!f.length||f.some(i=>i.value.trim()))return;
+    const lines=v.split('\n').map(l=>l.split(' / ').map(x=>x.trim()));const trs=[...el.querySelectorAll('tr')];
+    lines.forEach(p=>{const tr=trs.find(t=>t.children[0]&&t.children[0].textContent.trim()===p[0]&&!t.children[0].querySelector('input,select'))||null;
+     const target=tr||trs[lines.indexOf(p)];if(!target)return;[...target.children].forEach((td,k)=>{const i=td.querySelector('input,select');if(i&&p[k]!=null&&p[k]!=='')i.value=p[k];});});
+    f.forEach(i=>i.dispatchEvent(new Event('input',{bubbles:true})));n++;}});});
+ if(n){save();lockRv();const t=document.createElement('div');t.textContent='☁️ 선생님께 제출했던 탐구 결과를 불러왔어요';t.style.cssText='position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#1b2a5c;color:#eef1ff;border:1px solid #6ad1ff;padding:10px 18px;border-radius:12px;z-index:9999;font-size:15px';document.body.appendChild(t);setTimeout(()=>t.remove(),4000);}}
+
+/* ---------- 호기심 회로 게시판 (반별 4열 · 말머리 · 닉네임) ---------- */
+const CLS=['2-1','2-2','2-3','2-4'],TICON={'궁금해요':'❓','해 보고 싶은 탐구':'🔬','오늘의 발견':'💡'};
+let qaL='all',qaT='all',qaTimer,qaData=[];
+$$('#qaL button').forEach(b=>b.onclick=()=>{qaL=b.dataset.l;$$('#qaL button').forEach(x=>x.classList.toggle('on',x===b));if(qaL!=='all')$('#qaLsel').value=qaL;$('#qaList').innerHTML='';loadQA();});
+$$('#qaT button').forEach(b=>b.onclick=()=>{qaT=b.dataset.t;$$('#qaT button').forEach(x=>x.classList.toggle('on',x===b));if(qaT!=='all'){$('#qaTag').value=qaT;anonSync();}renderQA();});
+function anonSync(){const q=$('#qaTag').value==='궁금해요';$('#qaAnon').disabled=!q;if(!q)$('#qaAnon').checked=false;$('#qaAnonL').style.opacity=q?1:.4;}
+$('#qaTag').onchange=anonSync;anonSync();
+function fmtT(t){try{const d=new Date(t);return d.toLocaleDateString('ko-KR',{month:'numeric',day:'numeric'})+' '+d.toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});}catch(e){return'';}}
+function myCls(){return user&&CLS.includes(user.cls)?user.cls:null;}
+async function loadQA(){clearTimeout(qaTimer);const list=$('#qaList');
+ $('#qaMine').textContent=myCls()?'(내 글은 '+myCls()+'반 열에 닉네임으로 올라감)':'';
+ if(!API_URL){list.innerHTML='<div class="notice">아직 게시판이 설정되지 않음 (선생님께 알리기)</div>';return;}
+ if(!list.innerHTML)list.innerHTML='<p class="muted">불러오는 중…</p>';
+ const typing=document.activeElement&&document.activeElement.closest&&document.activeElement.closest('#qaList');
+ if(typing){qaTimer=setTimeout(loadQA,15000);return;}
+ try{const j=await apiGet({action:'list',lesson:qaL});qaData=(j.questions||[]).map(q=>Object.assign({tag:'궁금해요',icon:'💬'},q,{answers:(q.answers||[]).map(a=>Object.assign({icon:'💬'},a))}));renderQA();}
+ catch(e){list.innerHTML='<div class="notice">게시판을 불러오지 못함. 🔄 새로고침 누르기</div>';}
+ if($('#m-qa').classList.contains('on'))qaTimer=setTimeout(loadQA,30000);}
+function renderQA(){const list=$('#qaList');list.innerHTML='';const qs=qaData.filter(q=>qaT==='all'||q.tag===qaT);
+ CLS.forEach(c=>{const mine=c===myCls();const col=document.createElement('div');col.className='qacol'+(mine?' mine':'');const items=qs.filter(q=>q.cls===c);
+  col.innerHTML=`<h3>${c}반 ${mine?'<span class="ltag" style="background:#ffd16633;color:#ffd166">우리 반</span>':''}<span class="cnt">글 ${items.length}</span></h3>`+(items.length?'':'<p class="muted small" style="padding:4px 6px">아직 글 없음</p>');
+  items.forEach(q=>{const d=document.createElement('div');d.className='qitem';
+   d.innerHTML=`<div class="meta" style="flex-wrap:wrap"><span class="tagb tag-${q.tag.replace(/\s/g,'')}">${TICON[q.tag]||''} ${q.tag}</span><span class="ltag">${q.lesson}차시</span>${q.good?'<span class="goodb">⭐ 좋은 글</span>':''}</div>
+   <div class="meta" style="margin-top:4px"><span>${q.icon} <b style="color:#e9edff">${esc(q.who)}</b></span><span>${fmtT(q.time)}</span><span>💬 ${q.answers.length}</span></div><div class="qt">${esc(q.text)}</div>`+
+    q.answers.map(x=>`<div class="ans${x.who==='선생님'?' teacher':''}"><div class="meta"><span>${x.icon} ${esc(x.who)}</span><span>${fmtT(x.time)}</span>${x.good?'<span class="goodb">⭐</span>':''}</div>${esc(x.text)}</div>`).join('')+
+    `<div class="aform"><textarea maxlength="500" placeholder="답·의견 달기 (어느 반이든 가능)"></textarea><button class="pri">등록</button></div>`;
+   const ta=d.querySelector('.aform textarea'),bt=d.querySelector('.aform button');
+   bt.onclick=async()=>{if(PREVIEW){alertMsg('미리보기 모드에서는 글을 올릴 수 없음');return;}const t=ta.value.trim();if(!t)return;if(!user||!user.pin){openLogin();return;}bt.disabled=true;
+    try{await api({action:'answer',qid:q.id,text:t});ta.value='';ta.blur();loadQA();}catch(e){bt.disabled=false;alertMsg('등록 실패: '+e.message);}};
+   col.appendChild(d);});
+  list.appendChild(col);});}
+function alertMsg(t){$('#qaMsg').textContent=t;setTimeout(()=>$('#qaMsg').textContent='',4000);}
+$('#qaRef').onclick=()=>{if(document.activeElement)document.activeElement.blur();loadQA();};
+$('#qaPost').onclick=async()=>{if(PREVIEW){alertMsg('미리보기 모드에서는 글을 올릴 수 없음');return;}const t=$('#qaNew').value.trim();if(!t){alertMsg('내용을 먼저 쓰기');return;}if(!user||!user.pin){openLogin();return;}
+ const b=$('#qaPost');b.disabled=true;try{await api({action:'question',lesson:$('#qaLsel').value,tag:$('#qaTag').value,anon:$('#qaAnon').checked,text:t});$('#qaNew').value='';$('#qaAnon').checked=false;alertMsg('');loadQA();}catch(e){alertMsg(e.message==='NOAPI'?'게시판이 아직 설정되지 않음':'등록 실패: '+e.message);}b.disabled=false;};
+
+/* ============ 공통 도구 ============ */
+const BLUE='#7fb2ff',RED='#ff7a90',GOLD='#ffd166',CYAN='#6ad1ff',GREEN='#63e6a3',MUTED='#9ba6d4',LINE='#2a3666';
+function arrow(x,x1,y1,x2,y2,col,w,h){w=w||3;h=h||12;const a=Math.atan2(y2-y1,x2-x1);x.strokeStyle=col;x.fillStyle=col;x.lineWidth=w;x.beginPath();x.moveTo(x1,y1);x.lineTo(x2-Math.cos(a)*h*.6,y2-Math.sin(a)*h*.6);x.stroke();x.beginPath();x.moveTo(x2,y2);x.lineTo(x2-h*Math.cos(a-.45),y2-h*Math.sin(a-.45));x.lineTo(x2-h*Math.cos(a+.45),y2-h*Math.sin(a+.45));x.closePath();x.fill();x.lineWidth=1;}
+function rrect(x,X,Y,W,H,r,fill,stroke,lw){x.beginPath();x.roundRect(X,Y,W,H,r);if(fill){x.fillStyle=fill;x.fill();}if(stroke){x.strokeStyle=stroke;x.lineWidth=lw||1.5;x.stroke();x.lineWidth=1;}}
+function chg(x,X,Y,s,r){r=r||9;const p=s>0;x.fillStyle=p?'#ff7a9033':'#7fb2ff33';x.strokeStyle=p?RED:BLUE;x.lineWidth=1.5;x.beginPath();x.arc(X,Y,r,0,7);x.fill();x.stroke();x.lineWidth=2.2;x.beginPath();x.moveTo(X-r*.55,Y);x.lineTo(X+r*.55,Y);if(p){x.moveTo(X,Y-r*.55);x.lineTo(X,Y+r*.55);}x.stroke();x.lineWidth=1;}
+function compass(x,X,Y,r,vx,vy,ring){const L=Math.hypot(vx,vy)||1,ux=vx/L,uy=vy/L;x.fillStyle='#0b1229';x.strokeStyle=ring||'#5a6aa8';x.lineWidth=2;x.beginPath();x.arc(X,Y,r,0,7);x.fill();x.stroke();x.lineWidth=1;
+ const px=-uy,py=ux,t=r*.82,b=r*.2;x.fillStyle='#ff5a6e';x.beginPath();x.moveTo(X+ux*t,Y+uy*t);x.lineTo(X+px*b,Y+py*b);x.lineTo(X-px*b,Y-py*b);x.closePath();x.fill();
+ x.fillStyle='#e9edff';x.beginPath();x.moveTo(X-ux*t,Y-uy*t);x.lineTo(X+px*b,Y+py*b);x.lineTo(X-px*b,Y-py*b);x.closePath();x.fill();x.fillStyle='#1d2433';x.beginPath();x.arc(X,Y,2.5,0,7);x.fill();}
+function ptr(C,e){const r=C.c.getBoundingClientRect();return{x:(e.clientX-r.left)*C.w/r.width,y:(e.clientY-r.top)*C.h/r.height};}
+// 화면에 보이는 슬라이드의 캔버스만 움직이는 애니메이션 관리
+const ANIMS=[];function anim(el,f){ANIMS.push({el:typeof el==='string'?document.getElementById(el):el,f});}
+let __lt=performance.now();(function loop(n){const dt=Math.min(.05,(n-__lt)/1000);__lt=n;ANIMS.forEach(a=>{const s=a.el.closest('.module');if(s&&s.classList.contains('on'))a.f(dt);});requestAnimationFrame(loop);})(__lt);
+function lerp(a,b,k){return a+(b-a)*k;}
+function toggleBtn(b,on,t1,t2){b.classList.toggle('pri',on);if(t1)b.textContent=on?t2:t1;}
+// 자기장 선 그리기
+function trace(F,x0,y0,sg,bounds,stop,step){const pts=[[x0,y0]];let X=x0,Y=y0;step=step||3;for(let i=0;i<1400;i++){let [bx,by]=F(X,Y);const m=Math.hypot(bx,by);if(!m)break;bx/=m;by/=m;const mx=X+bx*step*.5*sg,my=Y+by*step*.5*sg;let [cx,cy]=F(mx,my);const m2=Math.hypot(cx,cy);if(!m2)break;X+=cx/m2*step*sg;Y+=cy/m2*step*sg;pts.push([X,Y]);if(X<bounds[0]||X>bounds[2]||Y<bounds[1]||Y>bounds[3])break;if(stop&&stop(X,Y))break;}return pts;}
+function drawLine(x,pts,col,w,arrows){if(pts.length<2)return;x.strokeStyle=col;x.lineWidth=w||1.6;x.beginPath();pts.forEach((p,i)=>i?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1]));x.stroke();x.lineWidth=1;
+ if(arrows){const k=Math.floor(pts.length/2);if(k>2){const a=pts[k-2],b=pts[k];arrow(x,a[0],a[1],b[0],b[1],col,1.6,11);}}}
+function poleField(poles){return(X,Y)=>{let bx=0,by=0;poles.forEach(([px,py,q])=>{const dx=X-px,dy=Y-py,d2=dx*dx+dy*dy+40,d=Math.sqrt(d2);bx+=q*dx/(d2*d);by+=q*dy/(d2*d);});return[bx,by];};}
+
+/* ================== 1차시 ================== */
+// 도입: 미끄럼틀
+(function(){const H=cv('hairC'),x=H.x;x.fillStyle='#0b1229';x.fillRect(0,0,H.w,H.h);
+ x.fillStyle='#e0574a';x.beginPath();x.moveTo(40,90);x.lineTo(110,90);x.lineTo(470,300);x.lineTo(390,300);x.closePath();x.fill();
+ x.fillStyle='#ffb347';x.fillRect(40,70,80,22);x.fillStyle='#8a94c4';x.fillRect(40,92,10,210);
+ const hx=250,hy=150;x.fillStyle='#f0c9a6';x.beginPath();x.arc(hx,hy,38,0,7);x.fill();
+ x.strokeStyle='#3b2a1d';x.lineWidth=3;for(let i=0;i<15;i++){const a=-Math.PI*.95+i*Math.PI*.9/14,r1=34,r2=88+(i%3)*10;x.beginPath();x.moveTo(hx+Math.cos(a)*r1,hy+Math.sin(a)*r1);x.quadraticCurveTo(hx+Math.cos(a)*(r1+30),hy+Math.sin(a)*(r1+30)-6,hx+Math.cos(a)*r2,hy+Math.sin(a)*r2);x.stroke();}x.lineWidth=1;
+ x.fillStyle='#1d2433';x.beginPath();x.arc(hx-12,hy-4,4,0,7);x.arc(hx+12,hy-4,4,0,7);x.fill();x.strokeStyle='#1d2433';x.lineWidth=2;x.beginPath();x.arc(hx,hy+10,9,0.2,Math.PI-.2);x.stroke();x.lineWidth=1;
+ x.fillStyle='#4aa3ff';x.beginPath();x.moveTo(hx-30,hy+36);x.lineTo(hx+34,hy+36);x.lineTo(hx+60,hy+110);x.lineTo(hx-50,hy+110);x.closePath();x.fill();
+ txt(x,'? ? ?',hx+96,hy-80,GOLD,16,'left',900);})();
+
+// 해 보기: 숟가락
+(function(){const C=cv('spC');const P={x:400,y:270};const st={rub:false,ap:null,ang:0,tgt:0,off:520,offT:520,q:false};
+ function spoon(x,len,charged,plastic){// 손잡이 끝이 +len, 머리가 -len*0.75
+  x.fillStyle=plastic?'#e8edf7':'#c9ced8';x.strokeStyle='#8a94c4';rrect(x,-len*.55,-9,len*1.55,18,9,x.fillStyle,'#8a94c4');
+  x.beginPath();x.ellipse(-len*.7,0,len*.22,len*.13,0,0,7);x.fillStyle=plastic?'#e8edf7':'#c9ced8';x.fill();x.stroke();
+  if(charged&&st.q)for(let i=0;i<5;i++)chg(x,len*.1+i*len*.2,0,-1,8);}
+ function glove(x){x.fillStyle='#f3f1e8';x.strokeStyle='#bdb8a6';x.lineWidth=2;rrect(x,0,-34,120,68,24,'#f3f1e8','#bdb8a6',2);for(let i=0;i<4;i++){rrect(x,110,-30+i*16,46,13,6,'#f3f1e8','#bdb8a6',1.5);}rrect(x,30,-58,34,28,12,'#f3f1e8','#bdb8a6',1.5);x.lineWidth=1;
+  if(st.rub&&st.q)for(let i=0;i<4;i++)chg(x,22+i*26,4,1,9);}
+ function draw(){const x=C.x;x.clearRect(0,0,C.w,C.h);x.fillStyle='#0b1229';x.fillRect(0,0,C.w,C.h);
+  txt(x,'위에서 본 모습 (숟가락 가는 지우개 위에서 빙글 돌 수 있음)',20,24,MUTED,12,'left',700);
+  rrect(x,P.x-34,P.y-26,68,52,6,'#f5b8c8','#c78a9c',2);txt(x,'지우개',P.x,P.y+44,'#f5b8c8',11,'center',700);
+  x.save();x.translate(P.x,P.y);x.rotate(st.ang);spoon(x,300,st.rub,true);x.restore();
+  x.fillStyle=GOLD;x.beginPath();x.arc(P.x,P.y,5,0,7);x.fill();
+  txt(x,'숟가락 가',P.x-250,P.y-56,GOLD,16,'center',900);
+  if(st.ap){const tx=760+st.off,ty=150;x.save();x.translate(tx,ty);
+   if(st.ap==='gl'){glove(x);txt(x,'장갑',60,-78,CYAN,15,'center',900);}
+   else{x.scale(-1,1);spoon(x,240,st.ap==='na'&&st.rub,true);x.restore();x.save();x.translate(tx,ty);txt(x,st.ap==='na'?'숟가락 나':'문지르지 않은 숟가락',150,-36,CYAN,15,'center',900);}
+   x.restore();}
+  if(Math.abs(st.ang)>.03&&st.off<20){const ex=P.x+Math.cos(st.ang)*300,ey=P.y+Math.sin(st.ang)*300;const up=st.ang<0;arrow(x,ex+26,ey+(up?16:-16),ex+26,ey+(up?-26:26),up?GREEN:RED,4,14);txt(x,up?'끌려옴!':'밀려남!',ex+44,ey,up?GREEN:RED,17,'left',900);}
+  if(st.rub&&!st.ap)txt(x,'✨ 가·나 숟가락과 장갑을 문질렀어요',20,26,GOLD,14,'left',700);}
+ function tick(dt){const k=1-Math.pow(.02,dt);st.off=lerp(st.off,st.offT,k*1.3);if(st.off<40)st.ang=lerp(st.ang,st.tgt,k*.8);else st.ang=lerp(st.ang,0,k);draw();}
+ anim(C.c,tick);
+ function msg(t){$('#spMsg').textContent=t;}
+ function approach(k){st.ap=k;st.off=520;st.offT=0;
+  if(!st.rub){st.tgt=0;msg('아무것도 문지르지 않았어요 → 변화가 없어요.');return;}
+  if(k==='na'){st.tgt=.3;msg('가가 나로부터 밀려나요!');}else if(k==='gl'){st.tgt=-.3;msg('가가 장갑 쪽으로 끌려와요!');}else{st.tgt=-.12;msg('문지르지 않은 숟가락 쪽으로 살짝 끌려와요 (다음 시간의 궁금증!)');}}
+ $('#spRub').onclick=()=>{st.rub=true;st.ap=null;st.tgt=0;msg('가·나를 장갑으로 문질렀어요. 이제 가까이 가져가 보세요.');};
+ $('#spNa').onclick=()=>approach('na');$('#spGl').onclick=()=>approach('gl');$('#spPl').onclick=()=>approach('pl');
+ $('#spAway').onclick=()=>{st.offT=520;st.tgt=0;setTimeout(()=>{if(st.offT===520)st.ap=null;},900);};
+ $('#spQ').onclick=e=>{st.q=!st.q;toggleBtn(e.target,st.q);};
+ $('#spReset').onclick=()=>{st.rub=false;st.ap=null;st.tgt=0;st.ang=0;st.q=false;$('#spQ').classList.remove('pri');msg('');};
+ draw();})();
+
+// 원자 모형
+(function(){const C=cv('atC');const A=[],B=[];for(let r=0;r<2;r++)for(let c=0;c<3;c++){A.push({x:120+c*150,y:135+r*110});B.push({x:700+c*150,y:135+r*110});}
+ const E=[];A.forEach((a,i)=>E.push({x:a.x+34,y:a.y-26,home:i}));B.forEach((b,i)=>E.push({x:b.x+34,y:b.y-26,home:6+i}));
+ let t=0,shake=0;
+ function target(e,i){if(i<6&&i>=6-t){const j=5-i;const b=B[j];return{x:b.x-34,y:b.y+28};}const p=i<6?A[i]:B[i-6];return{x:p.x+34,y:p.y-26};}
+ function draw(){const x=C.x;x.clearRect(0,0,C.w,C.h);x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);const sx=Math.sin(shake*40)*shake*14;
+  rrect(x,40+sx,70,460,290,18,'#1a2244','#4a5a99',2);rrect(x,620-sx,70,460,290,18,'#1f2a3f','#4a5a99',2);
+  txt(x,'장갑(면)',270+sx,46,'#e9edff',17,'center',900);txt(x,'플라스틱 숟가락',850-sx,46,'#e9edff',17,'center',900);
+  A.forEach(a=>{x.strokeStyle='#ffffff18';x.beginPath();x.arc(a.x+sx,a.y,44,0,7);x.stroke();chg(x,a.x+sx,a.y,1,15);});
+  B.forEach(b=>{x.strokeStyle='#ffffff18';x.beginPath();x.arc(b.x-sx,b.y,44,0,7);x.stroke();chg(x,b.x-sx,b.y,1,15);});
+  E.forEach((e,i)=>{const moved=i<6&&i>=6-t;chg(x,e.x+(e.x<560?sx:-sx),e.y,-1,11);if(moved){x.strokeStyle=GOLD;x.lineWidth=2;x.beginPath();x.arc(e.x-sx,e.y,15,0,7);x.stroke();x.lineWidth=1;}});
+  txt(x,'(+) 6개 · (−) '+(6-t)+'개',270,340,t?RED:MUTED,14,'center',900);txt(x,'(+) 6개 · (−) '+(6+t)+'개',850,340,t?BLUE:MUTED,14,'center',900);}
+ anim(C.c,dt=>{shake=Math.max(0,shake-dt*1.4);E.forEach((e,i)=>{const p=target(e,i);e.x=lerp(e.x,p.x,.08);e.y=lerp(e.y,p.y,.08);});draw();});
+ function lab(){$('#atA').textContent=t?'(+)전하로 대전':'전기적 중성';$('#atB').textContent=t?'(−)전하로 대전':'전기적 중성';}
+ $('#atRub').onclick=()=>{shake=.7;setTimeout(()=>{if(t<4)t++;lab();},500);};$('#atReset').onclick=()=>{t=0;lab();};lab();draw();})();
+
+/* ================== 2차시 ================== */
+// 금속 막대 정전기 유도
+(function(){const C=cv('indC');let d=1,pol=-1,eOnly=false;const x0=450,x1=1050,yA=190,yB=232;const ions=[],els=[];
+ for(let i=0;i<12;i++){ions.push({x:x0+20+(i%6)*((x1-x0-40)/5),y:i<6?yA:yB});}
+ for(let i=0;i<12;i++){els.push({x:ions[i].x+22,y:(i<6?yA:yB)+10});}
+ function targets(){const p=Math.pow(1-d,1.2),L=x1-x0-60;let a=x0+30,b=x1-30;if(pol<0)a+=L*.42*p;else b-=L*.42*p;const out=[];for(let i=0;i<12;i++){const k=i%6;out.push({x:a+(k+.5)*(b-a)/6,y:(i<6?yA:yB)+12});}return out;}
+ function draw(){const x=C.x;x.clearRect(0,0,C.w,C.h);x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);
+  x.fillStyle='#5a6aa8';x.fillRect(740,262,12,70);rrect(x,690,330,112,14,4,'#3b4a80');txt(x,'절연 받침',746,360,MUTED,11,'center');
+  rrect(x,x0,160,x1-x0,100,20,'#9aa3b8','#cfd6e6',2);txt(x,'금속 막대 (알루미늄)',(x0+x1)/2,140,'#e9edff',15,'center',900);
+  const p=Math.pow(1-d,1.2);
+  if(!eOnly)ions.forEach(o=>chg(x,o.x,o.y,1,11));els.forEach(e=>chg(x,e.x,e.y,-1,10));
+  const tip=130+(1-d)*270;rrect(x,tip-330,196,330,28,14,'#e6ecf7','#8a94c4',2);for(let i=0;i<5;i++)chg(x,tip-300+i*60,210,pol,10);txt(x,(pol<0?'(−)':'(+)')+' 대전된 빨대',Math.max(90,tip-100),180,pol<0?BLUE:RED,15,'center',900);
+  if(p>.25){const near=pol<0?'(+)전하가 많아짐':'(−)전하가 많아짐',far=pol<0?'(−)전하가 많아짐':'(+)전하가 많아짐';txt(x,near,x0+90,300,pol<0?RED:BLUE,15,'center',900);txt(x,far,x1-90,300,pol<0?BLUE:RED,15,'center',900);
+   arrow(x,x0+80,110,x0-10,110,GREEN,4,14);txt(x,'끌려옴',x0+90,110,GREEN,15,'left',900);}
+  txt(x,eOnly?'전자(−)만 표시 중 · (+)전하(원자핵)는 움직이지 않아요':'',20,24,GOLD,13,'left',700);}
+ anim(C.c,()=>{const T=targets();els.forEach((e,i)=>{e.x=lerp(e.x,T[i].x,.07);e.y=lerp(e.y,T[i].y,.07);});draw();});
+ $('#indD').addEventListener('input',e=>{d=+e.target.value;$('#indDo').textContent=d>.66?'멀리':d>.33?'중간':'가까이';$('#indMsg').textContent=d<.33?'가까이 하니 전자들이 움직였어요! 어느 쪽으로 움직였나요?':'';});
+ $('#indN').onclick=()=>{pol=-1;$('#indN').classList.add('pri');$('#indP').classList.remove('pri');};$('#indP').onclick=()=>{pol=1;$('#indP').classList.add('pri');$('#indN').classList.remove('pri');};
+ $('#indE').onclick=e=>{eOnly=!eOnly;toggleBtn(e.target,eOnly);};draw();})();
+
+// 검전기 구조
+(function(){const C=cv('esStC'),x=C.x,L=cv('esStL'),y=L.x;x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);
+ rrect(x,90,170,280,280,30,'#6ad1ff12','#6ad1ff88',2);rrect(x,190,150,80,40,8,'#3b2a1d','#6b4a32',2);
+ rrect(x,130,90,200,16,4,'#c9ced8','#e9edff',1.5);x.fillStyle='#c9ced8';x.fillRect(224,106,12,240);
+ x.save();x.translate(230,346);[-.25,.25].forEach(a=>{x.save();x.rotate(a);x.fillStyle='#ffd166';x.fillRect(-4,0,8,92);x.restore();});x.restore();
+ const lab=(t,X,Y,tx,ty)=>{y.strokeStyle=GOLD;y.lineWidth=2;y.beginPath();y.moveTo(X,Y);y.lineTo(tx,ty);y.stroke();txt(y,t,tx+6,ty,GOLD,13,'left',900);};
+ lab('금속판',330,98,350,52);lab('고무마개',270,170,350,140);lab('금속 막대',236,230,350,230);lab('유리병',368,320,380,320);lab('금속박',262,420,350,420);})();
+
+// 검전기 실험
+(function(){const C=cv('esC');let Q=0,d=.35,showQ=false;const H={x:340,y:300};const els=[];for(let i=0;i<12;i++)els.push({x:0,y:0,init:false});
+ function shift(){const prox=1-.75*d;return Math.round(Math.min(5,Math.abs(Q)*2.4*prox));}
+ function ang(){const s=shift();return s?Math.min(.62,.14+s*.1):.09;}
+ function leafPt(side,t){const a=ang()*side;return{x:H.x+Math.sin(a)*t,y:H.y+Math.cos(a)*t};}
+ function slots(){const s=shift();let pe,le,re;if(Q>0){pe=6-s;le=3+Math.ceil(s/2);re=3+Math.floor(s/2);}else if(Q<0){pe=6+s;le=3-Math.ceil(s/2);re=3-Math.floor(s/2);}else{pe=6;le=3;re=3;}
+  // 고정 순서: 0~5 판, 6~8 왼쪽, 9~11 오른쪽에서 출발
+  let order;if(Q>0){const mv=[5,4,3,2,1].slice(0,s);const plate=[0,1,2,3,4,5].filter(i=>!mv.includes(i));const left=[6,7,8,...mv.filter((_,k)=>k%2===0)],right=[9,10,11,...mv.filter((_,k)=>k%2===1)];order={plate,left,right};}
+  else if(Q<0){const fromL=[8,7,6].slice(0,Math.ceil(s/2)),fromR=[11,10,9].slice(0,Math.floor(s/2));order={plate:[0,1,2,3,4,5,...fromL,...fromR],left:[6,7,8].filter(i=>!fromL.includes(i)),right:[9,10,11].filter(i=>!fromR.includes(i))};}
+  else order={plate:[0,1,2,3,4,5],left:[6,7,8],right:[9,10,11]};
+  const T=[];order.plate.forEach((i,k,a)=>T[i]={x:265+(k+.5)*150/a.length,y:120});order.left.forEach((i,k,a)=>{const p=leafPt(-1,22+(k+.5)*68/a.length+6);T[i]={x:p.x-12,y:p.y};});order.right.forEach((i,k,a)=>{const p=leafPt(1,22+(k+.5)*68/a.length+6);T[i]={x:p.x+12,y:p.y};});return{T,pe:order.plate.length,le:order.left.length,re:order.right.length};}
+ function draw(){const x=C.x;x.clearRect(0,0,C.w,C.h);x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);
+  rrect(x,200,200,280,210,30,'#6ad1ff10','#6ad1ff66',2);rrect(x,300,186,80,30,6,'#3b2a1d','#6b4a32',2);
+  rrect(x,255,126,170,14,4,'#c9ced8','#e9edff',1.5);x.fillStyle='#c9ced8';x.fillRect(334,140,12,160);
+  [-1,1].forEach(sd=>{const a=ang()*sd;x.save();x.translate(H.x,H.y);x.rotate(-a);x.fillStyle='#ffd166';x.fillRect(sd*3-4,0,8,96);x.restore();});
+  if(Q!==0){const gap=20+d*150,tip=126-gap;rrect(x,322,tip-230,36,230,16,'#e6ecf7','#8a94c4',2);const n=Math.max(2,Math.round(Math.abs(Q)*2.2));for(let i=0;i<n;i++)chg(x,340,tip-20-i*34,Q>0?-1:1,9);
+   txt(x,Q>0?'(−) 대전된 빨대':'(+) 대전된 물체',372,tip-200,Q>0?BLUE:RED,14,'left',900);}
+  else txt(x,'문지르지 않은 빨대',372,40,MUTED,14,'left',700);
+  if(Q===0){rrect(x,322,-10,36,90,16,'#e6ecf7','#8a94c4',2);}
+  const S=slots();
+  if(showQ){for(let k=0;k<6;k++)chg(x,265+(k+.5)*25,133+0,1,8);[-1,1].forEach(sd=>{for(let k=0;k<3;k++){const p=leafPt(sd,22+(k+.5)*68/3);chg(x,p.x-sd*4,p.y,1,6);}});
+   els.forEach(e=>chg(x,e.x,e.y,-1,7));}
+  // 오른쪽 정보
+  const s=shift(),open=s>0;rrect(x,620,40,530,340,16,'#0b1229',LINE);
+  txt(x,Q===0?'과정 1':Q===1?'과정 2 (2~3번 문지름)':Q>2?'과정 3 (10번 이상)':'과정 4 ((+)대전된 물건)',644,76,GOLD,17,'left',900);
+  txt(x,'금속박: '+(open?(s>=4?'크게 벌어짐':'벌어짐'):'변화 없음'),644,130,'#e9edff',20,'left',900);
+  x.fillStyle='#1c2650';x.fillRect(644,165,470,22);x.fillStyle=GOLD;x.fillRect(644,165,470*s/5,22);txt(x,'벌어진 정도',644,206,MUTED,12);
+  if(showQ){const pe=S.pe-6,le=(S.le+S.re)-6;txt(x,'금속판: '+(pe===0?'중성':pe<0?'(+)전하':'(−)전하'),644,250,pe<0?RED:pe>0?BLUE:MUTED,17,'left',900);txt(x,'금속박: '+(le===0?'중성':le<0?'(+)전하':'(−)전하'),644,290,le<0?RED:le>0?BLUE:MUTED,17,'left',900);
+   if(open)txt(x,'두 금속박이 같은 전하 → 척력 → 벌어짐',644,336,GREEN,14,'left',900);}
+  else txt(x,'[± 전하 보기]로 전하의 분포를 확인해 보자',644,270,MUTED,13,'left',700);}
+ anim(C.c,()=>{const S=slots();els.forEach((e,i)=>{const t=S.T[i];if(!e.init){e.x=t.x;e.y=t.y;e.init=true;}e.x=lerp(e.x,t.x,.09);e.y=lerp(e.y,t.y,.09);});draw();});
+ $$('.esP').forEach(b=>b.onclick=()=>{Q=+b.dataset.q;$$('.esP').forEach(o=>o.classList.toggle('au',o===b));});
+ $('#esQ').onclick=e=>{showQ=!showQ;toggleBtn(e.target,showQ);};
+ $('#esD').addEventListener('input',e=>{d=+e.target.value;$('#esDo').textContent=d<.33?'가까이':d<.66?'중간':'멀리';});draw();})();
+
+/* ================== 3차시 ================== */
+// 네온전구
+(function(){const C=cv('neC');const st={rub:false,set:false,q:0,flash:0,dots:[]};
+ function draw(){const x=C.x;x.clearRect(0,0,C.w,C.h);x.fillStyle=st.flash>0?'#0a0a12':'#050913';x.fillRect(0,0,C.w,C.h);x.fillStyle='#3a2f2a';x.fillRect(0,352,C.w,70);
+  // 털가죽
+  x.fillStyle='#8b5a3c';x.beginPath();x.ellipse(300,342,170,16,0,0,7);x.fill();x.strokeStyle='#b27a55';for(let i=0;i<40;i++){const X=140+i*8;x.beginPath();x.moveTo(X,334);x.lineTo(X+3,326);x.stroke();}
+  txt(x,'털가죽',300,392,'#e0b48f',14,'center',900);
+  // 플라스틱 접시
+  x.fillStyle='#e8edf7';x.beginPath();x.ellipse(860,340,170,20,0,0,7);x.fill();txt(x,'플라스틱 접시',860,392,'#cfd6e6',14,'center',900);
+  if(st.q>0){for(let i=0;i<6;i++){chg(x,180+i*48,320,1,9);chg(x,740+i*48,320,-1,9);}}
+  if(st.set){[[300,'#b8c0d0'],[860,'#b8c0d0']].forEach(([X,c])=>{x.fillStyle=c;x.beginPath();x.ellipse(X,300,140,16,0,0,7);x.fill();x.fillStyle='#d6dbe6';x.fillRect(X-4,150,8,150);txt(x,'빨대 손잡이',X+12,170,MUTED,11,'left');});
+   txt(x,'알루미늄 접시',300,268,'#dfe4ee',13,'center',700);txt(x,'알루미늄 접시',860,268,'#dfe4ee',13,'center',700);}
+  if(st.con){// 네온전구 + 다리
+   x.strokeStyle='#c9ced8';x.lineWidth=3;x.beginPath();x.moveTo(430,292);x.lineTo(540,200);x.moveTo(730,292);x.lineTo(620,200);x.stroke();x.lineWidth=1;
+   if(st.flash>0){glow(x,580,200,30*st.flash,'255,120,40',Math.min(1,st.flash*1.4));}
+   rrect(x,540,180,80,40,20,st.flash>0?'#ff8a3d':'#ffffff22','#e9edff',2);txt(x,'네온전구',580,240+8,MUTED,12,'center',700);
+   st.dots.forEach(p=>{const X=lerp(730,430,p),Y=p<.35?lerp(292,200,p/.35):p<.65?200:lerp(200,292,(p-.65)/.35);chg(x,X,Y,-1,7);});}
+  if(st.flash>0)txt(x,'번쩍!',580,140,'#ffb070',24,'center',900);}
+ anim(C.c,dt=>{if(st.flash>0)st.flash=Math.max(0,st.flash-dt*1.2);st.dots=st.dots.map(p=>p+dt*1.1).filter(p=>p<1);draw();});
+ const msg=t=>$('#neMsg').textContent=t;
+ $('#neRub').onclick=()=>{st.rub=true;st.q=1;msg('털가죽은 (+)전하, 플라스틱 접시는 (−)전하로 대전되었어요.');};
+ $('#neSet').onclick=()=>{st.set=true;msg('알루미늄 접시를 빨대로 잡고 올려놓았어요.');};
+ $('#neCon').onclick=()=>{if(!st.set){msg('먼저 알루미늄 접시를 올려놓아요.');return;}st.con=true;if(st.q>0){st.flash=1;st.q=0;st.dots=[0,.1,.2,.3,.4,.15,.25];msg('순간적으로 번쩍! 다시 대 보면 어떻게 될까요?');}else msg('불이 켜지지 않아요. 왜 그럴까요?');};
+ $('#neReset').onclick=()=>{st.rub=false;st.set=false;st.con=false;st.q=0;st.flash=0;st.dots=[];msg('');};draw();})();
+
+// 회로 속 전자
+(function(){const C=cv('ccC');const pts=[[90,190],[90,70],[670,70],[670,400],[90,400],[90,280]];const seg=[];let tot=0;for(let i=0;i<pts.length-1;i++){const a=pts[i],b=pts[i+1],l=Math.hypot(b[0]-a[0],b[1]-a[1]);seg.push({a,b,l,s:tot});tot+=l;}
+ function at(s){s=((s%tot)+tot)%tot;for(const g of seg){if(s<=g.s+g.l){const k=(s-g.s)/g.l;return[lerp(g.a[0],g.b[0],k),lerp(g.a[1],g.b[1],k)];}}return pts[pts.length-1];}
+ const st={on:false,nb:1,e:true,i:false,a:false,off:0};const N=34;
+ function draw(){const x=C.x;x.clearRect(0,0,C.w,C.h);x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);
+  x.strokeStyle='#c98a4a';x.lineWidth=6;x.beginPath();pts.forEach((p,i)=>i?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1]));x.stroke();x.lineWidth=1;
+  // 스위치
+  x.fillStyle='#050913';x.fillRect(340,390,80,20);x.fillStyle='#e9edff';x.beginPath();x.arc(345,400,6,0,7);x.arc(415,400,6,0,7);x.fill();x.strokeStyle='#e9edff';x.lineWidth=5;x.beginPath();x.moveTo(345,400);if(st.on)x.lineTo(415,400);else x.lineTo(405,362);x.stroke();x.lineWidth=1;txt(x,'스위치',380,432,MUTED,12,'center',700);
+  // 전지
+  x.fillStyle='#050913';x.fillRect(60,192,60,86);const cells=st.nb;for(let k=0;k<cells;k++){const y0=200+k*(cells===2?40:0)+(cells===1?20:0);x.fillStyle='#e9edff';x.fillRect(66,y0,48,5);x.fillRect(78,y0+16,24,9);}
+  txt(x,'(+)',130,198,RED,13,'left',900);txt(x,'(−)',130,272,BLUE,13,'left',900);txt(x,'전지 '+cells+'개',22,310,MUTED,11,'left',700);
+  // 전구
+  const I=st.on?st.nb*.2:0;if(I>0)glow(x,380,70,10+I*30,'255,220,120',Math.min(1,.4+I));x.fillStyle='#050913';x.fillRect(350,52,60,36);x.strokeStyle='#e9edff';x.lineWidth=2;x.beginPath();x.arc(380,70,18,0,7);x.stroke();x.beginPath();x.moveTo(367,83);x.lineTo(393,57);x.moveTo(367,57);x.lineTo(393,83);x.stroke();x.lineWidth=1;txt(x,'전구',380,108,MUTED,12,'center',700);
+  // 전류계
+  [[210,'A₁'],[550,'A₂']].forEach(([X,l])=>{x.fillStyle='#0b1229';x.strokeStyle=GOLD;x.lineWidth=2;x.beginPath();x.arc(X,70,22,0,7);x.fill();x.stroke();x.lineWidth=1;txt(x,l,X,70,GOLD,14,'center',900);if(st.a)txt(x,I.toFixed(2)+' A',X,118,GOLD,17,'center',900);});
+  if(st.e)for(let k=0;k<N;k++){const s=k*tot/N-st.off;const [X,Y]=at(s);if(Y>186&&Y<284&&X<100)continue;chg(x,X,Y,-1,7);}
+  if(st.i){[[60,400],[380,400],[670,240],[400,70]].forEach(()=>{});[[1,.5],[2,.25],[2,.75],[3,.5],[4,.5]].forEach(([i,k])=>{const g=seg[i];const X=lerp(g.a[0],g.b[0],k),Y=lerp(g.a[1],g.b[1],k);const dx=(g.b[0]-g.a[0])/g.l,dy=(g.b[1]-g.a[1])/g.l;arrow(x,X-dx*24,Y-dy*24+(dx?-22:0),X+dx*24,Y+dy*24+(dx?-22:0),GOLD,4,14);});
+   txt(x,'전류의 방향: (+)극 → (−)극',380,300,GOLD,15,'center',900);}
+  if(st.e&&st.on)txt(x,'전자의 이동: (−)극 → (+)극',380,250,BLUE,15,'center',900);}
+ anim(C.c,dt=>{if(st.on)st.off+=dt*60*st.nb;draw();});
+ $('#ccSw').onclick=e=>{st.on=!st.on;e.target.textContent=st.on?'스위치 열기':'스위치 닫기';};
+ $('#ccBat').onclick=e=>{st.nb=st.nb===1?2:1;e.target.textContent='전지 '+st.nb+'개';toggleBtn(e.target,st.nb===2);};
+ $('#ccE').onclick=e=>{st.e=!st.e;toggleBtn(e.target,st.e);};$('#ccI').onclick=e=>{st.i=!st.i;toggleBtn(e.target,st.i);};$('#ccA').onclick=e=>{st.a=!st.a;toggleBtn(e.target,st.a);};
+ $('#ccI').classList.remove('pri');draw();})();
+
+// 물의 흐름 모형
+(function(){const C=cv('waC');const st={open:false,h:1,rot:0,ps:[]};for(let i=0;i<40;i++)st.ps.push(i/40);
+ function geo(){const yt=380-st.h*120;return{yt,path:[[110,380],[110,yt],[470,yt],[560,yt],[560,330],[560,380],[110,380]]};}
+ function draw(){const x=C.x,{yt,path}=geo();x.clearRect(0,0,C.w,C.h);x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);
+  x.strokeStyle='#4a6fa8';x.lineWidth=22;x.lineJoin='round';x.beginPath();x.moveTo(110,380);x.lineTo(110,yt);x.lineTo(520,yt);x.stroke();x.beginPath();x.moveTo(110,392);x.lineTo(640,392);x.stroke();x.lineWidth=1;
+  rrect(x,70,330,80,90,10,'#22305e','#6ad1ff',2);txt(x,'펌프',110,375,CYAN,14,'center',900);
+  // 밸브
+  x.fillStyle=st.open?GREEN:RED;x.fillRect(296,yt-20,14,40);txt(x,'밸브',303,yt-34,st.open?GREEN:RED,13,'center',900);
+  // 물레방아
+  const wx=560,wy=300;x.save();x.translate(wx,wy);x.rotate(st.rot);x.strokeStyle='#c9a46a';x.lineWidth=4;x.beginPath();x.arc(0,0,44,0,7);x.stroke();for(let k=0;k<8;k++){x.save();x.rotate(k*Math.PI/4);x.fillStyle='#c9a46a';x.fillRect(-4,-56,8,24);x.restore();}x.restore();x.lineWidth=1;txt(x,'물레방아',wx,wy+72,'#e0c48a',13,'center',900);
+  // 높이 차
+  arrow(x,32,380,32,yt,GOLD,2,10);arrow(x,32,yt,32,380,GOLD,2,10);txt(x,'높이 차',40,(380+yt)/2,GOLD,13,'left',900);
+  txt(x,'수로',330,yt+34,MUTED,12,'center');
+  if(st.open){const wpath=[[110,380],[110,yt],[540,yt],[540,392],[110,392]];const segs=[];let tot=0;for(let i=0;i<wpath.length-1;i++){const a=wpath[i],b=wpath[i+1],l=Math.hypot(b[0]-a[0],b[1]-a[1]);segs.push({a,b,l,s:tot});tot+=l;}
+   st.ps.forEach(p=>{let s=p*tot;for(const g of segs){if(s<=g.s+g.l){const k=(s-g.s)/g.l;x.fillStyle='#8fd3ff';x.beginPath();x.arc(lerp(g.a[0],g.b[0],k),lerp(g.a[1],g.b[1],k),4,0,7);x.fill();break;}}});}
+  txt(x,'펌프 높이 '+st.h+'칸',600,24,GOLD,14,'right',900);}
+ anim(C.c,dt=>{if(st.open){st.rot+=dt*st.h*2.2;st.ps=st.ps.map(p=>(p+dt*.08*st.h)%1);}draw();});
+ $('#waV').onclick=e=>{st.open=!st.open;e.target.textContent=st.open?'밸브 잠그기':'밸브 열기';};
+ $('#waH').onclick=e=>{st.h=st.h===1?2:1;e.target.textContent='펌프 높이 '+st.h+'칸';toggleBtn(e.target,st.h===2);};draw();})();
+
+
+/* ================== 4차시 ================== */
+const OHM=(function(){const C=cv('ohC');const R={L:28.6,S:10.2};const st={v:0,w:'L',noise:1};
+ function I(){return st.v?Math.round(st.v/R[st.w]*1000*st.noise):0;}
+ function draw(){const x=C.x;x.clearRect(0,0,C.w,C.h);x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);const i=I();
+  // 전원 장치
+  rrect(x,30,150,230,170,14,'#22305e','#6ad1ff',2);txt(x,'디지털 전원 장치',155,176,CYAN,13,'center',900);rrect(x,70,200,170,60,8,'#03140b','#2b6b4a',2);txt(x,st.v.toFixed(1)+' V',225,230,GREEN,30,'right',900);
+  x.fillStyle=RED;x.beginPath();x.arc(270,190,9,0,7);x.fill();x.fillStyle='#4a8cff';x.beginPath();x.arc(270,280,9,0,7);x.fill();txt(x,'(+)',250,190,RED,10,'right',900);txt(x,'(−)',250,280,BLUE,10,'right',900);
+  // 니크롬선
+  const wx0=420,wx1=st.w==='L'?1100:720,wy=330;x.strokeStyle='#c98a4a';x.lineWidth=4;
+  x.beginPath();x.moveTo(270,190);x.lineTo(330,190);x.lineTo(330,110);x.lineTo(470,110);x.stroke();
+  x.beginPath();x.moveTo(570,110);x.lineTo(600,110);x.lineTo(600,250);x.lineTo(wx0,250);x.lineTo(wx0,wy);x.stroke();
+  x.beginPath();x.moveTo(wx1,wy);x.lineTo(wx1,370);x.lineTo(330,370);x.lineTo(330,280);x.lineTo(270,280);x.stroke();x.lineWidth=1;
+  const hot=Math.min(1,i/600);x.strokeStyle=`rgb(${150+105*hot},${150-40*hot},${150-90*hot})`;x.lineWidth=5;x.beginPath();x.moveTo(wx0,wy);x.lineTo(wx1,wy);x.stroke();x.lineWidth=1;
+  [wx0,wx1].forEach(X=>{x.fillStyle='#d94f3d';x.fillRect(X-8,wy-12,16,24);});
+  txt(x,st.w==='L'?'긴 니크롬선':'짧은 니크롬선',(wx0+wx1)/2,wy-24,GOLD,15,'center',900);
+  // 전류계(직렬)
+  rrect(x,470,80,100,60,10,'#0b1229',GOLD,2);txt(x,'전류계',520,64,GOLD,12,'center',900);txt(x,i+' mA',560,110,GOLD,22,'right',900);
+  // 전압계(병렬)
+  x.setLineDash([6,5]);x.strokeStyle=CYAN;x.lineWidth=2;x.beginPath();x.moveTo(wx0,wy);x.lineTo(wx0,200);x.lineTo(820,200);x.moveTo(940,200);x.lineTo(Math.max(wx1,1000),200);x.lineTo(Math.max(wx1,1000),200);x.stroke();x.beginPath();x.moveTo(Math.max(wx1,1000),200);x.lineTo(wx1,200);x.lineTo(wx1,wy);x.stroke();x.setLineDash([]);x.lineWidth=1;
+  rrect(x,820,170,120,60,10,'#0b1229',CYAN,2);txt(x,'전압계',880,154,CYAN,12,'center',900);txt(x,st.v.toFixed(1)+' V',930,200,CYAN,22,'right',900);
+  txt(x,'전류계는 직렬 · 전압계는 병렬',1160,30,MUTED,12,'right',700);}
+ $$('.ohV').forEach(b=>b.onclick=()=>{st.v=+b.dataset.v;st.noise=1+(Math.random()-.5)*.03;$$('.ohV').forEach(o=>o.classList.toggle('au',o===b));draw();});
+ $('#ohL').onclick=()=>{st.w='L';st.noise=1+(Math.random()-.5)*.03;$('#ohL').classList.add('pri');$('#ohS').classList.remove('pri');draw();};
+ $('#ohS').onclick=()=>{st.w='S';st.noise=1+(Math.random()-.5)*.03;$('#ohS').classList.add('pri');$('#ohL').classList.remove('pri');draw();};
+ $('#ohRec').onclick=()=>{const m=$('#ohMsg');const rows=[1.5,3,4.5,6],k=rows.indexOf(st.v);if(k<0){m.textContent='1.5 V, 3.0 V, 4.5 V, 6.0 V일 때 기록할 수 있어요.';return;}
+  const inp=$$('#ohIn tr')[k].querySelectorAll('input')[st.w==='L'?0:1];inp.value=I();m.textContent=(st.w==='L'?'긴':'짧은')+' 니크롬선 '+st.v.toFixed(1)+' V → '+I()+' mA 기록! (다음 화면 표)';graph();};
+ // 그래프
+ function rows(){return $$('#ohIn tr').map((tr,i)=>{const v=[1.5,3,4.5,6][i],ins=tr.querySelectorAll('input');return[v,parseFloat(ins[0].value),parseFloat(ins[1].value)];});}
+ function graph(){const G=cv('ohG'),x=G.x,W=G.w,H=G.h;x.fillStyle='#050913';x.fillRect(0,0,W,H);const L=70,Rr=20,T=40,B=56,pw=W-L-Rr,ph=H-T-B;const X=v=>L+v/7*pw,Y=v=>T+ph-v/700*ph;
+  x.strokeStyle='#1c2650';for(let v=0;v<=700;v+=100){x.beginPath();x.moveTo(L,Y(v));x.lineTo(L+pw,Y(v));x.stroke();txt(x,v,L-8,Y(v),MUTED,9,'right');}
+  for(let v=0;v<=7;v++){x.beginPath();x.moveTo(X(v),T);x.lineTo(X(v),T+ph);x.stroke();txt(x,v,X(v),T+ph+14,MUTED,9,'center');}
+  x.strokeStyle='#4a5a99';x.lineWidth=2;x.beginPath();x.moveTo(L,T);x.lineTo(L,T+ph);x.lineTo(L+pw,T+ph);x.stroke();x.lineWidth=1;
+  txt(x,'전압 (V)',L+pw/2,H-14,MUTED,11,'center',700);x.save();x.translate(16,T+ph/2);x.rotate(-Math.PI/2);txt(x,'전류 (mA)',0,0,MUTED,11,'center',700);x.restore();
+  txt(x,'전압에 따른 전류의 세기',L,18,'#e9edff',12,'left',900);
+  const r=rows();[[1,'#ffb35a','긴 니크롬선'],[2,CYAN,'짧은 니크롬선']].forEach(([c,col,nm],j)=>{const P=r.filter(q=>isFinite(q[c]));if(P.length>=2){const k=P.reduce((s,q)=>s+q[0]*q[c],0)/P.reduce((s,q)=>s+q[0]*q[0],0);x.strokeStyle=col;x.lineWidth=2.5;x.beginPath();x.moveTo(X(0),Y(0));x.lineTo(X(6.6),Y(k*6.6));x.stroke();x.lineWidth=1;txt(x,nm,X(6.6)-6,Y(Math.min(680,k*6.6))-14,col,11,'right',900);}
+   P.forEach(q=>{x.fillStyle=col;x.beginPath();x.arc(X(q[0]),Y(q[c]),6,0,7);x.fill();});
+   x.fillStyle=col;x.fillRect(L+20+j*200,T+8,14,14);txt(x,nm,L+40+j*200,T+15,col,10,'left',700);});}
+ document.addEventListener('input',e=>{if(e.target.closest&&e.target.closest('#ohIn'))graph();});
+ $('#ohEx').onclick=()=>{const ex=[[53,147],[105,295],[158,442],[210,590]];$$('#ohIn tr').forEach((tr,i)=>{const ins=tr.querySelectorAll('input');ins[0].value=ex[i][0];ins[1].value=ex[i][1];});graph();};
+ $('#ohClr').onclick=()=>{$$('#ohIn input').forEach(e=>e.value='');graph();};
+ draw();graph();return{graph};})();
+
+// 저항 모형
+(function(){const C=cv('rsC');const lanes=[{y:110,h:90,len:300,lab:'짧고 굵은 도선',sp:120},{y:280,h:40,len:400,lab:'길고 가는 도선',sp:45}];const P=lanes.map(l=>{const a=[];for(let i=0;i<(l.h>50?14:6);i++)a.push({x:Math.random()*l.len,y:Math.random()});return a;});
+ function draw(){const x=C.x;x.clearRect(0,0,C.w,C.h);x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);
+  lanes.forEach((l,k)=>{const x0=35;rrect(x,x0,l.y-l.h/2,l.len,l.h,l.h/2>20?20:l.h/2,'#9aa3b822','#9aa3b8',2);
+   for(let i=0;i<l.len/34;i++)for(let j=0;j<Math.max(1,Math.floor(l.h/30));j++){x.fillStyle='#5a6aa8';x.beginPath();x.arc(x0+17+i*34,l.y-l.h/2+15+j*30+(l.h<50?5:0),6,0,7);x.fill();}
+   P[k].forEach(p=>chg(x,x0+p.x,l.y-l.h/2+8+p.y*(l.h-16),-1,6));txt(x,l.lab,x0,l.y-l.h/2-16,GOLD,13,'left',900);txt(x,k?'전자가 지나가기 어려움 → 저항 큼':'전자가 지나가기 쉬움 → 저항 작음',x0,l.y+l.h/2+18,k?RED:GREEN,11,'left',700);});
+  txt(x,'● 원자(이온)   ⊖ 전자',440,22,MUTED,10,'right');}
+ anim(C.c,dt=>{lanes.forEach((l,k)=>P[k].forEach(p=>{p.x+=dt*l.sp*(0.6+Math.random()*.8);p.y=Math.min(1,Math.max(0,p.y+(Math.random()-.5)*dt*3));if(p.x>l.len-6)p.x=6;}));draw();});draw();})();
+
+// 옴의 법칙 계산
+(function(){const C=cv('ocC');let pr=null,shown=false;const Rs=[2,3,4,5,6,10,12,15,20,30,50,100,150],Is=[.1,.2,.3,.5,1,1.5,2,3];
+ const f=v=>(+v.toFixed(3)).toString();
+ function make(){const R=Rs[Math.random()*Rs.length|0],I=Is[Math.random()*Is.length|0],V=+(I*R).toFixed(3),t=Math.random()*3|0;const mA=Math.random()<.4;
+  if(t===0)pr={q:`저항 ${R} Ω에 ${f(V)} V의 전압을 걸었다.<br>전류의 세기는?`,a:`I = V ÷ R = ${f(V)} ÷ ${R} = <b>${f(I)} A</b>`+(I<1?` (= ${f(I*1000)} mA)`:''),V:f(V)+' V',R:R+' Ω',I:'?'};
+  else if(t===1)pr={q:`저항 ${R} Ω에 ${mA?f(I*1000)+' mA':f(I)+' A'}의 전류가 흐른다.<br>저항에 걸린 전압은?`,a:(mA?`${f(I*1000)} mA = ${f(I)} A → `:'')+`V = I × R = ${f(I)} × ${R} = <b>${f(V)} V</b>`,V:'?',R:R+' Ω',I:mA?f(I*1000)+' mA':f(I)+' A'};
+  else pr={q:`${f(V)} V의 전압을 걸었더니 ${mA?f(I*1000)+' mA':f(I)+' A'}의 전류가 흘렀다.<br>저항은?`,a:(mA?`${f(I*1000)} mA = ${f(I)} A → `:'')+`R = V ÷ I = ${f(V)} ÷ ${f(I)} = <b>${R} Ω</b>`,V:f(V)+' V',R:'?',I:mA?f(I*1000)+' mA':f(I)+' A'};
+  shown=false;$('#ocQ').innerHTML=pr.q;$('#ocA').innerHTML=pr.a;$('#ocA').style.visibility='hidden';draw();}
+ function draw(){const x=C.x;x.clearRect(0,0,C.w,C.h);x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);x.strokeStyle='#c98a4a';x.lineWidth=5;x.beginPath();x.rect(80,70,400,240);x.stroke();x.lineWidth=1;
+  x.fillStyle='#050913';x.fillRect(60,150,40,80);x.fillStyle='#e9edff';x.fillRect(64,170,32,5);x.fillRect(72,190,16,8);
+  x.fillStyle='#050913';x.fillRect(200,55,160,30);x.strokeStyle='#e9edff';x.lineWidth=3;x.beginPath();x.moveTo(200,70);for(let i=0;i<8;i++)x.lineTo(210+i*20,i%2?58:82);x.lineTo(360,70);x.stroke();x.lineWidth=1;
+  if(pr){txt(x,'V = '+pr.V,30,120,CYAN,15,'left',900);txt(x,'R = '+pr.R,280,30,GOLD,15,'center',900);arrow(x,300,330,380,330,GREEN,3,12);txt(x,'I = '+pr.I,400,330,GREEN,15,'left',900);}}
+ $('#ocNew').onclick=make;$('#ocShow').onclick=()=>{$('#ocA').style.visibility='visible';};make();})();
+
+/* ================== 5차시 ================== */
+(function(){const C=cv('srC');const st={m:1,o1:false,meter:false};const V=3,R=10;
+ function calc(){if(st.m===1)return st.o1?{b:[0],I:0,V:[0]}:{b:[.3],I:.3,V:[3]};if(st.m===2)return st.o1?{b:[0,0],I:0,V:[0,0]}:{b:[.15,.15],I:.15,V:[1.5,1.5]};return{b:[st.o1?0:.3,.3],I:(st.o1?0:.3)+.3,V:[st.o1?0:3,3]};}
+ function bulb(x,X,Y,I,lab){const P=I*I*R;if(P>0)glow(x,X,Y,8+26*Math.sqrt(P/.9),'255,220,120',Math.min(1,.25+P/.9));x.fillStyle='#050913';x.beginPath();x.arc(X,Y,22,0,7);x.fill();x.strokeStyle='#e9edff';x.lineWidth=2.5;x.beginPath();x.arc(X,Y,22,0,7);x.stroke();x.beginPath();x.moveTo(X-15,Y+15);x.lineTo(X+15,Y-15);x.moveTo(X-15,Y-15);x.lineTo(X+15,Y+15);x.stroke();x.lineWidth=1;txt(x,lab,X,Y-38,MUTED,12,'center',900);}
+ function sw(x,X,Y,open,lab,vert){x.fillStyle='#050913';if(vert)x.fillRect(X-12,Y-30,24,60);else x.fillRect(X-30,Y-12,60,24);x.fillStyle='#e9edff';const a=vert?[X,Y-24]:[X-24,Y],b=vert?[X,Y+24]:[X+24,Y];x.beginPath();x.arc(a[0],a[1],5,0,7);x.arc(b[0],b[1],5,0,7);x.fill();x.strokeStyle=open?RED:'#e9edff';x.lineWidth=4;x.beginPath();x.moveTo(a[0],a[1]);if(open)x.lineTo(vert?a[0]+30:b[0]-6,vert?b[1]-6:a[1]-30);else x.lineTo(b[0],b[1]);x.stroke();x.lineWidth=1;txt(x,lab,vert?X+30:X,vert?Y:Y+30,open?RED:MUTED,12,vert?'left':'center',900);}
+ function draw(){const x=C.x,r=calc();x.clearRect(0,0,C.w,C.h);x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);
+  // 기준 밝기
+  rrect(x,1010,20,150,120,12,'#0b1229',LINE);txt(x,'기준(전구 1개)',1085,40,MUTED,11,'center',700);bulb(x,1085,95,.3,'');
+  x.strokeStyle='#c98a4a';x.lineWidth=5;const L=140,Rt=860,T=110,Bt=380;
+  if(st.m===3){x.beginPath();x.moveTo(L,Bt);x.lineTo(L,T);x.lineTo(Rt,T);x.lineTo(Rt,Bt);x.lineTo(L,Bt);x.moveTo(330,T);x.lineTo(330,250);x.lineTo(670,250);x.lineTo(670,T);x.stroke();}
+  else{x.beginPath();x.rect(L,T,Rt-L,Bt-T);x.stroke();}x.lineWidth=1;
+  // 전지
+  x.fillStyle='#050913';x.fillRect(L-30,200,60,90);x.fillStyle='#e9edff';x.fillRect(L-24,214,48,5);x.fillRect(L-12,232,24,9);x.fillRect(L-24,252,48,5);x.fillRect(L-12,270,24,9);txt(x,'3 V',L-40,245,MUTED,12,'right',900);
+  if(st.m===1){bulb(x,500,T,r.b[0],'전구');sw(x,500,Bt,st.o1,'스위치 ①');}
+  else if(st.m===2){bulb(x,400,T,r.b[0],'전구 ①');bulb(x,620,T,r.b[1],'전구 ②');sw(x,500,Bt,st.o1,'스위치 ①');}
+  else{bulb(x,500,250,r.b[0],'전구 ①');bulb(x,500,T,r.b[1],'전구 ②');sw(x,330,180,st.o1,'스위치 ①',true);}
+  if(st.meter){rrect(x,880,180,280,200,12,'#0b1229',GOLD,1.5);txt(x,'측정값',900,204,GOLD,13,'left',900);txt(x,'전체 전류: '+r.I.toFixed(2)+' A',900,240,'#e9edff',15,'left',900);
+   r.V.forEach((v,i)=>txt(x,'전구 '+(r.V.length>1?['①','②'][i]:'')+': '+v.toFixed(1)+' V, '+r.b[i].toFixed(2)+' A',900,280+i*36,'#e9edff',14,'left',700));}
+  txt(x,['','카드 1: 전구 1개','카드 2: 전구 2개 직렬연결','카드 3: 전구 2개 병렬연결'][st.m],20,30,GOLD,17,'left',900);}
+ $$('.srM').forEach(b=>b.onclick=()=>{st.m=+b.dataset.m;st.o1=false;$('#srS1').textContent='스위치 ① 열기';$$('.srM').forEach(o=>o.classList.toggle('au',o===b));const r=calc();$('#srMsg').textContent='';draw();});
+ $('#srS1').onclick=e=>{st.o1=!st.o1;e.target.textContent=st.o1?'스위치 ① 닫기':'스위치 ① 열기';const r=calc();$('#srMsg').textContent=st.o1?(st.m===2?'전구 ①의 연결을 끊었더니 전구 ②도 꺼졌어요!':st.m===3?'전구 ①을 끊어도 전구 ②는 그대로 켜져 있어요!':'전구가 꺼졌어요.'):'';draw();};
+ $('#srMt').onclick=e=>{st.meter=!st.meter;toggleBtn(e.target,st.meter);draw();};draw();})();
+
+// 직렬·병렬 개념 그림
+function resist(x,X,Y,lab,vert){x.fillStyle='#050913';if(vert)x.fillRect(X-14,Y-40,28,80);else x.fillRect(X-40,Y-14,80,28);x.strokeStyle='#e9edff';x.lineWidth=3;x.beginPath();if(vert){x.moveTo(X,Y-40);for(let i=0;i<7;i++)x.lineTo(i%2?X-12:X+12,Y-30+i*10);x.lineTo(X,Y+40);}else{x.moveTo(X-40,Y);for(let i=0;i<7;i++)x.lineTo(X-30+i*10,i%2?Y-12:Y+12);x.lineTo(X+40,Y);}x.stroke();x.lineWidth=1;if(lab)txt(x,lab,vert?X+22:X,vert?Y:Y-28,GOLD,13,vert?'left':'center',900);}
+(function(){const C=cv('cSeC'),x=C.x;x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);x.strokeStyle='#c98a4a';x.lineWidth=4;x.beginPath();x.rect(60,80,340,190);x.stroke();x.lineWidth=1;resist(x,170,80,'R₁');resist(x,300,80,'R₂');
+ x.fillStyle='#050913';x.fillRect(40,150,40,50);x.fillStyle='#e9edff';x.fillRect(44,160,32,5);x.fillRect(52,180,16,8);txt(x,'V',30,175,CYAN,14,'right',900);
+ txt(x,'I₁ = I₂ = I',230,150,GREEN,15,'center',900);txt(x,'V = V₁ + V₂',230,200,CYAN,15,'center',900);txt(x,'R₁ R₂가 이어져 길어진 것과 같음',230,300,MUTED,11,'center',700);})();
+(function(){const C=cv('cPaC'),x=C.x;x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);x.strokeStyle='#c98a4a';x.lineWidth=4;x.beginPath();x.rect(60,60,340,220);x.moveTo(160,60);x.lineTo(160,170);x.lineTo(320,170);x.lineTo(320,60);x.stroke();x.lineWidth=1;resist(x,240,60,'R₁');resist(x,240,170,'R₂');
+ x.fillStyle='#050913';x.fillRect(40,150,40,50);x.fillStyle='#e9edff';x.fillRect(44,160,32,5);x.fillRect(52,180,16,8);txt(x,'V',30,175,CYAN,14,'right',900);
+ txt(x,'V₁ = V₂ = V',240,230,CYAN,15,'center',900);txt(x,'I = I₁ + I₂',240,262,GREEN,15,'center',900);txt(x,'도선이 굵어진 것과 같음',240,310,MUTED,11,'center',700);})();
+
+// 저항의 연결 계산표
+(function(){const f=v=>(+(+v).toFixed(2)).toString();
+ function build(){const R=+$('#rcR').value,V=+$('#rcV').value;const rows=[['저항 1개',R,V/R,V/R,'—',V,'—'],['동일 저항 2개 직렬',2*R,V/(2*R),V/(2*R),V/(2*R),V/2,V/2],['동일 저항 2개 병렬',R/2,2*V/R,V/R,V/R,V,V]];
+  const u=['Ω','A','A','A','V','V'];
+  $('#rcTb').innerHTML='<thead><tr><th>회로 (R = '+R+' Ω, '+V+' V)</th><th>전체 저항</th><th>전체 전류</th><th>R₁ 전류</th><th>R₂ 전류</th><th>R₁ 전압</th><th>R₂ 전압</th></tr></thead><tbody>'+rows.map(r=>'<tr><td style="font-weight:900">'+r[0]+'</td>'+r.slice(1).map((v,i)=>v==='—'?'<td class="muted">—</td>':'<td class="rc hid">'+f(v)+' '+u[i]+'</td>').join('')+'</tr>').join('')+'</tbody>';
+  $$('#rcTb td.rc').forEach(td=>td.onclick=()=>td.classList.toggle('hid'));}
+ $('#rcR').onchange=build;$('#rcV').onchange=build;$('#rcAll').onclick=()=>$$('#rcTb td.rc').forEach(td=>td.classList.remove('hid'));$('#rcHide').onclick=()=>$$('#rcTb td.rc').forEach(td=>td.classList.add('hid'));build();})();
+
+// 쓰임새 분류
+(function(){const IT=[['🔌','멀티탭','병렬'],['🏠','가정의 전기 기구','병렬'],['🧯','퓨즈','직렬'],['💡','거실등의 여러 전구','병렬'],['🎄','트리 전구 일부 구간','직렬'],['🔥','전기난로의 석영관','병렬']];let S=IT.map(()=>0),chk=false;
+ function r(){const c=$('#usCards');c.innerHTML='';IT.forEach((it,i)=>{const v=['?','직렬','병렬'][S[i]];const ok=chk&&v===it[2],bad=chk&&v!==it[2];const el=document.createElement('div');el.className='scard'+(S[i]?' picked':'');el.style.width='176px';el.style.borderColor=ok?GREEN:bad?RED:'';el.innerHTML=`<div style="font-size:50px;line-height:1.2">${it[0]}</div><div class="nm" style="font-size:23px">${it[1]}</div><div class="tp" style="font-size:26px;color:${S[i]===1?GOLD:S[i]===2?CYAN:MUTED};font-weight:900">${v}</div>`;el.onclick=()=>{S[i]=(S[i]+1)%3;chk=false;r();$('#usMsg').textContent='';};c.appendChild(el);});}
+ $('#usChk').onclick=()=>{chk=true;r();const n=IT.filter((it,i)=>['?','직렬','병렬'][S[i]]===it[2]).length;const m=$('#usMsg');m.textContent=n===IT.length?'⭕ 모두 정답!':'⭕ '+n+'개 정답 · 빨간 카드를 다시 생각해 보자';m.style.color=n===IT.length?GREEN:RED;};
+ $('#usReset').onclick=()=>{S=IT.map(()=>0);chk=false;r();$('#usMsg').textContent='';};r();})();
+
+/* ================== 6차시 ================== */
+(function(){const EN=['빛','열','운동','소리','화학'];const IT=[['💡','LED 전등',['빛']],['🌀','선풍기',['운동']],['🍚','전기밥솥',['열']],['🔊','스피커',['소리']],['💨','헤어드라이어',['열','운동']],['📺','텔레비전',['빛','소리']],['🧺','세탁기',['운동']],['🔋','휴대폰 충전',['화학']]];
+ let S=IT.map(()=>new Set()),chk=false;
+ function r(){const c=$('#enCards');c.innerHTML='';IT.forEach((it,i)=>{const ok=chk&&[...S[i]].sort().join()===[...it[2]].sort().join();const el=document.createElement('div');el.className='scard';el.style.cssText=`width:270px;padding:8px;cursor:default;border-color:${chk?(ok?GREEN:RED):''}`;
+  el.innerHTML=`<div style="display:flex;align-items:center;gap:8px;justify-content:center"><span style="font-size:36px">${it[0]}</span><span class="nm" style="font-size:24px">${it[1]}</span></div><div style="display:flex;gap:4px;justify-content:center;margin-top:6px">${EN.map(e=>`<span class="echip${S[i].has(e)?' on':''}" data-e="${e}">${e}</span>`).join('')}</div>`+(chk&&!ok?`<div style="font-size:18px;color:${GOLD};margin-top:4px">정답: ${it[2].join('·')}</div>`:'');
+  el.querySelectorAll('.echip').forEach(ch=>ch.onclick=()=>{const e=ch.dataset.e;S[i].has(e)?S[i].delete(e):S[i].add(e);chk=false;r();$('#enMsg').textContent='';});c.appendChild(el);});}
+ $('#enChk').onclick=()=>{chk=true;r();const n=IT.filter((it,i)=>[...S[i]].sort().join()===[...it[2]].sort().join()).length;const m=$('#enMsg');m.textContent=n===IT.length?'⭕ 모두 정답!':'⭕ '+n+' / '+IT.length+'개 정답';m.style.color=n===IT.length?GREEN:RED;};
+ $('#enReset').onclick=()=>{S=IT.map(()=>new Set());chk=false;r();$('#enMsg').textContent='';};r();})();
+
+(function(){const IT=[['🧺','세탁기',500],['💡','LED 전등',10],['💨','헤어드라이어',1500],['📺','텔레비전',150],['🍚','전기밥솥',1000],['🌀','선풍기',50]];let pick=[],chk=false;
+ function r(){const c=$('#pwCards');c.innerHTML='';IT.forEach(it=>{const el=document.createElement('div');el.className='scard'+(pick.includes(it[1])?' picked':'');el.innerHTML=`<span class="ord">${pick.indexOf(it[1])+1}</span><div style="font-size:54px;line-height:1.3">${it[0]}</div><div class="nm">${it[1]}</div><div class="tp" style="color:${GOLD};font-weight:900;font-size:26px">${chk?it[2]+' W':''}</div>`;el.onclick=()=>{if(pick.includes(it[1]))pick=pick.filter(z=>z!==it[1]);else pick.push(it[1]);r();};c.appendChild(el);});}
+ $('#pwChk').onclick=()=>{const ans=[...IT].sort((a,b)=>b[2]-a[2]).map(a=>a[1]),m=$('#pwMsg');if(pick.length<IT.length){m.textContent='여섯 개를 모두 순서대로 눌러 주세요.';m.style.color=RED;return;}chk=true;r();const ok=pick.join()===ans.join();m.innerHTML=ok?'⭕ 정답!':'정답: '+ans.join(' &gt; ');m.style.color=ok?GREEN:RED;m.innerHTML+=' <span style="color:#9ba6d4;font-size:20px">(제품마다 다른 예시 값)</span>';};
+ $('#pwReset').onclick=()=>{pick=[];chk=false;r();$('#pwMsg').textContent='';};r();})();
+
+(function(){const EX=[['헤어드라이어',1500,0.2],['냉장고(평균)',40,24],['LED 전등',10,5],['텔레비전',150,3],['휴대폰 충전기',15,2]];
+ const f=v=>isFinite(v)?(+v.toFixed(2)).toLocaleString():'';
+ function row(d){const tr=document.createElement('tr');tr.innerHTML=`<td><input class="tin" value="${d[0]}" style="color:#eef1ff;font-weight:500"></td><td><input class="tin" inputmode="decimal" value="${d[1]}"></td><td><input class="tin" inputmode="decimal" value="${d[2]}"></td><td class="auto"></td><td class="auto"></td>`;$('#mkTb').appendChild(tr);}
+ function calc(){let s=0;$$('#mkTb tr').forEach(tr=>{const i=tr.querySelectorAll('input'),W=parseFloat(i[1].value),h=parseFloat(i[2].value),a=tr.querySelectorAll('td.auto');const day=W*h,mon=day*30/1000;a[0].textContent=f(day);a[1].textContent=f(mon);if(isFinite(mon))s+=mon;});$('#mkSum').textContent=f(s)+' kWh';}
+ function ex(){$('#mkTb').innerHTML='';EX.forEach(row);calc();}
+ document.addEventListener('input',e=>{if(e.target.closest&&e.target.closest('#mkTb'))calc();});
+ $('#mkAdd').onclick=()=>{row(['',' ','']);calc();};$('#mkEx').onclick=ex;ex();})();
+
+(function(){let shown=0;const won=v=>Math.round(v).toLocaleString()+'원';
+ function bill(k){const base=k<=200?910:k<=400?1600:7300;const e1=Math.min(k,200)*120,e2=Math.max(0,Math.min(k,400)-200)*214.6,e3=Math.max(0,k-400)*307.3;const en=Math.floor(e1+e2+e3+1e-6);const cl=k*9,fu=k*5,pre=base+en+cl+fu,vat=Math.round(pre*.1),fund=Math.floor(pre*.037/10)*10,tot=Math.floor((pre+vat+fund)/10)*10;
+  const ex=[`200 × 120.0 = ${won(Math.min(k,200)*120)}`];if(k>200)ex.push(`${Math.min(k,400)-200} × 214.6 = ${won(e2)}`);if(k>400)ex.push(`${k-400} × 307.3 = ${won(e3)}`);if(k<200)ex[0]=`${k} × 120.0 = ${won(e1)}`;
+  return[['① 기본요금',(k<=200?'1':k<=400?'2':'3')+'구간',won(base)],['② 전력량 요금',ex.join('<br>'),won(en)],['③ 기후환경요금',k+' × 9.0',won(cl)],['④ 연료비조정액',k+' × (+5.0)',won(fu)],['⑤ 세전 합계','① + ② + ③ + ④',won(pre)],['⑥ 부가가치세','⑤ × 10% (반올림)',won(vat)],['⑦ 전력산업기반기금','⑤ × 3.7% (10원 미만 절사)',won(fund)],['🏆 최종 청구금액','⑤ + ⑥ + ⑦ (10원 미만 절사)',won(tot)]];}
+ function r(){const k=+$('#blK').value;$('#blKo').textContent=k+' kWh';const b=bill(k);$('#blTb').innerHTML='<thead><tr><th>항목</th><th>계산</th><th>금액</th></tr></thead><tbody>'+b.map((x,i)=>`<tr style="${i<shown?'':'opacity:.08'}"><td style="text-align:left;font-weight:900">${x[0]}</td><td style="font-size:19px">${x[1]}</td><td class="${i===7?'hl':''}" style="text-align:right">${x[2]}</td></tr>`).join('')+'</tbody>';}
+ $('#blK').addEventListener('input',()=>{shown=0;r();});$('#blB').onclick=()=>{shown=Math.min(8,shown+1);r();};$('#blAll').onclick=()=>{shown=8;r();};r();})();
+
+
+/* ================== 7차시 ================== */
+// 막대자석
+(function(){const C=cv('bmC');let lines=false;const cx=300,cy=215,F=poleField([[cx+95,cy,1],[cx-95,cy,-1]]);
+ const seeds=[];for(let k=0;k<14;k++){const a=-Math.PI*.82+k*(Math.PI*1.64/13);seeds.push([cx+95+Math.cos(a)*10,cy+Math.sin(a)*10]);}
+ const L=seeds.map(s=>trace(F,s[0],s[1],1,[-20,-20,620,450],(X,Y)=>Math.hypot(X-(cx-95),Y-cy)<10));
+ function draw(){const x=C.x;x.clearRect(0,0,C.w,C.h);x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);
+  if(lines)L.forEach(p=>drawLine(x,p,'#6ad1ffaa',1.6,true));
+  rrect(x,cx-110,cy-26,110,52,6,'#3f6fd8');rrect(x,cx,cy-26,110,52,6,'#e0574a');txt(x,'S',cx-55,cy,'#fff',22,'center',900);txt(x,'N',cx+55,cy,'#fff',22,'center',900);
+  for(let gx=40;gx<=560;gx+=65)for(let gy=40;gy<=400;gy+=60){if(Math.abs(gx-cx)<150&&Math.abs(gy-cy)<55)continue;const [bx,by]=F(gx,gy);compass(x,gx,gy,17,bx,by);}}
+ $('#bmL').onclick=e=>{lines=!lines;toggleBtn(e.target,lines);draw();};draw();})();
+
+// 직선 도선과 나침반
+(function(){const C=cv('owC');const st={on:false,dir:1,I:1.5,ring:false,ang:-Math.PI/2};
+ function tgtAng(){if(!st.on)return -Math.PI/2;const bw=.9*st.I*st.dir;return Math.atan2(-1,bw);}
+ function draw(){const x=C.x;x.clearRect(0,0,C.w,C.h);x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);
+  // 왼쪽: 위에서 본 모습
+  txt(x,'① 위에서 본 모습: 남북 방향 도선 위에 나침반',20,24,MUTED,13,'left',700);const X=280,Y=225;
+  x.fillStyle='#c98a4a';x.fillRect(X-9,60,18,330);
+  if(st.on){for(let k=0;k<3;k++){const yy=st.dir>0?360-k*130:80+k*130;arrow(x,X+30,yy,X+30,yy-st.dir*50,GOLD,4,14);}txt(x,'전류',X+54,st.dir>0?330:110,GOLD,14,'left',900);}
+  x.globalAlpha=.88;compass(x,X,Y,120,Math.cos(st.ang),Math.sin(st.ang),'#8a94c4');x.globalAlpha=1;
+  txt(x,'북',X-26,66,'#e9edff',15,'center',900);txt(x,'남',X-26,384,'#e9edff',15,'center',900);txt(x,'동',X+150,Y,'#e9edff',15,'center',900);txt(x,'서',X-150,Y,'#e9edff',15,'center',900);
+  txt(x,st.on?(st.dir>0?'전류: 남 → 북':'전류: 북 → 남'):'전류가 흐르지 않음',560,60,st.on?GOLD:MUTED,14,'right',900);
+  // 오른쪽: 수직 도선 단면
+  x.strokeStyle=LINE;x.beginPath();x.moveTo(600,20);x.lineTo(600,400);x.stroke();
+  txt(x,'② 종이판을 수직으로 뚫은 도선을 위에서 본 모습',620,24,MUTED,13,'left',700);const cx=890,cy=225;
+  if(st.ring&&st.on)for(let r=50;r<=170;r+=40){x.strokeStyle='#6ad1ff66';x.lineWidth=1.6;x.beginPath();x.arc(cx,cy,r,0,7);x.stroke();const f=Math.PI/4,px=cx+r*Math.cos(f),py=cy-r*Math.sin(f),s=st.dir;arrow(x,px,py,px-s*Math.sin(f)*18,py-s*Math.cos(f)*18,CYAN,1.6,10);}
+  for(let k=0;k<8;k++){const ph=k*Math.PI/4,px=cx+110*Math.cos(ph),py=cy-110*Math.sin(ph);let vx=0,vy=-1;if(st.on){const s=st.dir;vx=-Math.sin(ph)*s;vy=-Math.cos(ph)*s;const m=.9*st.I;vx*=m;vy=vy*m-0.25;}compass(x,px,py,22,vx,vy);}
+  x.fillStyle='#c98a4a';x.beginPath();x.arc(cx,cy,20,0,7);x.fill();x.fillStyle='#050913';
+  if(st.on){if(st.dir>0){x.beginPath();x.arc(cx,cy,6,0,7);x.fill();}else{x.strokeStyle='#050913';x.lineWidth=4;x.beginPath();x.moveTo(cx-10,cy-10);x.lineTo(cx+10,cy+10);x.moveTo(cx+10,cy-10);x.lineTo(cx-10,cy+10);x.stroke();x.lineWidth=1;}
+   txt(x,st.dir>0?'⊙ 전류가 위로(보는 쪽으로)':'⊗ 전류가 아래로',1160,60,GOLD,13,'right',900);}}
+ anim(C.c,()=>{let t=tgtAng(),d=t-st.ang;while(d>Math.PI)d-=2*Math.PI;while(d<-Math.PI)d+=2*Math.PI;st.ang+=d*.08;draw();});
+ $('#owOn').onclick=e=>{st.on=!st.on;e.target.textContent=st.on?'전류 끊기':'전류 흘리기';};$('#owDir').onclick=()=>{st.dir*=-1;};
+ $('#owRing').onclick=e=>{st.ring=!st.ring;toggleBtn(e.target,st.ring);};$('#owI').addEventListener('input',e=>{st.I=+e.target.value;$('#owIo').textContent=st.I.toFixed(1)+' A';});draw();})();
+
+// 코일 모형 공통
+function coilField(cx,cy,half,rad,s,k){const P=poleField([[cx+half*s,cy,k],[cx-half*s,cy,-k]]);return(X,Y)=>{if(Math.abs(X-cx)<half&&Math.abs(Y-cy)<rad){return[s*k*.0009,0];}return P(X,Y);};}
+function drawCoil(x,cx,cy,half,rad,s,on,front){// s=+1: N 오른쪽 ↔ 앞쪽 전류 아래로
+ const n=11;for(let i=0;i<n;i++){const X=cx-half+i*(2*half/(n-1));x.strokeStyle='#8a5a2a';x.lineWidth=4;x.beginPath();x.ellipse(X,cy,12,rad,0,Math.PI/2,Math.PI*1.5);x.stroke();}
+ if(front!==false)for(let i=0;i<n;i++){const X=cx-half+i*(2*half/(n-1));x.strokeStyle='#e0a050';x.lineWidth=5;x.beginPath();x.ellipse(X,cy,12,rad,0,-Math.PI/2,Math.PI/2);x.stroke();
+  if(on&&i%3===1){const dn=s>0;arrow(x,X+13,dn?cy-16:cy+16,X+13,dn?cy+16:cy-16,GOLD,3,11);}}x.lineWidth=1;}
+// 코일 가상 실험
+(function(){const C=cv('coC');const cx=470,cy=210,half=110,rad=62;const st={on:false,s:1,I:1,ln:false,ns:false,probe:{x:740,y:370},drag:false,clip:0,ang:[]};
+ const pos=[[cx-215,cy],[cx+215,cy],[cx,cy-135],[cx,cy+135],[cx-200,cy-115],[cx+200,cy-115],[cx-200,cy+115],[cx+200,cy+115]];st.ang=pos.map(()=>-Math.PI/2);st.pa=-Math.PI/2;
+ const K=30000;function B(X,Y){let bx=0,by=-1;if(st.on){const f=coilField(cx,cy,half,rad,st.s,K*st.I)(X,Y);bx+=f[0];by+=f[1];}return[bx,by];}
+ let lineCache=null,lineKey='';
+ function lines(){const key=st.s;if(lineKey===key)return lineCache;const F=coilField(cx,cy,half,rad,st.s,1);const N=cx+half*st.s;const out=[];for(let k=0;k<12;k++){const a=(st.s>0?0:Math.PI)+(-Math.PI*.78+k*(Math.PI*1.56/11));out.push(trace(F,N+Math.cos(a)*6,cy+Math.sin(a)*6,1,[-40,-40,C.w+40,C.h+40],(X,Y)=>Math.abs(X-(cx-half*st.s))<8&&Math.abs(Y-cy)<rad));}lineKey=key;lineCache=out;return out;}
+ function draw(){const x=C.x;x.clearRect(0,0,C.w,C.h);x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);
+  if(st.ln&&st.on){lines().forEach(p=>drawLine(x,p,'#6ad1ff88',1.5,true));for(let j=-1;j<=1;j++)arrow(x,cx-80*st.s,cy+j*30,cx+80*st.s,cy+j*30,'#6ad1ffcc',2,12);}
+  drawCoil(x,cx,cy,half,rad,st.s,st.on);
+  // 전선 + 전지
+  x.strokeStyle='#c98a4a';x.lineWidth=3;x.beginPath();x.moveTo(cx-half,cy+rad);x.lineTo(cx-half,405);x.lineTo(cx-40,405);x.moveTo(cx+40,405);x.lineTo(cx+half,405);x.lineTo(cx+half,cy+rad);x.stroke();x.lineWidth=1;
+  x.fillStyle='#e9edff';x.fillRect(cx-40,391,6,28);x.fillRect(cx-22,397,6,16);x.fillRect(cx+8,397,6,16);x.fillRect(cx+26,391,6,28);
+  txt(x,st.s>0?'(+)':'(−)',cx-56,392,st.s>0?RED:BLUE,11,'center',900);txt(x,st.s>0?'(−)':'(+)',cx+56,392,st.s>0?BLUE:RED,11,'center',900);
+  txt(x,st.on?'전류 '+st.I.toFixed(1)+' A':'스위치 열림',cx+half+20,410,st.on?GOLD:MUTED,12,'left',900);
+  if(st.ns&&st.on){txt(x,'N',cx+half*st.s+(st.s>0?26:-26),cy-rad-12,RED,22,'center',900);txt(x,'S',cx-half*st.s+(st.s>0?-26:26),cy-rad-12,'#4a8cff',22,'center',900);}
+  pos.forEach((p,i)=>compass(x,p[0],p[1],22,Math.cos(st.ang[i]),Math.sin(st.ang[i])));if(!st.on)txt(x,'스위치를 닫기 전: 나침반이 모두 북쪽을 가리켜요',20,50,MUTED,11,'left',700);
+  compass(x,st.probe.x,st.probe.y,22,Math.cos(st.pa),Math.sin(st.pa),GOLD);txt(x,'끌어서 옮기기',st.probe.x,st.probe.y+36,GOLD,10,'center',700);
+  // 클립
+  const px=900,py=30,Lc=170,a=st.clip;x.fillStyle='#5a6aa8';x.fillRect(870,10,290,10);x.fillRect(1150,10,10,420);const ex=px-Math.sin(a)*Lc,ey=py+Math.cos(a)*Lc;x.strokeStyle='#e9edff';x.beginPath();x.moveTo(px,py);x.lineTo(ex,ey);x.stroke();
+  x.strokeStyle='#cfd6e6';x.lineWidth=3;x.beginPath();x.roundRect(ex-8,ey,16,36,8);x.stroke();x.beginPath();x.roundRect(ex-4,ey+6,8,22,4);x.stroke();x.lineWidth=1;txt(x,'실에 매단 클립',px+10,ey+56,MUTED,11,'center',700);
+  txt(x,'↑ 북쪽',20,24,MUTED,12,'left',700);}
+ anim(C.c,()=>{pos.forEach((p,i)=>{const [bx,by]=B(p[0],p[1]);let t=Math.atan2(by,bx),d=t-st.ang[i];while(d>Math.PI)d-=2*Math.PI;while(d<-Math.PI)d+=2*Math.PI;st.ang[i]+=d*.1;});
+  const [bx,by]=B(st.probe.x,st.probe.y);let t=Math.atan2(by,bx),d=t-st.pa;while(d>Math.PI)d-=2*Math.PI;while(d<-Math.PI)d+=2*Math.PI;st.pa+=d*.12;
+  const ct=st.on?Math.min(.5,.12+.13*st.I):0;st.clip=lerp(st.clip,ct,.06);draw();});
+ C.c.addEventListener('pointerdown',e=>{const p=ptr(C,e);if(Math.hypot(p.x-st.probe.x,p.y-st.probe.y)<40){st.drag=true;C.c.setPointerCapture(e.pointerId);}});
+ C.c.addEventListener('pointermove',e=>{if(!st.drag)return;const p=ptr(C,e);st.probe.x=Math.max(25,Math.min(940,p.x));st.probe.y=Math.max(25,Math.min(415,p.y));});
+ C.c.addEventListener('pointerup',()=>{st.drag=false;});
+ $('#coSw').onclick=e=>{st.on=!st.on;e.target.textContent=st.on?'스위치 열기':'스위치 닫기';};$('#coDir').onclick=()=>{st.s*=-1;};
+ $('#coLn').onclick=e=>{st.ln=!st.ln;toggleBtn(e.target,st.ln);};$('#coNS').onclick=e=>{st.ns=!st.ns;toggleBtn(e.target,st.ns);};
+ $('#coI').addEventListener('input',e=>{st.I=+e.target.value;$('#coIo').textContent=st.I.toFixed(1)+' A';});draw();})();
+
+// 개념: 코일 자기장
+(function(){const C=cv('cfC'),x=C.x;const cx=280,cy=210,half=100,rad=55;x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);const F=coilField(cx,cy,half,rad,1,1);
+ for(let k=0;k<12;k++){const a=-Math.PI*.78+k*(Math.PI*1.56/11);drawLine(x,trace(F,cx+half+Math.cos(a)*6,cy+Math.sin(a)*6,1,[-30,-30,590,450],(X,Y)=>Math.abs(X-(cx-half))<8&&Math.abs(Y-cy)<rad),'#6ad1ff99',1.5,true);}
+ for(let j=-1;j<=1;j++)arrow(x,cx-70,cy+j*26,cx+70,cy+j*26,'#6ad1ffcc',2,12);drawCoil(x,cx,cy,half,rad,1,true);txt(x,'N',cx+half+28,cy-rad-10,RED,22,'center',900);txt(x,'S',cx-half-28,cy-rad-10,'#4a8cff',22,'center',900);
+ txt(x,'코일 주위 자기장 (파란 선) · 노란 화살표 = 전류',14,22,MUTED,12,'left',700);})();
+
+/* ================== 8차시 ================== */
+// 전기 그네 (옆에서 본 모습)
+(function(){const C=cv('swC');const st={on:false,out:1,nTop:1,I:1,th:0,w:0,rows:[]};const P={x:400,y:62},L=238;
+ function sign(){return st.out*st.nTop;}
+ function draw(){const x=C.x;x.clearRect(0,0,C.w,C.h);x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);
+  // 말굽자석 (왼쪽이 굽은 부분)
+  const top=st.nTop>0?'#e0574a':'#3f6fd8',bot=st.nTop>0?'#3f6fd8':'#e0574a';
+  rrect(x,70,160,70,260,16,'#8a94c4');rrect(x,70,160,420,62,10,top);rrect(x,70,358,420,62,10,bot);
+  txt(x,st.nTop>0?'N':'S',455,191,'#fff',22,'center',900);txt(x,st.nTop>0?'S':'N',455,389,'#fff',22,'center',900);
+  for(let k=0;k<5;k++){const X=230+k*55;arrow(x,X,st.nTop>0?232:348,X,st.nTop>0?348:232,'#6ad1ff55',2,10);}txt(x,'파란 화살표: 자기장 (N → S)',280,448,'#6ad1ffcc',11,'center',700);
+  // 그네
+  x.fillStyle='#5a6aa8';x.fillRect(P.x-120,P.y-14,240,10);const bx=P.x+Math.sin(st.th)*L,by=P.y+Math.cos(st.th)*L;x.strokeStyle='#c9ced8';x.lineWidth=3;x.beginPath();x.moveTo(P.x,P.y);x.lineTo(bx,by);x.stroke();x.lineWidth=1;
+  x.fillStyle='#e0a050';x.beginPath();x.arc(bx,by,18,0,7);x.fill();x.fillStyle='#1d2433';
+  if(st.on){if(st.out>0){x.beginPath();x.arc(bx,by,6,0,7);x.fill();}else{x.strokeStyle='#1d2433';x.lineWidth=4;x.beginPath();x.moveTo(bx-9,by-9);x.lineTo(bx+9,by+9);x.moveTo(bx+9,by-9);x.lineTo(bx-9,by+9);x.stroke();x.lineWidth=1;}
+   const s=sign(),fl=30+st.I*18;arrow(x,bx+s*22,by,bx+s*(22+fl),by,GREEN,5,16);txt(x,'힘',bx+s*(32+fl),by-20,GREEN,15,'center',900);}
+  txt(x,'◀ 가 (자석 안쪽)',150,120,GOLD,15,'center',900);txt(x,'나 (자석 바깥쪽) ▶',600,120,GOLD,15,'center',900);
+  txt(x,'옆에서 본 모습 · 그네의 가로 막대: '+(st.on?(st.out>0?'⊙ 전류가 화면 밖으로':'⊗ 전류가 화면 안으로'):'전류 없음'),20,24,MUTED,12,'left',700);
+  txt(x,'전류 '+(st.on?st.I.toFixed(1)+' A':'0 A'),700,450,st.on?GOLD:MUTED,13,'right',900);}
+ anim(C.c,dt=>{const tg=st.on?sign()*Math.min(.6,.17*st.I):0;st.w+=((tg-st.th)*28-st.w*4.5)*dt;st.th+=st.w*dt;draw();});
+ $('#swOn').onclick=e=>{st.on=!st.on;e.target.textContent=st.on?'스위치 떼기':'스위치 누르기';};
+ $('#swDir').onclick=()=>{st.out*=-1;};$('#swMag').onclick=()=>{st.nTop*=-1;};
+ $('#swI').addEventListener('input',e=>{st.I=+e.target.value;$('#swIo').textContent=st.I.toFixed(1)+' A';});
+ function rt(){$('#swTb').innerHTML=st.rows.length?st.rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td class="hl">${r[3]}</td></tr>`).join(''):'<tr><td colspan="4" class="muted">아직 기록이 없어요</td></tr>';}
+ $('#swRec').onclick=()=>{if(!st.on){st.rows.push(['—','—','0 A','움직이지 않음']);}else{const s=sign();st.rows.push([st.out>0?'⊙ 나옴':'⊗ 들어감',st.nTop>0?'N극':'S극',st.I.toFixed(1)+' A',(s>0?'나':'가')+(st.I>=2?' (크게)':st.I<=0.8?' (조금)':'')]);}if(st.rows.length>7)st.rows.shift();rt();};
+ $('#swClr').onclick=()=>{st.rows=[];rt();};rt();draw();})();
+
+// 힘의 방향 개념도
+(function(){const C=cv('fhC'),x=C.x;x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);
+ [[0,1,'⊗ 전류가 화면 안으로'],[210,-1,'⊙ 전류가 화면 밖으로']].forEach(([oy,sd,lab])=>{const y0=20+oy;rrect(x,30,y0+30,80,120,8,'#e0574a');rrect(x,410,y0+30,80,120,8,'#3f6fd8');txt(x,'N',70,y0+90,'#fff',20,'center',900);txt(x,'S',450,y0+90,'#fff',20,'center',900);
+  for(let k=0;k<3;k++)arrow(x,120,y0+55+k*35,400,y0+55+k*35,'#6ad1ff55',2,10);
+  x.fillStyle='#e0a050';x.beginPath();x.arc(260,y0+90,20,0,7);x.fill();x.fillStyle='#1d2433';x.strokeStyle='#1d2433';
+  if(sd>0){x.lineWidth=4;x.beginPath();x.moveTo(250,y0+80);x.lineTo(270,y0+100);x.moveTo(270,y0+80);x.lineTo(250,y0+100);x.stroke();x.lineWidth=1;}else{x.beginPath();x.arc(260,y0+90,7,0,7);x.fill();}
+  arrow(x,260,y0+90+sd*24,260,y0+90+sd*80,GREEN,5,16);txt(x,'힘',284,y0+90+sd*60,GREEN,15,'left',900);txt(x,lab+' · 자기장 N → S',260,sd>0?y0+12:y0+176,GOLD,13,'center',900);});})();
+
+// 전동기
+(function(){const C=cv('moC');const st={run:false,comm:true,th:0,w:0};const cx=350,cy=220,r=120;
+ function cur(){if(!st.run)return 0;return st.comm?(Math.cos(st.th)>=0?1:-1):1;}
+ function draw(){const x=C.x;x.clearRect(0,0,C.w,C.h);x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);
+  rrect(x,30,90,100,260,10,'#e0574a');rrect(x,570,90,100,260,10,'#3f6fd8');txt(x,'N',80,220,'#fff',26,'center',900);txt(x,'S',620,220,'#fff',26,'center',900);
+  for(let k=0;k<5;k++)arrow(x,150,110+k*55,550,110+k*55,'#6ad1ff33',2,10);
+  const ax=cx+r*Math.cos(st.th),ay=cy-r*Math.sin(st.th),bx=cx-r*Math.cos(st.th),by=cy+r*Math.sin(st.th);
+  x.strokeStyle='#e0a050';x.lineWidth=6;x.beginPath();x.moveTo(ax,ay);x.lineTo(bx,by);x.stroke();x.lineWidth=1;
+  // 정류자
+  if(st.comm){[0,1].forEach(h=>{x.strokeStyle=h?'#c9a46a':'#e6c88a';x.lineWidth=8;x.beginPath();x.arc(cx,cy,24,-st.th+h*Math.PI+.25,-st.th+h*Math.PI+Math.PI-.25);x.stroke();});x.lineWidth=1;x.fillStyle='#8a94c4';x.fillRect(cx-44,cy-8,14,16);x.fillRect(cx+30,cy-8,14,16);txt(x,'정류자',cx,cy+48,MUTED,10,'center',700);}
+  x.fillStyle='#e9edff';x.beginPath();x.arc(cx,cy,5,0,7);x.fill();
+  const c=cur();[[ax,ay,c],[bx,by,-c]].forEach(([X,Y,s],k)=>{x.fillStyle='#e0a050';x.beginPath();x.arc(X,Y,22,0,7);x.fill();x.fillStyle='#1d2433';x.strokeStyle='#1d2433';
+   if(s>0){x.beginPath();x.arc(X,Y,7,0,7);x.fill();}else if(s<0){x.lineWidth=4;x.beginPath();x.moveTo(X-10,Y-10);x.lineTo(X+10,Y+10);x.moveTo(X+10,Y-10);x.lineTo(X-10,Y+10);x.stroke();x.lineWidth=1;}
+   if(s)arrow(x,X,Y-s*26,X,Y-s*86,GREEN,5,15);txt(x,k?'B':'A',X+(X>cx?34:-34),Y,'#e9edff',14,'center',900);});
+  txt(x,'코일을 회전축 방향에서 본 모습 · ⊙ 나오는 전류 ⊗ 들어가는 전류 · 초록 = 힘',14,22,MUTED,11,'left',700);
+  txt(x,'회전 속도 '+Math.abs(st.w/(2*Math.PI)).toFixed(2)+' 바퀴/초',690,420,GOLD,12,'right',900);}
+ anim(C.c,dt=>{const tq=st.run?6*cur()*Math.cos(st.th):0;st.w+=(tq-st.w*.8)*dt;st.th+=st.w*dt;draw();});
+ $('#moGo').onclick=e=>{st.run=!st.run;e.target.textContent=st.run?'⏸ 전원 끄기':'▶ 전원 켜기';};
+ $('#moCm').onclick=e=>{st.comm=!st.comm;e.target.textContent='정류자: '+(st.comm?'있음':'없음');toggleBtn(e.target,!st.comm);};
+ $('#moRs').onclick=()=>{st.th=0;st.w=0;st.run=false;$('#moGo').textContent='▶ 전원 켜기';};draw();})();
+
+// 전동기 활용 카드
+(function(){const IT=[['🌀','선풍기','날개를 돌려 바람을 만듦'],['🧺','세탁기','통을 돌려 빨래를 섞음'],['🚁','드론','프로펠러를 빠르게 돌려 떠오름'],['🚗','전기 자동차','바퀴를 돌림'],['🧹','청소기','팬을 돌려 먼지를 빨아들임'],['📱','스마트폰','작은 전동기로 진동'],['💨','헤어드라이어','팬을 돌려 뜨거운 바람'],['🛗','엘리베이터','줄을 감아 올리고 내림']];const open=new Set();
+ function r(){const c=$('#moCards');c.innerHTML='';IT.forEach((it,i)=>{const el=document.createElement('div');el.className='scard'+(open.has(i)?' picked':'');el.style.width='250px';el.innerHTML=`<div style="font-size:48px;line-height:1.2">${it[0]}</div><div class="nm">${it[1]}</div><div class="tp" style="min-height:58px;font-size:21px;color:${GOLD}">${open.has(i)?it[2]:'?'}</div>`;el.onclick=()=>{open.has(i)?open.delete(i):open.add(i);r();};c.appendChild(el);});}r();})();
+
+
+/* ================== 학생용 채점 도우미 ================== */
+function gradeInputs(tb,ans,msg,tol){const f=[...$('#'+tb).querySelectorAll('input,select')];let ok=0,filled=0;
+ f.forEach((e,i)=>{const v=String(e.value).replace(/[,원\s]/g,'');if(!v){e.style.borderColor='';return;}filled++;const a=ans[i];
+  const g=typeof a==='number'?Math.abs(parseFloat(v)-a)<=(tol||0)+1e-9:v===a;e.style.borderColor=g?'#63e6a3':'#ff7a90';if(g)ok++;});
+ const m=$('#'+msg);m.style.color=ok===f.length?'#63e6a3':'#ff7a90';m.textContent=ok===f.length?'⭕ 모두 정답!':(filled<f.length?`빈칸 ${f.length-filled}개 · `:'')+`${ok} / ${f.length} 정답 · 빨간 칸 다시 생각해 보기`;}
+$('#waChk').onclick=()=>gradeInputs('waIn',['전지','전류','전선','전구','스위치','전압'],'waMsg');
+$('#rcChk').onclick=()=>gradeInputs('rcIn',[6,6,6,36,12,3,3,18,3,12,6,36],'rcMsg',0.01);
+$('#blChk').onclick=()=>gradeInputs('blIn',[1600,34730,2250,1250,39830,3983,1470,45280],'blMsg',0);
+
+/* ============ 시작 ============ */
+route();
+showWho();
+restore();
+if(!PREVIEW&&(!user||!user.pin||!user.nick))openLogin();
+else if(!PREVIEW&&user&&user.pin)setTimeout(pullServer,800);
+}
+let __b=false;function __go(){if(__b)return;__b=true;__boot();}
+(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(__go);setTimeout(__go,1500);
+</script>
+</body>
+</html>
