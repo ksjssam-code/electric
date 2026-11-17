@@ -53,6 +53,7 @@ function doGet(e) {
 function doPost(e) {
   let d;
   try { d = JSON.parse(e.postData.contents); } catch (err) { return json_({ ok: false, error: '잘못된 요청' }); }
+  if (sameAsStar_()) return json_({ ok: false, error: '설정 오류: 전기 탐구실 코드는 별 탐구실과 다른 스프레드시트에 설치해야 함 (선생님께 알리기)' });
   if (!isValidStudent_(d)) return json_({ ok: false, error: '반·번호·이름을 확인하기' });
   const lock = LockService.getScriptLock();
   lock.waitLock(20000);
@@ -100,8 +101,11 @@ function refreshRoster() {
 
 /* ---------------- 로그인 / 학생 명부 ---------------- */
 /* ---- 별 탐구실 명부로 PIN 확인 (읽기만 함, 별 탐구실 시트는 바꾸지 않음) ---- */
+function starId_() { return String(STAR_SHEET || '').replace(/^.*\/d\//, '').replace(/[\/?#].*$/, '').trim(); }
+// 안전장치: 이 코드가 별 탐구실과 '같은 스프레드시트'에 설치되면 별 탐구실 명부를 건드리지 않도록 모든 요청을 멈춤
+function sameAsStar_() { const id = starId_(); return !!id && id === SpreadsheetApp.getActiveSpreadsheet().getId(); }
 function starRoster_() {
-  const id = String(STAR_SHEET || '').replace(/^.*\/d\//, '').replace(/[\/?#].*$/, '').trim();
+  const id = starId_();
   if (!id) return null;
   try { return SpreadsheetApp.openById(id).getSheetByName('학생 명부'); } catch (e) { return null; }
 }
@@ -136,7 +140,7 @@ function login_(d) {
   const r = found.row;
   if (String(r[2]).trim() !== String(d.name).trim()) return { ok: false, error: '이 반·번호로 등록된 이름과 다름 (선생님께 문의)' };
   if (star.found) {
-    if (String(r[4]) !== STAR_PIN) s.getRange(found.idx, 5).setValue(STAR_PIN);
+    if (!String(r[4]) || String(r[4]) === hash_(d, pin)) s.getRange(found.idx, 5).setValue(STAR_PIN);
   } else if (!String(r[4]) || String(r[4]) === STAR_PIN) { // 선생님이 PIN을 지운 경우 → 새로 등록
     s.getRange(found.idx, 5).setValue(safe_(hash_(d, pin)));
   } else if (String(r[4]) !== hash_(d, pin)) {
@@ -150,7 +154,7 @@ function auth_(d) {
   if (!f) return { ok: false, error: '먼저 로그인하기', relogin: true };
   if (String(f.row[2]).trim() !== String(d.name).trim()) return { ok: false, error: '로그인 정보가 맞지 않음. 다시 로그인하기', relogin: true };
   const pin = String(d.pin || '');
-  const okPin = String(f.row[4]) === STAR_PIN ? starCheck_(d, pin).ok === true : String(f.row[4]) === hash_(d, pin);
+  const okPin = String(f.row[4]) === STAR_PIN ? starCheck_(d, pin).ok === true : (String(f.row[4]) === hash_(d, pin) || starCheck_(d, pin).ok === true);
   if (!okPin) return { ok: false, error: '로그인 정보가 맞지 않음. 다시 로그인하기', relogin: true };
   return { ok: true, nick: String(f.row[3]) };
 }
