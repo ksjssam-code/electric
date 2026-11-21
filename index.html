@@ -213,6 +213,31 @@ details summary{cursor:pointer}
   </div>
 
   <div class="step">
+    <h2><span class="badge b2">2 탐구하기</span> 고무풍선 두 개와 면장갑 (활동지 ①)</h2>
+    <p class="small muted">1. 면장갑으로 두 고무풍선을 각각 문지른다 → 2. 매단 풍선에 다른 풍선을 가까이 → 3. 면장갑을 가까이</p>
+    <canvas id="blC" data-w="1180" data-h="440"></canvas>
+    <div class="btns"><button class="au" id="blRub">🧤 두 풍선 문지르기</button><button class="pri" id="blBal">과정 2: 다른 풍선 가까이</button><button class="pri" id="blGl">과정 3: 면장갑 가까이</button><button id="blAway">멀리 치우기</button><button id="blQ">± 전하 보기</button><button id="blReset">처음으로</button></div>
+    <div class="msg" id="blMsg"></div>
+    <div class="q g">과정 2의 결과와 그 이유는?</div>
+    <textarea data-f="활동지①-과정2 결과와 이유" placeholder="결과 / 이유"></textarea>
+    <div class="q g">과정 3의 결과와 그 이유는?</div>
+    <textarea data-f="활동지①-과정3 결과와 이유" placeholder="결과 / 이유"></textarea>
+    <div class="btns"><button class="rv" data-t="r15">정리 확인</button></div>
+    <div class="reveal" id="r15">과정 2: 두 풍선이 <b>같은 종류</b>((−))의 전기 → <b>밀어냄</b> · 과정 3: 풍선 (−)과 전자를 잃은 장갑 (+) → <b>끌어당김</b></div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b3">더 생각하기</span> 빨대 위로 떨어뜨린 비닐 고리</h2>
+    <div class="grid2"><div><canvas id="rgC" data-w="560" data-h="420"></canvas>
+      <div class="btns"><button class="au" id="rgRub">🧻 휴지로 둘 다 문지르기</button><button class="pri" id="rgDrop">비닐 고리 떨어뜨리기</button><button id="rgQ">± 전하</button><button id="rgReset">처음으로</button></div></div>
+    <div><p>한 사람은 휴지로 문지른 빨대를 들고, 한 사람은 휴지로 문지른 비닐 고리를 빨대 위에 떨어뜨리면 어떻게 될까?</p>
+      <div class="btns predict" data-f="예측-비닐 고리"><button>빨대에 달라붙는다</button><button>빨대 위에 떠 있다</button><button>그냥 떨어진다</button></div>
+      <textarea data-f="더 생각하기-비닐 고리" placeholder="이 현상을 설명해 보자"></textarea>
+      <div class="btns"><button class="rv" data-t="r16">정리 확인</button></div>
+      <div class="reveal" id="r16">같은 휴지로 문질러 빨대와 비닐 고리가 <b>같은 종류</b>의 전기를 띰 → 서로 <b>밀어내는 전기력</b>이 중력과 맞서 고리가 <b>떠 있음</b></div></div></div>
+  </div>
+
+  <div class="step">
     <h2><span class="badge b2">2 탐구하기</span> 원자 모형: 문지르면 무엇이 옮겨 갈까? (237쪽)</h2>
     <canvas id="atC" data-w="1180" data-h="390"></canvas>
     <div class="btns" style="align-items:center"><button class="au" id="atRub">🔁 문지르기</button><button id="atReset">처음으로</button><div class="chips" style="margin:0"><div class="chip">장갑 <b id="atA">중성</b></div><div class="chip">숟가락 <b id="atB">중성</b></div></div></div>
@@ -268,6 +293,15 @@ details summary{cursor:pointer}
   </div>
 
   <div class="step">
+    <h2><span class="badge b2">2 탐구하기</span> 알루미늄 캔에 대전체를 가까이 하면? (활동지 ②)</h2>
+    <div class="btns predict" data-f="예측-알루미늄 캔"><button>캔이 빨대 쪽으로 굴러온다</button><button>캔이 멀어진다</button><button>그대로</button></div>
+    <canvas id="cnC" data-w="1180" data-h="320"></canvas>
+    <div class="btns"><button class="au" id="cnRub">털가죽으로 빨대 문지르기</button><button id="cnQ">± 캔의 전하 보기</button><button id="cnReset">처음으로</button></div>
+    <div class="ctrl"><label>빨대 가까이</label><input type="range" id="cnD" min="0" max="1" step="0.01" value="1"><output>멀리 ← → 가까이</output></div>
+    <textarea data-f="관찰-알루미늄 캔" placeholder="관찰 결과"></textarea>
+  </div>
+
+  <div class="step">
     <h2><span class="badge b2">2 탐구하기</span> 대전체를 가까이 하면 금속 속에서는?</h2>
     <p class="small muted">빨대 거리를 천천히 줄이며 전자(⊖)의 움직임을 관찰하고, (+) 대전체로도 바꿔 보기</p>
     <canvas id="indC" data-w="1180" data-h="380"></canvas>
@@ -281,6 +315,21 @@ details summary{cursor:pointer}
     <textarea data-f="발견-끌려오는 까닭" placeholder="내 생각"></textarea>
     <div class="btns"><button class="rv" data-t="r21">정리 확인</button></div>
     <div class="reveal" id="r21">가까운 쪽에 대전체와 <b>다른</b> 전하가 모여 <b>인력 &gt; 척력</b> → 끌려옴 = <b>정전기 유도</b></div>
+    <div class="q c">더 생각하기: 금속 막대의 먼 쪽 끝에 매단 <b>알루미늄 포일 조각</b> 두 개는 어떻게 될까? 설명해 보자. (위 그림 오른쪽 끝)</div>
+    <textarea data-f="더 생각하기-포일 조각" placeholder="관찰 결과와 까닭"></textarea>
+    <div class="btns"><button class="rv" data-t="r24">정리 확인</button></div>
+    <div class="reveal" id="r24">(−)로 대전된 풍선(빨대)을 가까이 하면 전자가 <b>먼 쪽 끝</b>으로 이동 → 두 포일 조각이 모두 (−)전하 → <b>밀어내어 벌어짐</b> (검전기와 같은 원리)</div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b3">해 보기</span> 금속이 아닌 물체에서도? 풍선과 종잇조각</h2>
+    <div class="grid2"><div><canvas id="ppC" data-w="560" data-h="420"></canvas>
+      <div class="btns"><button class="au" id="ppRub">털가죽으로 풍선 문지르기</button><button id="ppReset">처음으로</button></div>
+      <div class="ctrl"><label>풍선 내리기</label><input type="range" id="ppH" min="0" max="1" step="0.01" value="0.1"></div></div>
+    <div><p>대전된 고무풍선을 작은 종잇조각에 가까이 하면? 종이는 금속이 아닌데도 끌려올까?</p>
+      <textarea data-f="해 보기-종잇조각" placeholder="관찰 결과와 까닭"></textarea>
+      <div class="btns"><button class="rv" data-t="r25">정리 확인</button></div>
+      <div class="reveal" id="r25">종잇조각이 풍선에 <b>달라붙음</b> → 정전기 유도는 종이·고무 같은 <b>금속이 아닌 물체</b>에서도 일어남 (대전체와 가까운 쪽에 다른 종류의 전하)</div></div></div>
   </div>
 
   <div class="step">
@@ -1129,13 +1178,16 @@ function poleField(poles){return(X,Y)=>{let bx=0,by=0;poles.forEach(([px,py,q])=
  for(let i=0;i<12;i++){els.push({x:ions[i].x+22,y:(i<6?yA:yB)+10});}
  function targets(){const p=Math.pow(1-d,1.2),L=x1-x0-60;let a=x0+30,b=x1-30;if(pol<0)a+=L*.42*p;else b-=L*.42*p;const out=[];for(let i=0;i<12;i++){const k=i%6;out.push({x:a+(k+.5)*(b-a)/6,y:(i<6?yA:yB)+12});}return out;}
  function draw(){const x=C.x;x.clearRect(0,0,C.w,C.h);x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);
-  x.fillStyle='#5a6aa8';x.fillRect(740,262,12,70);rrect(x,690,330,112,14,4,'#3b4a80');txt(x,'절연 받침',746,360,MUTED,11,'center');
-  rrect(x,x0,160,x1-x0,100,20,'#9aa3b8','#cfd6e6',2);txt(x,'금속 막대 (알루미늄)',(x0+x1)/2,140,'#e9edff',15,'center',900);
+  x.fillStyle='#5a6aa8';x.fillRect(700,262,12,70);rrect(x,650,330,112,14,4,'#3b4a80');txt(x,'절연 받침',706,360,MUTED,11,'center');
+  rrect(x,x0,160,x1-x0,100,20,'#9aa3b8','#cfd6e6',2);txt(x,'금속 막대 (알루미늄)',(x0+x1)/2,118,'#e9edff',15,'center',900);
   const p=Math.pow(1-d,1.2);
   if(!eOnly)ions.forEach(o=>chg(x,o.x,o.y,1,11));els.forEach(e=>chg(x,e.x,e.y,-1,10));
   const tip=130+(1-d)*270;rrect(x,tip-330,196,330,28,14,'#e6ecf7','#8a94c4',2);for(let i=0;i<5;i++)chg(x,tip-300+i*60,210,pol,10);txt(x,(pol<0?'(−)':'(+)')+' 대전된 빨대',Math.max(90,tip-100),180,pol<0?BLUE:RED,15,'center',900);
-  if(p>.25){const near=pol<0?'(+)전하가 많아짐':'(−)전하가 많아짐',far=pol<0?'(−)전하가 많아짐':'(+)전하가 많아짐';txt(x,near,x0+90,300,pol<0?RED:BLUE,15,'center',900);txt(x,far,x1-90,300,pol<0?BLUE:RED,15,'center',900);
+  if(p>.25){const near=pol<0?'(+)전하가 많아짐':'(−)전하가 많아짐',far=pol<0?'(−)전하가 많아짐':'(+)전하가 많아짐';txt(x,near,x0+90,145,pol<0?RED:BLUE,14,'center',900);txt(x,far,x1-110,145,pol<0?BLUE:RED,14,'center',900);
    arrow(x,x0+80,110,x0-10,110,GREEN,4,14);txt(x,'끌려옴',x0+90,110,GREEN,15,'left',900);}
+  // 먼 쪽 끝에 매단 알루미늄 포일 조각 2개 (활동지 ② 더 생각하기)
+  const fa=.06+.5*p,hx=x1-34,hy=262;[-1,1].forEach(sd=>{x.save();x.translate(hx,hy);x.rotate(-sd*fa);x.fillStyle='#d6dbe6';x.fillRect(-3,0,6,58);x.restore();});
+  txt(x,'알루미늄 포일 조각',hx,350,'#d6dbe6',11,'center',700);if(p>.3)txt(x,'벌어짐!',hx+46,300,GOLD,13,'left',900);
   txt(x,eOnly?'전자(−)만 표시 중 · (+)전하(원자핵)는 움직이지 않아요':'',20,24,GOLD,13,'left',700);}
  anim(C.c,()=>{const T=targets();els.forEach((e,i)=>{e.x=lerp(e.x,T[i].x,.07);e.y=lerp(e.y,T[i].y,.07);});draw();});
  $('#indD').addEventListener('input',e=>{d=+e.target.value;$('#indDo').textContent=d>.66?'멀리':d>.33?'중간':'가까이';$('#indMsg').textContent=d<.33?'가까이 하니 전자들이 움직였어요! 어느 쪽으로 움직였나요?':'';});
@@ -1254,6 +1306,63 @@ function poleField(poles){return(X,Y)=>{let bx=0,by=0;poles.forEach(([px,py,q])=
  anim(C.c,dt=>{if(st.open){st.rot+=dt*st.h*2.2;st.ps=st.ps.map(p=>(p+dt*.08*st.h)%1);}draw();});
  $('#waV').onclick=e=>{st.open=!st.open;e.target.textContent=st.open?'밸브 잠그기':'밸브 열기';};
  $('#waH').onclick=e=>{st.h=st.h===1?2:1;e.target.textContent='펌프 높이 '+st.h+'칸';toggleBtn(e.target,st.h===2);};draw();})();
+
+// 활동지 ①: 고무풍선 두 개와 면장갑
+(function(){if(!document.getElementById('blC'))return;const C=cv('blC');const st={rub:false,ap:null,th:0,w:0,off:600,offT:600,q:false};const P={x:660,y:30},L=230,R=46;
+ function balloon(x,X,Y,col,q,n){x.fillStyle=col;x.beginPath();x.ellipse(X,Y,R*.85,R,0,0,7);x.fill();x.fillStyle='#ffffff55';x.beginPath();x.ellipse(X-14,Y-18,9,14,-.4,0,7);x.fill();x.fillStyle=col;x.beginPath();x.moveTo(X-6,Y+R);x.lineTo(X+6,Y+R);x.lineTo(X,Y+R+9);x.fill();if(q)for(let i=0;i<n;i++)chg(x,X-18+(i%3)*18,Y-10+Math.floor(i/3)*22,q,8);}
+ function draw(){const x=C.x;x.clearRect(0,0,C.w,C.h);x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);
+  x.fillStyle='#5a6aa8';x.fillRect(P.x-140,P.y-12,280,10);x.fillRect(P.x+130,P.y-12,10,400);rrect(x,P.x+80,P.y+380,110,12,4,'#3b4a80');
+  const bx=P.x+Math.sin(st.th)*L,by=P.y+Math.cos(st.th)*L;x.strokeStyle='#e9edff';x.beginPath();x.moveTo(P.x,P.y);x.lineTo(bx,by-R);x.stroke();
+  balloon(x,bx,by,'#e0574a',st.rub&&st.q?-1:0,5);txt(x,'매달린 풍선',bx,by+R+28,'#ff9a9a',13,'center',900);
+  if(st.ap){const tx=(st.ap==='b'?548:490)-st.off,ty=P.y+L;
+   if(st.ap==='b'){x.strokeStyle='#e9edff';x.beginPath();x.moveTo(tx,ty+R+8);x.lineTo(tx-30,ty+R+80);x.stroke();balloon(x,tx,ty,'#4a8cff',st.rub&&st.q?-1:0,5);txt(x,'다른 풍선',tx,ty-R-18,'#9ab8ff',13,'center',900);}
+   else{rrect(x,tx-80,ty-34,120,68,24,'#f3f1e8','#bdb8a6',2);for(let i=0;i<4;i++)rrect(x,tx+30,ty-30+i*16,46,13,6,'#f3f1e8','#bdb8a6',1.5);if(st.rub&&st.q)for(let i=0;i<4;i++)chg(x,tx-60+i*26,ty,1,9);txt(x,'면장갑',tx-20,ty-52,CYAN,13,'center',900);}}
+  if(Math.abs(st.th)>.05&&st.off<30){const r=st.th>0;txt(x,r?'밀려남!':'끌려옴!',bx+(r?60:-60),by-60,r?RED:GREEN,17,'center',900);}
+  txt(x,st.rub?'✨ 면장갑으로 두 풍선을 문질렀어요':'',20,24,GOLD,13,'left',700);}
+ anim(C.c,dt=>{const k=1-Math.pow(.02,dt);st.off=lerp(st.off,st.offT,k*1.2);let tg=0;if(st.ap&&st.rub&&st.off<40)tg=st.ap==='b'?.32:-.3;st.w+=((tg-st.th)*20-st.w*3.5)*dt;st.th+=st.w*dt;draw();});
+ const msg=t=>$('#blMsg').textContent=t;
+ $('#blRub').onclick=()=>{st.rub=true;st.ap=null;msg('두 풍선을 면장갑으로 문질렀어요.');};
+ $('#blBal').onclick=()=>{st.ap='b';st.off=600;st.offT=0;msg(st.rub?'':'문지르지 않았어요 → 변화 없음');};
+ $('#blGl').onclick=()=>{st.ap='g';st.off=600;st.offT=0;msg(st.rub?'':'문지르지 않았어요 → 변화 없음');};
+ $('#blAway').onclick=()=>{st.offT=600;setTimeout(()=>{if(st.offT===600)st.ap=null;},900);};
+ $('#blQ').onclick=e=>{st.q=!st.q;toggleBtn(e.target,st.q);};
+ $('#blReset').onclick=()=>{st.rub=false;st.ap=null;st.q=false;$('#blQ').classList.remove('pri');msg('');};draw();})();
+
+// 활동지 ① 더 생각하기: 빨대 위 비닐 고리
+(function(){if(!document.getElementById('rgC'))return;const C=cv('rgC');const st={rub:false,y:-60,v:0,drop:false,q:false};const SY=330;
+ function draw(){const x=C.x;x.clearRect(0,0,C.w,C.h);x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);
+  rrect(x,120,SY-8,320,16,8,'#e6ecf7','#8a94c4',2);x.fillStyle='#f0c9a6';x.fillRect(420,SY-14,60,28);txt(x,'빨대',130,SY+30,MUTED,12,'left',700);
+  if(st.rub&&st.q)for(let i=0;i<6;i++)chg(x,150+i*45,SY,-1,7);
+  if(st.drop){const y=st.y;x.strokeStyle='#cfe8ff';x.lineWidth=5;x.beginPath();x.ellipse(280,y,70,14,0,0,7);x.stroke();x.lineWidth=1;if(st.rub&&st.q)for(let i=0;i<4;i++)chg(x,230+i*34,y-16,-1,7);txt(x,'비닐 고리',360,y-26,'#cfe8ff',12,'left',900);}
+  txt(x,st.rub?'✨ 빨대와 비닐 고리를 휴지로 문질렀어요':'',16,22,GOLD,12,'left',700);
+  if(st.drop&&st.rub&&Math.abs(st.v)<30&&st.y<SY-60)txt(x,'둥둥 떠 있음!',280,60,GOLD,17,'center',900);}
+ anim(C.c,dt=>{if(st.drop){let a=900;if(st.rub){const d=Math.max(20,SY-st.y);a-=9e6/(d*d);}st.v+=(a-st.v*1.5)*dt;st.y+=st.v*dt;if(st.y>SY-18){st.y=SY-18;st.v=0;}}draw();});
+ $('#rgRub').onclick=()=>{st.rub=true;};$('#rgDrop').onclick=()=>{st.drop=true;st.y=-40;st.v=0;};$('#rgQ').onclick=e=>{st.q=!st.q;toggleBtn(e.target,st.q);};
+ $('#rgReset').onclick=()=>{st.rub=false;st.drop=false;};draw();})();
+
+// 활동지 ②: 알루미늄 캔
+(function(){if(!document.getElementById('cnC'))return;const C=cv('cnC');const st={rub:false,d:1,x:760,v:0,q:false};const TY=250,CR=40;
+ function tip(){return 120+(1-st.d)*360;}
+ function draw(){const x=C.x;x.clearRect(0,0,C.w,C.h);x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);x.fillStyle='#3a2f2a';x.fillRect(0,TY+CR,C.w,40);
+  const t=tip();rrect(x,t-330,TY-14,330,28,14,'#e6ecf7','#8a94c4',2);if(st.rub)for(let i=0;i<5;i++)chg(x,t-300+i*60,TY,-1,9);txt(x,st.rub?'(−) 대전된 빨대':'문지르지 않은 빨대',Math.max(90,t-120),TY-34,st.rub?BLUE:MUTED,13,'center',900);
+  x.fillStyle='#b8c0d0';x.beginPath();x.arc(st.x,TY,CR,0,7);x.fill();x.strokeStyle='#e9edff';x.lineWidth=2;x.beginPath();x.arc(st.x,TY,CR,0,7);x.stroke();x.beginPath();x.arc(st.x,TY,CR*.7,0,7);x.stroke();x.lineWidth=1;
+  txt(x,'알루미늄 캔 (옆으로 눕힘)',st.x,TY-CR-18,'#dfe4ee',12,'center',900);
+  if(st.q&&st.rub){const p=Math.min(1,180/Math.max(10,st.x-CR-t));const n=Math.round(1+p*3);for(let i=0;i<n;i++){chg(x,st.x-CR+10,TY-20+i*14,1,6);chg(x,st.x+CR-10,TY-20+i*14,-1,6);}}
+  if(Math.abs(st.v)>8)txt(x,'굴러옴!',st.x,TY+CR+20,GREEN,15,'center',900);}
+ anim(C.c,dt=>{const gap=st.x-CR-tip();let F=0;if(st.rub&&gap>2)F=-2.6e6/Math.pow(gap+40,2);st.v+=(F-st.v*.9)*dt;st.x+=st.v*dt;const g2=st.x-CR-tip();if(g2<2){st.x=tip()+CR+2;st.v=0;}if(st.x>1120){st.x=1120;st.v=0;}draw();});
+ $('#cnRub').onclick=()=>{st.rub=true;};$('#cnD').addEventListener('input',e=>{st.d=+e.target.value;});$('#cnQ').onclick=e=>{st.q=!st.q;toggleBtn(e.target,st.q);};
+ $('#cnReset').onclick=()=>{st.rub=false;st.x=760;st.v=0;st.d=1;$('#cnD').value=1;};draw();})();
+
+// 금속이 아닌 물체: 대전된 풍선과 종잇조각
+(function(){if(!document.getElementById('ppC'))return;const C=cv('ppC');const st={rub:false,h:.1};const r=rng(5),bits=[];for(let i=0;i<14;i++)bits.push({x0:140+r()*280,y:0,stuck:false,th:.35+r()*.5,w:10+r()*12,a:r()*3});
+ const FLOOR=380;function by(){return 70+st.h*230;}
+ function draw(){const x=C.x;x.clearRect(0,0,C.w,C.h);x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);x.fillStyle='#3a2f2a';x.fillRect(0,FLOOR,C.w,40);
+  const Y=by();x.fillStyle='#e0574a';x.beginPath();x.ellipse(280,Y,70,80,0,0,7);x.fill();x.fillStyle='#ffffff44';x.beginPath();x.ellipse(255,Y-30,12,20,-.4,0,7);x.fill();if(st.rub)for(let i=0;i<5;i++)chg(x,230+i*25,Y+50,-1,8);
+  txt(x,st.rub?'털가죽으로 문지른 풍선':'문지르지 않은 풍선',380,Y-70,st.rub?BLUE:MUTED,12,'left',900);
+  bits.forEach(b=>{x.save();x.translate(b.x0,b.stuck?Y+78:FLOOR-6);x.rotate(b.a);x.fillStyle='#f5f0dc';x.fillRect(-b.w/2,-4,b.w,8);x.restore();});
+  if(bits.some(b=>b.stuck))txt(x,'달라붙음!',460,Y+80,GOLD,15,'left',900);}
+ anim(C.c,()=>{const Y=by();bits.forEach(b=>{const gap=(FLOOR-6)-(Y+78);if(st.rub&&gap<b.th*150)b.stuck=true;if(!st.rub)b.stuck=false;});draw();});
+ $('#ppRub').onclick=()=>{st.rub=true;};$('#ppH').addEventListener('input',e=>{st.h=+e.target.value;});$('#ppReset').onclick=()=>{st.rub=false;st.h=.1;$('#ppH').value=.1;bits.forEach(b=>b.stuck=false);};draw();})();
 
 
 /* ================== 4차시 ================== */
