@@ -706,6 +706,11 @@ details summary{cursor:pointer}
       <div class="ctrl"><label>전류</label><input type="range" id="swI" min="0.5" max="3" step="0.1" value="1"><output id="swIo">1.0 A</output></div>
       <div class="btns"><button class="pri" id="swRec">✍ 기록</button><button id="swClr">표 지우기</button></div>
       <table><thead><tr><th>전류 방향</th><th>자석 위쪽</th><th>전류</th><th>움직인 방향</th></tr></thead><tbody id="swTb" data-f="관찰-전기 그네 기록"></tbody></table></div></div>
+    <p class="small muted" style="margin-top:10px">💡 말굽자석 사이에 걸친 <b>알루미늄 포일</b>에 전류를 흘려도 같은 실험이에요 (활동지 ①). 포일 = 그네의 가로 막대</p>
+    <div class="q g">알루미늄 포일(그네)의 움직임에 영향을 미치는 것은 무엇일까? 실험 결과를 근거로 써 보자.</div>
+    <textarea data-f="탐구-움직임에 영향을 주는 것" placeholder="예: ○○을 바꾸었더니 …"></textarea>
+    <div class="btns"><button class="rv" data-t="r84">정리 확인</button></div>
+    <div class="reveal" id="r84"><b>전류의 방향</b>, <b>자기장(자석 극)의 방향</b> → 움직이는 방향 결정 · <b>전류의 세기</b>, 자석의 세기 → 움직이는 정도 결정</div>
   </div>
 
   <div class="step">
@@ -725,10 +730,46 @@ details summary{cursor:pointer}
     <div class="q">정류자(전류 방향을 바꿔 주는 장치)를 없애면? (예측)</div>
     <div class="btns predict" data-f="예측-정류자 없으면"><button>계속 돈다</button><button>반 바퀴쯤 돌다 멈춘다</button><button>처음부터 안 돈다</button></div>
     <canvas id="moC" data-w="700" data-h="440" style="max-width:760px"></canvas>
-    <div class="btns"><button class="au" id="moGo">▶ 전원 켜기</button><button id="moCm">정류자: 있음</button><button id="moRs">처음으로</button></div>
+    <div class="btns"><button class="au" id="moGo">▶ 전원 켜기</button><button id="moCm">정류자: 있음</button><button id="moRs">처음으로</button><button id="moMag">🧲 코일을 자석으로 보기</button><button id="moSlow">🐢 천천히</button></div>
     <textarea data-f="발견-전동기 원리" placeholder="코일 양쪽(A, B)이 받는 힘의 방향과 정류자의 역할"></textarea>
     <div class="btns"><button class="rv" data-t="r83">정리 확인</button></div>
     <div class="reveal" id="r83">코일 양쪽이 받는 힘의 방향이 <b>반대</b> → 회전 · 반 바퀴마다 정류자가 <b>전류 방향을 바꿔</b> 계속 회전</div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b3">해 보기</span> 자석과 코일로 전동기 이해하기 (활동지 ②)</h2>
+    <p class="small muted">위 전동기에서 [🧲 코일을 자석으로 보기]와 [🐢 천천히]를 켜고, 코일의 N극·S극과 자석 사이의 힘을 관찰하며 빈칸 채우기</p>
+    <table class="intab"><thead><tr><th>문장</th><th>빈칸</th></tr></thead><tbody id="mbIn" data-f="활동지-전동기 빈칸">
+      <tr><td>전동기: 자기장 안에서 (②)가 흐르는 코일이 받는 힘을 이용하는 장치</td><td><input maxlength="10"></td></tr>
+      <tr><td>코일의 N극이 자석의 N극 쪽에 있을 때 자석과 코일 사이에 서로 (③) 힘이 작용한다</td><td><select><option value="">선택</option><option>미는</option><option>당기는</option></select></td></tr>
+      <tr><td>코일의 N극이 자석의 S극 쪽으로 돌아가면 서로 (④) 힘이 작용한다</td><td><select><option value="">선택</option><option>미는</option><option>당기는</option></select></td></tr>
+      <tr><td>반 바퀴마다 전류의 방향이 바뀌면서 코일의 (⑤)이 바뀐다</td><td><select><option value="">선택</option><option>N극과 S극</option><option>회전 방향</option><option>크기</option></select></td></tr></tbody></table>
+    <div class="btns"><button class="pri" id="mbChk">채점하기</button></div><div class="msg" id="mbMsg"></div>
+    <div class="q g">코일의 N극과 S극이 반 바퀴마다 바뀌지 않으면 어떻게 될까?</div>
+    <textarea data-f="발견-극이 안 바뀌면" placeholder="정류자를 없앴을 때와 비교해 보기"></textarea>
+    <div class="btns"><button class="rv" data-t="r85">정리 확인</button></div>
+    <div class="reveal" id="r85">코일의 N극이 자석의 S극을 마주 보는 곳에서 <b>당기는 힘에 붙잡혀 멈춤</b> → 반 바퀴마다 극을 바꿔야 계속 회전</div>
+    <div class="q c">스피커는 코일이 받는 힘을 어떻게 이용할까?</div>
+    <textarea data-f="적용-스피커" placeholder="내 생각"></textarea>
+    <div class="btns"><button class="rv" data-t="r86">정리 확인</button></div>
+    <div class="reveal" id="r86">코일에 흐르는 전류의 방향이 계속 바뀌면 코일이 받는 힘의 방향도 바뀜 → 코일에 붙은 <b>진동판이 진동</b> → 소리</div>
+  </div>
+
+  <div class="step">
+    <h2><span class="badge b3">적용해 보기</span> 레일 위의 알루미늄 막대 (활동지 ③)</h2>
+    <p class="small muted">금속 막대(레일) 위에 알루미늄 막대를 올리고 전류를 흘린다. 니크롬선의 <b>집게 위치</b>를 바꾸면 전류의 세기가 바뀜</p>
+    <canvas id="rlC" data-w="1180" data-h="450"></canvas>
+    <div class="btns"><button class="au" id="rlSw">스위치 닫기</button><button id="rlDir">전원 (+)(−) 바꾸기</button><button id="rlMag">자석 뒤집기</button><button id="rlReset">막대 제자리</button></div>
+    <div class="ctrl"><label>집게 위치 (A ↔ B)</label><input type="range" id="rlP" min="0" max="1" step="0.01" value="0.2"><output id="rlPo">A 쪽</output></div>
+    <div class="msg" id="rlMsg"></div>
+    <div class="q g">(1) 알루미늄 막대의 이동 방향은? 전류 방향이나 자석을 바꾸면?</div>
+    <textarea data-f="적용-막대 이동 방향" placeholder="관찰 결과"></textarea>
+    <div class="btns"><button class="rv" data-t="r87">정리 확인</button></div>
+    <div class="reveal" id="r87">이 회로에서는 <b>오른쪽</b>으로 이동 · 전류 방향이나 자기장 방향 중 하나를 바꾸면 <b>반대 방향</b>, 둘 다 바꾸면 처음과 같은 방향</div>
+    <div class="q g">(2) 알루미늄 막대가 더 많이 이동하게 하려면 니크롬선의 집게를 어느 쪽으로 옮겨야 할까? 까닭은?</div>
+    <textarea data-f="적용-집게 위치" placeholder="A 쪽? B 쪽? 까닭은 ‘저항’, ‘전류’를 넣어서"></textarea>
+    <div class="btns"><button class="rv" data-t="r88">정리 확인</button></div>
+    <div class="reveal" id="r88">전류가 흐르는 <b>니크롬선의 길이가 짧아지는 쪽</b>(이 회로에서는 B 쪽)으로 → 저항 ↓ → 전류 ↑ → 막대가 받는 힘 ↑</div>
   </div>
 
   <div class="step">
@@ -1473,7 +1514,7 @@ function drawCoil(x,cx,cy,half,rad,s,on,front){// s=+1: N 오른쪽 ↔ 앞쪽 �
   arrow(x,260,y0+90+sd*24,260,y0+90+sd*80,GREEN,5,16);txt(x,'힘',284,y0+90+sd*60,GREEN,15,'left',900);txt(x,lab+' · 자기장 N → S',260,sd>0?y0+12:y0+176,GOLD,13,'center',900);});})();
 
 // 전동기
-(function(){const C=cv('moC');const st={run:false,comm:true,th:0,w:0};const cx=350,cy=220,r=120;
+(function(){const C=cv('moC');const st={run:false,comm:true,th:0,w:0,mag:false};const cx=350,cy=220,r=120;
  function cur(){if(!st.run)return 0;return st.comm?(Math.cos(st.th)>=0?1:-1):1;}
  function draw(){const x=C.x;x.clearRect(0,0,C.w,C.h);x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);
   rrect(x,30,90,100,260,10,'#e0574a');rrect(x,570,90,100,260,10,'#3f6fd8');txt(x,'N',80,220,'#fff',26,'center',900);txt(x,'S',620,220,'#fff',26,'center',900);
@@ -1486,27 +1527,81 @@ function drawCoil(x,cx,cy,half,rad,s,on,front){// s=+1: N 오른쪽 ↔ 앞쪽 �
   const c=cur();[[ax,ay,c],[bx,by,-c]].forEach(([X,Y,s],k)=>{x.fillStyle='#e0a050';x.beginPath();x.arc(X,Y,22,0,7);x.fill();x.fillStyle='#1d2433';x.strokeStyle='#1d2433';
    if(s>0){x.beginPath();x.arc(X,Y,7,0,7);x.fill();}else if(s<0){x.lineWidth=4;x.beginPath();x.moveTo(X-10,Y-10);x.lineTo(X+10,Y+10);x.moveTo(X+10,Y-10);x.lineTo(X-10,Y+10);x.stroke();x.lineWidth=1;}
    if(s)arrow(x,X,Y-s*26,X,Y-s*86,GREEN,5,15);txt(x,k?'B':'A',X+(X>cx?34:-34),Y,'#e9edff',14,'center',900);});
-  txt(x,'코일을 회전축 방향에서 본 모습 · ⊙ 나오는 전류 ⊗ 들어가는 전류 · 초록 = 힘',14,22,MUTED,11,'left',700);
-  txt(x,'회전 속도 '+Math.abs(st.w/(2*Math.PI)).toFixed(2)+' 바퀴/초',690,420,GOLD,12,'right',900);}
- anim(C.c,dt=>{const tq=st.run?6*cur()*Math.cos(st.th):0;st.w+=(tq-st.w*.8)*dt;st.th+=st.w*dt;draw();});
+  if(st.mag&&c){// 코일 = 전자석: N극 방향 = c·(sinθ, −cosθ) (수학 좌표)
+   const mx=c*Math.sin(st.th),my=-c*Math.cos(st.th),nx=cx+mx*70,ny=cy-my*70,sx=cx-mx*70,sy=cy+my*70;
+   x.save();x.globalAlpha=.9;x.lineWidth=16;x.lineCap='round';x.strokeStyle='#e0574a';x.beginPath();x.moveTo(cx,cy);x.lineTo(nx,ny);x.stroke();x.strokeStyle='#3f6fd8';x.beginPath();x.moveTo(cx,cy);x.lineTo(sx,sy);x.stroke();x.restore();x.lineWidth=1;
+   txt(x,'N',nx+mx*16,ny-my*16,'#ff9a9a',15,'center',900);txt(x,'S',sx-mx*16,sy+my*16,'#9ab8ff',15,'center',900);
+   const leftIsN=mx<0;// 코일의 N극이 왼쪽(자석 N극) 쪽이면 미는 힘
+   txt(x,leftIsN?'왼쪽 자석 N극 ↔ 코일 N극: 미는 힘':'왼쪽 자석 N극 ↔ 코일 S극: 당기는 힘',350,400,leftIsN?'#ff9a9a':GREEN,13,'center',900);
+   txt(x,leftIsN?'오른쪽 자석 S극 ↔ 코일 S극: 미는 힘':'오른쪽 자석 S극 ↔ 코일 N극: 당기는 힘',350,426,leftIsN?'#ff9a9a':GREEN,13,'center',900);}
+  txt(x,st.mag?'코일을 자석(전자석)으로 본 모습 · 빨강 = 코일의 N극, 파랑 = S극':'코일을 회전축 방향에서 본 모습 · ⊙ 나오는 전류 ⊗ 들어가는 전류 · 초록 = 힘',14,22,MUTED,11,'left',700);
+  txt(x,'회전 속도 '+Math.abs(st.w/(2*Math.PI)).toFixed(2)+' 바퀴/초',690,st.mag?60:420,GOLD,12,'right',900);}
+ anim(C.c,dt=>{if(st.slow)dt*=.3;const tq=st.run?6*cur()*Math.cos(st.th):0;st.w+=(tq-st.w*.8)*dt;st.th+=st.w*dt;draw();});
  $('#moGo').onclick=e=>{st.run=!st.run;e.target.textContent=st.run?'⏸ 전원 끄기':'▶ 전원 켜기';};
  $('#moCm').onclick=e=>{st.comm=!st.comm;e.target.textContent='정류자: '+(st.comm?'있음':'없음');toggleBtn(e.target,!st.comm);};
- $('#moRs').onclick=()=>{st.th=0;st.w=0;st.run=false;$('#moGo').textContent='▶ 전원 켜기';};draw();})();
+ $('#moRs').onclick=()=>{st.th=0;st.w=0;st.run=false;$('#moGo').textContent='▶ 전원 켜기';};
+ const mb=document.getElementById('moMag');if(mb)mb.onclick=e=>{st.mag=!st.mag;toggleBtn(e.target,st.mag);};
+ const sl=document.getElementById('moSlow');if(sl)sl.onclick=e=>{st.slow=!st.slow;toggleBtn(e.target,st.slow);};draw();})();
 
 // 전동기 활용 카드
 (function(){const IT=[['🌀','선풍기','날개를 돌려 바람을 만듦'],['🧺','세탁기','통을 돌려 빨래를 섞음'],['🚁','드론','프로펠러를 빠르게 돌려 떠오름'],['🚗','전기 자동차','바퀴를 돌림'],['🧹','청소기','팬을 돌려 먼지를 빨아들임'],['📱','스마트폰','작은 전동기로 진동'],['💨','헤어드라이어','팬을 돌려 뜨거운 바람'],['🛗','엘리베이터','줄을 감아 올리고 내림']];const open=new Set();
  function r(){const c=$('#moCards');c.innerHTML='';IT.forEach((it,i)=>{const el=document.createElement('div');el.className='scard'+(open.has(i)?' picked':'');el.style.width='250px';el.innerHTML=`<div style="font-size:48px;line-height:1.2">${it[0]}</div><div class="nm">${it[1]}</div><div class="tp" style="min-height:58px;font-size:21px;color:${GOLD}">${open.has(i)?it[2]:'?'}</div>`;el.onclick=()=>{open.has(i)?open.delete(i):open.add(i);r();};c.appendChild(el);});}r();})();
 
+// 적용: 레일 위 알루미늄 막대 + 니크롬선 집게 (위에서 본 모습)
+(function(){if(!document.getElementById('rlC'))return;const C=cv('rlC');const st={on:false,pol:1,nUp:1,p:.2,x:460,v:0};
+ const X0=150,X1=780,Y1=140,Y2=290,MX0=330,MX1=640,A=430,B=930,NY=395;
+ function I(){const R=1+(B-(A+st.p*(B-A)))/(B-A)*10;return st.on?6/R:0;}
+ function dir(){return st.pol*st.nUp;}// +1: 오른쪽
+ function draw(){const x=C.x;x.clearRect(0,0,C.w,C.h);x.fillStyle='#050913';x.fillRect(0,0,C.w,C.h);const i=I();
+  txt(x,'위에서 본 모습 · 말굽자석의 '+(st.nUp>0?'N극이 레일 위쪽(보는 쪽), S극이 아래쪽':'S극이 레일 위쪽(보는 쪽), N극이 아래쪽'),16,22,MUTED,12,'left',700);
+  // 자석 극 영역
+  x.fillStyle=st.nUp>0?'#e0574a33':'#3f6fd833';x.fillRect(MX0,Y1-40,MX1-MX0,Y2-Y1+80);x.strokeStyle=st.nUp>0?'#e0574a':'#3f6fd8';x.setLineDash([6,5]);x.strokeRect(MX0,Y1-40,MX1-MX0,Y2-Y1+80);x.setLineDash([]);
+  txt(x,(st.nUp>0?'N':'S')+'극 (위)',MX1-8,Y2+28,st.nUp>0?'#ff9a9a':'#9ab8ff',13,'right',900);
+  for(let gx=MX0+30;gx<MX1;gx+=60)for(let gy of[Y1+38,Y2-38]){x.strokeStyle='#6ad1ff88';x.lineWidth=2;x.beginPath();x.arc(gx,gy,8,0,7);x.stroke();if(st.nUp>0){x.beginPath();x.moveTo(gx-5,gy-5);x.lineTo(gx+5,gy+5);x.moveTo(gx+5,gy-5);x.lineTo(gx-5,gy+5);x.stroke();}else{x.fillStyle='#6ad1ff88';x.beginPath();x.arc(gx,gy,2.5,0,7);x.fill();}x.lineWidth=1;}
+  txt(x,'자기장 '+(st.nUp>0?'⊗ 화면 안쪽(아래로)':'⊙ 화면 밖(위로)'),MX0+6,Y2+58,CYAN,11,'left',700);
+  // 레일
+  [Y1,Y2].forEach(y=>{rrect(x,X0,y-7,X1-X0,14,4,'#c9ced8','#8a94c4',1.5);});txt(x,'금속 막대(레일)',X1-4,Y1-20,MUTED,11,'right',700);
+  // 전원 장치
+  rrect(x,14,170,110,110,10,'#22305e','#6ad1ff',2);txt(x,'전원 장치',69,192,CYAN,11,'center',900);
+  const tp=st.pol>0,top=[124,205],bot=[124,255];x.fillStyle=tp?RED:'#4a8cff';x.beginPath();x.arc(top[0],top[1],7,0,7);x.fill();x.fillStyle=tp?'#4a8cff':RED;x.beginPath();x.arc(bot[0],bot[1],7,0,7);x.fill();
+  txt(x,tp?'(+)':'(−)',100,205,tp?RED:BLUE,11,'right',900);txt(x,tp?'(−)':'(+)',100,255,tp?BLUE:RED,11,'right',900);
+  // 전선
+  x.strokeStyle='#c98a4a';x.lineWidth=3;x.beginPath();x.moveTo(124,205);x.lineTo(140,205);x.lineTo(140,Y1);x.lineTo(X0,Y1);x.stroke();
+  x.beginPath();x.moveTo(X0,Y2);x.lineTo(140,Y2);x.lineTo(140,340);x.lineTo(200,340);x.stroke();
+  const cxp=A+st.p*(B-A);x.beginPath();x.moveTo(250,340);x.lineTo(300,340);x.lineTo(300,360);x.lineTo(cxp,360);x.lineTo(cxp,NY-8);x.stroke();
+  x.beginPath();x.moveTo(B,NY);x.lineTo(1000,NY);x.lineTo(1000,430);x.lineTo(70,430);x.lineTo(70,280);x.stroke();x.lineWidth=1;
+  // 스위치
+  x.fillStyle='#e9edff';x.beginPath();x.arc(200,340,5,0,7);x.arc(250,340,5,0,7);x.fill();x.strokeStyle=st.on?'#e9edff':RED;x.lineWidth=4;x.beginPath();x.moveTo(200,340);if(st.on)x.lineTo(250,340);else x.lineTo(242,312);x.stroke();x.lineWidth=1;txt(x,'스위치',225,318,MUTED,11,'center',700);
+  // 니크롬선
+  x.strokeStyle='#d9a066';x.lineWidth=3;x.beginPath();x.moveTo(A,NY);for(let k=0;k<=50;k++)x.lineTo(A+k*(B-A)/50,NY+(k%2?-5:5));x.stroke();x.lineWidth=1;
+  txt(x,'A',A-14,NY,GOLD,15,'center',900);txt(x,'B',B+14,NY-16,GOLD,15,'center',900);txt(x,'니크롬선',(A+B)/2,NY+22,'#d9a066',11,'center',700);
+  rrect(x,cxp-9,NY-18,18,22,4,'#e0574a','#fff',1.5);txt(x,'집게',cxp,NY-30,'#ff9a9a',11,'center',900);
+  // 알루미늄 막대
+  rrect(x,st.x-9,Y1-22,18,Y2-Y1+44,6,'#dfe4ee','#ffffff',2);txt(x,'알루미늄 막대',st.x,Y1-34,'#e9edff',12,'center',900);
+  if(st.on){const down=st.pol>0;arrow(x,st.x+26,down?Y1+30:Y2-30,st.x+26,down?Y2-30:Y1+30,GOLD,3,12);txt(x,'전류',st.x+34,(Y1+Y2)/2,GOLD,11,'left',900);
+   if(st.x>MX0&&st.x<MX1){const d=dir(),L=24+i*10;arrow(x,st.x,(Y1+Y2)/2-40,st.x+d*L,(Y1+Y2)/2-40,GREEN,5,15);txt(x,'힘',st.x+d*(L+14),(Y1+Y2)/2-40,GREEN,13,'center',900);}}
+  // 정보
+  rrect(x,1030,150,140,120,12,'#0b1229',LINE);txt(x,'전류계',1100,172,GOLD,11,'center',900);txt(x,i.toFixed(2)+' A',1100,210,GOLD,20,'center',900);
+  txt(x,'사용하는 니크롬선',1100,240,MUTED,9,'center',700);txt(x,'집게 ~ B: '+Math.round((1-st.p)*100)+'%',1100,256,MUTED,10,'center',700);}
+ anim(C.c,dt=>{const inMag=st.x>MX0&&st.x<MX1;const F=st.on&&inMag?dir()*I()*60:0;st.v+=(F-st.v*1.6)*dt;st.x+=st.v*dt;if(st.x<X0+12){st.x=X0+12;st.v=0;}if(st.x>X1-12){st.x=X1-12;st.v=0;}draw();});
+ const msg=t=>{const m=document.getElementById('rlMsg');if(m)m.textContent=t;};
+ $('#rlSw').onclick=e=>{st.on=!st.on;e.target.textContent=st.on?'스위치 열기':'스위치 닫기';};
+ $('#rlDir').onclick=()=>{st.pol*=-1;msg('전원 장치의 (+)극과 (−)극을 바꿨어요 → 막대에 흐르는 전류 방향이 반대');};
+ $('#rlMag').onclick=()=>{st.nUp*=-1;msg('말굽자석을 뒤집었어요 → 자기장 방향이 반대');};
+ $('#rlReset').onclick=()=>{st.x=460;st.v=0;};
+ $('#rlP').addEventListener('input',e=>{st.p=+e.target.value;$('#rlPo').textContent=st.p<.15?'A 쪽':st.p>.85?'B 쪽':'가운데';});draw();})();
+
 
 /* ================== 학생용 채점 도우미 ================== */
 function gradeInputs(tb,ans,msg,tol){const f=[...$('#'+tb).querySelectorAll('input,select')];let ok=0,filled=0;
  f.forEach((e,i)=>{const v=String(e.value).replace(/[,원\s]/g,'');if(!v){e.style.borderColor='';return;}filled++;const a=ans[i];
-  const n=v.includes('/')?(([x,y])=>y?x/y:NaN)(v.split('/').map(Number)):parseFloat(v);const g=typeof a==='number'?(tol==='r2'?Math.round(n*100)===Math.round(a*100):Math.abs(n-a)<=(tol||0)+1e-9):v===a;e.style.borderColor=g?'#63e6a3':'#ff7a90';if(g)ok++;});
+  const n=v.includes('/')?(([x,y])=>y?x/y:NaN)(v.split('/').map(Number)):parseFloat(v);const g=typeof a==='number'?(tol==='r2'?Math.round(n*100)===Math.round(a*100):Math.abs(n-a)<=(tol||0)+1e-9):v===String(a).replace(/\s/g,'');e.style.borderColor=g?'#63e6a3':'#ff7a90';if(g)ok++;});
  const m=$('#'+msg);m.style.color=ok===f.length?'#63e6a3':'#ff7a90';m.textContent=ok===f.length?'⭕ 모두 정답!':(filled<f.length?`빈칸 ${f.length-filled}개 · `:'')+`${ok} / ${f.length} 정답 · 빨간 칸 다시 생각해 보기`;}
 $('#waChk').onclick=()=>gradeInputs('waIn',['전지','전류','전선','전구','스위치','전압'],'waMsg');
 $('#rcChk').onclick=()=>gradeInputs('rcIn',[6,6,6,36,12,3,3,18,3,12,6,36],'rcMsg',0.01);
 $('#q2Chk').onclick=()=>gradeInputs('q2In',[3,1.5,6, 6,6,6, 2,4,1, 3,1.5,3, 1.5,3, 6,3,6, 3,6],'q2Msg','r2');
 $('#q3Chk').onclick=()=>gradeInputs('q3In',[2,2/3,3, 6,6,6, 3,9,2, 2,2/3,2, 2/3,1, 6,2,6, 4,6],'q3Msg','r2');
+$('#mbChk').onclick=()=>gradeInputs('mbIn',['전류','미는','당기는','N극과 S극'],'mbMsg');
 $('#blChk').onclick=()=>gradeInputs('blIn',[1600,34730,2250,1250,39830,3983,1470,45280],'blMsg',0);
 
 /* ============ 시작 ============ */
