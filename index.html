@@ -138,6 +138,7 @@ footer{max-width:1100px;margin:0 auto;padding:0 16px 40px;color:var(--muted);fon
 details summary{cursor:pointer}
 #blTb{font-size:15px}
 #lgMsg{white-space:pre-line}
+.penRec{display:inline-block;font-size:13px;font-weight:700;color:#ff7a90;border:1px solid #ff7a90;border-radius:999px;padding:1px 10px;margin:0 6px;background:#ff7a901a}
 </style>
 </head>
 <body>
@@ -889,11 +890,12 @@ const LV=[[0,'중성 원자','⚪'],[5,'정전기','✨'],[12,'건전지','🔋'
 function esc(t){return String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function saveUser(){try{localStorage.setItem(SK+'_user',JSON.stringify(user));}catch(e){}}
 function setPoints(j){if(!user||j==null||j.points==null)return;user.points=j.points;user.level=j.level;saveUser();showWho();}
+function penRec(){const h=(user&&user.penHist)||[];if(!h.length)return '';const md=x=>Number(x.slice(5,7))+'월 '+Number(x.slice(8,10))+'일';const t=h.map(p=>md(p.start)+(p.reason?' ('+esc(p.reason)+')':'')).join(', ');return `<span class="penRec" title="패널티 기록">⚠ 패널티 기록 ${h.length}회 · ${t}</span>`;}
 function showWho(){if(PREVIEW){$('#who').innerHTML='<b>👩‍🏫 교사 미리보기</b> <span class="small">(제출·게시 안 됨, 게시판 읽기만)</span>';return;}
  if(!user||!user.nick){$('#who').innerHTML='';return;}
  const lv=user.level||{icon:LV[0][2],name:LV[0][1],next:LV[1][0],nextName:LV[1][1]},p=user.points||0,cur=LV.find(x=>x[1]===lv.name)||LV[0];
  const pr=lv.next?Math.round((p-cur[0])/(lv.next-cur[0])*100):100;
- $('#who').innerHTML=`<span title="${user.cls}반 ${user.num}번">${lv.icon} <b>${esc(user.nick)}</b> · ${lv.name} ${p}점<span class="lvbar"><i style="width:${pr}%"></i></span>${lv.next?`<span class="small">${lv.nextName}까지 ${lv.next-p}점</span>`:'<span class="small">최고 등급!</span>'}</span><button id="lvBtn">등급 안내</button><button id="chg">로그아웃</button>`;
+ $('#who').innerHTML=`<span title="${user.cls}반 ${user.num}번">${lv.icon} <b>${esc(user.nick)}</b> · ${lv.name} ${p}점<span class="lvbar"><i style="width:${pr}%"></i></span>${lv.next?`<span class="small">${lv.nextName}까지 ${lv.next-p}점</span>`:'<span class="small">최고 등급!</span>'}</span>${penRec()}<button id="lvBtn">등급 안내</button><button id="chg">로그아웃</button>`;
  $('#chg').onclick=()=>{const u=user;user=null;try{localStorage.removeItem(SK+'_user');}catch(e){}showWho();user=u?{cls:u.cls,num:u.num,name:u.name}:null;openLogin();user=null;};$('#lvBtn').onclick=()=>$('#lvHelp').classList.add('on');}
 $('#lvTb').innerHTML=LV.map(x=>`<tr><td>${x[2]} ${x[1]}</td><td>${x[0]}점</td></tr>`).join('');$('#lvClose').onclick=()=>$('#lvHelp').classList.remove('on');
 function openLogin(){$('#lgReg').style.display='none';regStar=false;$('#lgMsg').textContent='';if(user){$('#lgCls').value=user.cls||'';$('#lgNum').value=user.num||'';$('#lgName').value=user.name||'';}$('#lgPin').value='';$('#login').classList.add('on');}
@@ -908,7 +910,7 @@ $('#lgGo').onclick=async()=>{if(lgBusy)return;const cls=$('#lgCls').value,num=pa
  try{const r=await fetch(API_URL,{method:'POST',body:JSON.stringify(body)});const j=await r.json();m.style.color='';
   if(j.need==='register'){regStar=!!j.star;$('#lgReg').style.display='block';$('#lgPin2Row').style.display=regStar?'none':'';$('#lgRegT').textContent=regStar?'⚡ 별 탐구실 PIN 확인 완료! 이번 단원 닉네임 정하기':'⚡ 처음 왔어요! 닉네임 정하기';m.textContent=j.error||(regStar?'새 단원에서 쓸 닉네임을 정하고 다시 [입장하기]':'처음 왔어요! 닉네임과 PIN 확인을 입력하고 다시 [입장하기]');$('#lgNick').focus();}
   else if(!j.ok){m.style.color=j.penalty?'#e5484d':'';m.textContent=j.error||'로그인 실패';}
-  else{user={cls,num,name,pin,nick:j.nick,points:j.points,level:j.level};saveUser();$('#login').classList.remove('on');showWho();restore();pullServer();if($('#m-qa').classList.contains('on'))loadQA();}
+  else{user={cls,num,name,pin,nick:j.nick,points:j.points,level:j.level,penHist:j.penHist||[]};saveUser();$('#login').classList.remove('on');showWho();restore();pullServer();if($('#m-qa').classList.contains('on'))loadQA();}
  }catch(e){m.style.color='';m.textContent='인터넷 연결 확인 후 다시 시도하기';}
  lgBusy=false;};
 ['lgPin','lgPin2','lgNick'].forEach(id=>$('#'+id).addEventListener('keydown',e=>{if(e.key==='Enter')$('#lgGo').click();}));
@@ -1023,7 +1025,7 @@ function faFields(L){const st=FA[L]||faLoad(L),items=FA_DATA[L];const ess=items.
  return [['형성평가 첫 채점(자동 4문항)',st.first?st.firstScore+' / 4':'미응시'],['형성평가 문항별 첫 결과',st.first?st.first.map((x,i)=>(i+1)+'번 '+x).join(', '):''],['형성평가 시도 횟수',String(st.attempts||0)],['형성평가 통과',st.passed?'통과':'미통과'],['형성평가 서술형',((st.ans||{})[ess]||{}).v||'']];}
 
 /* ---------- API ---------- */
-async function api(payload){if(!API_URL)throw new Error('NOAPI');if(user)payload=Object.assign({cls:user.cls,num:user.num,name:user.name,pin:user.pin},payload);const r=await fetch(API_URL,{method:'POST',body:JSON.stringify(payload)});const j=await r.json();if(!j.ok){if(j.relogin){openLogin();if(j.penalty){const m=$('#lgMsg');m.style.color='#e5484d';m.textContent=j.error;}}throw new Error(j.error||'오류');}setPoints(j);return j;}
+async function api(payload){if(!API_URL)throw new Error('NOAPI');if(user)payload=Object.assign({cls:user.cls,num:user.num,name:user.name,pin:user.pin},payload);const r=await fetch(API_URL,{method:'POST',body:JSON.stringify(payload)});const j=await r.json();if(!j.ok){if(j.relogin){openLogin();if(j.penalty){const m=$('#lgMsg');m.style.color='#e5484d';m.textContent=j.error;}}throw new Error(j.error||'오류');}if(user&&Array.isArray(j.penHist)){user.penHist=j.penHist;try{saveUser();}catch(e){}if(j.points==null)showWho();}setPoints(j);return j;}
 async function apiGet(params){if(!API_URL)throw new Error('NOAPI');const r=await fetch(API_URL+'?'+new URLSearchParams(params));return r.json();}
 
 /* ---------- 제출 ---------- */
