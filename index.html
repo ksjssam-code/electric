@@ -137,6 +137,7 @@ footer{max-width:1100px;margin:0 auto;padding:0 16px 40px;color:var(--muted);fon
 .cards .scard{width:auto;min-width:140px}
 details summary{cursor:pointer}
 #blTb{font-size:15px}
+#lgMsg{white-space:pre-line}
 </style>
 </head>
 <body>
@@ -906,7 +907,7 @@ $('#lgGo').onclick=async()=>{if(lgBusy)return;const cls=$('#lgCls').value,num=pa
  lgBusy=true;m.style.color='#9ba6d4';m.textContent='확인 중…';
  try{const r=await fetch(API_URL,{method:'POST',body:JSON.stringify(body)});const j=await r.json();m.style.color='';
   if(j.need==='register'){regStar=!!j.star;$('#lgReg').style.display='block';$('#lgPin2Row').style.display=regStar?'none':'';$('#lgRegT').textContent=regStar?'⚡ 별 탐구실 PIN 확인 완료! 이번 단원 닉네임 정하기':'⚡ 처음 왔어요! 닉네임 정하기';m.textContent=j.error||(regStar?'새 단원에서 쓸 닉네임을 정하고 다시 [입장하기]':'처음 왔어요! 닉네임과 PIN 확인을 입력하고 다시 [입장하기]');$('#lgNick').focus();}
-  else if(!j.ok){m.textContent=j.error||'로그인 실패';}
+  else if(!j.ok){m.style.color=j.penalty?'#e5484d':'';m.textContent=j.error||'로그인 실패';}
   else{user={cls,num,name,pin,nick:j.nick,points:j.points,level:j.level};saveUser();$('#login').classList.remove('on');showWho();restore();pullServer();if($('#m-qa').classList.contains('on'))loadQA();}
  }catch(e){m.style.color='';m.textContent='인터넷 연결 확인 후 다시 시도하기';}
  lgBusy=false;};
@@ -1022,7 +1023,7 @@ function faFields(L){const st=FA[L]||faLoad(L),items=FA_DATA[L];const ess=items.
  return [['형성평가 첫 채점(자동 4문항)',st.first?st.firstScore+' / 4':'미응시'],['형성평가 문항별 첫 결과',st.first?st.first.map((x,i)=>(i+1)+'번 '+x).join(', '):''],['형성평가 시도 횟수',String(st.attempts||0)],['형성평가 통과',st.passed?'통과':'미통과'],['형성평가 서술형',((st.ans||{})[ess]||{}).v||'']];}
 
 /* ---------- API ---------- */
-async function api(payload){if(!API_URL)throw new Error('NOAPI');if(user)payload=Object.assign({cls:user.cls,num:user.num,name:user.name,pin:user.pin},payload);const r=await fetch(API_URL,{method:'POST',body:JSON.stringify(payload)});const j=await r.json();if(!j.ok){if(j.relogin)openLogin();throw new Error(j.error||'오류');}setPoints(j);return j;}
+async function api(payload){if(!API_URL)throw new Error('NOAPI');if(user)payload=Object.assign({cls:user.cls,num:user.num,name:user.name,pin:user.pin},payload);const r=await fetch(API_URL,{method:'POST',body:JSON.stringify(payload)});const j=await r.json();if(!j.ok){if(j.relogin){openLogin();if(j.penalty){const m=$('#lgMsg');m.style.color='#e5484d';m.textContent=j.error;}}throw new Error(j.error||'오류');}setPoints(j);return j;}
 async function apiGet(params){if(!API_URL)throw new Error('NOAPI');const r=await fetch(API_URL+'?'+new URLSearchParams(params));return r.json();}
 
 /* ---------- 제출 ---------- */
